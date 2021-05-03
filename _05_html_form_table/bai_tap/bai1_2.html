@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo form đang ký học viên</title>
+    <style>
+        h1 {color: blue}
+        h1 {background-color: aquamarine}
+        body {background-color: khaki}
+    </style>
+</head>
+<body>
+    <form method="get" action="bai1_2.html">
+        <h1>ĐĂNG KÝ HỌC VIÊN</h1>
+        <div><span style="color: blue">Họ và tên</span>
+        <input style="margin-left: 20px" type="text" name="yourname"></div><br>
+        <div><span style="color: blue">Ngày sinh</span>
+        <input style="margin-left: 17px" type="text" name="birthday"></div><br>
+        <div><span style="color: blue">Giới tính</span>
+        <input style="margin-left: 30px" type="radio" name="gioitinh" value="nam">Nam
+        <input style="margin-left: 30px" type="radio" name="gioitinh" value="nu">Nữ</div><br>
+        <div><span style="color: blue; position: relative;top: -55px" >Địa chỉ</span>
+            <textarea style="margin-left: 35px" cols="50" rows="4"></textarea></div><br>
+        <div><span style="color: blue">Lớp</span>
+        <select style="margin-left: 55px" name="class">
+            <option value="cl" selected>-chọn lớp-</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option></select></div><br>
+        <div><span style="color: blue">Email</span>
+        <input style="margin-left: 40px" type="text" name="email"></div><br>
+        <div><span style="color: blue">Điện thoại</span>
+        <input style="margin-left: 10px" type="text" name="phone"></div><br>
+        <div><input style="margin-left: 80px" type="submit" value="Đăng ký">
+        <input type="reset" value="Nhập lại">
+        </div>
+    </form>
+</body>
+</html>
