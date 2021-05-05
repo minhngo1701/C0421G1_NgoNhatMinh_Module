@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="bai_3.html">
+        <input id="ip1" type="text">
+        <input id="ip2" type="text"><br><br>
+        <button type="button" onclick="cong()">Addition(+)</button>
+        <button type="button" onclick="tru()">Subtraction(-)</button>
+        <button type="button" onclick="nhan()">Multiplication(X)</button>
+        <button type="button" onclick="chia()">Division(/)</button>
+        <p id="ketqua"></p>
+    </form>
+    <script>
+            function cong() {
+                let p1 = parseFloat(document.getElementById("ip1").value);
+                let p2 = parseFloat(document.getElementById("ip2").value);
+                var add = p1 + p2;
+                document.getElementById("ketqua").innerHTML = "Result addition: " + add;
+            }
+            function tru() {
+                let p1 = parseFloat(document.getElementById("ip1").value);
+                let p2 = parseFloat(document.getElementById("ip2").value);
+                var sub = p1 - p2;
+                document.getElementById("ketqua").innerHTML = "Result addition: " + sub;
+            }
+            function nhan() {
+                let p1 = parseFloat(document.getElementById("ip1").value);
+                let p2 = parseFloat(document.getElementById("ip2").value);
+                var mult = p1 * p2;
+                document.getElementById("ketqua").innerHTML = "Result addition: " + mult;
+            }
+            function chia() {
+                let p1 = parseFloat(document.getElementById("ip1").value);
+                let p2 = parseFloat(document.getElementById("ip2").value);
+                var div = p1 / p2;
+                document.getElementById("ketqua").innerHTML = "Result addition: " + div;
+            }
+
+    </script>
+</body>
+</html>

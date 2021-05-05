@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 2</title>
+</head>
+<body>
+    <form action="bai_2.html">
+        <table>
+        <tr>
+            <th>Amount</th>
+            <th style="width: 40px"></th>
+            <th>From Currency</th>
+            <th style="width: 40px"></th>
+            <th>To Currency</th>
+            <th style="width: 40px"></th>
+        </tr>
+        <tr>
+            <td><input id="amt" style="width: 100px" type="text" name="amount"></td>
+            <td></td>
+            <td><select id="fcur" name="country">
+                     <option value="vn">VietNam</option>
+                     <option value="usd">USD</option></select></td>
+            <td></td>
+            <td><select id="tcur" name="contry">
+                    <option value="usd">USD</option>
+                    <option value="vn">VietNam</option></select></td>
+            <td><button type="button" onclick="convert()" style="background-color: mediumpurple; color: white">Convert</button></td>
+        </table>
+        <p id="convert"></p>
+    </form>
+    <script>
+            function convert() {
+                let amt = document.getElementById("amt").value;
+                let fcur = document.getElementById("fcur").value;
+                let tcur = document.getElementById("tcur").value;
+                if (fcur == tcur) {
+                    document.getElementById("convert").innerHTML = "Result = " + amt;
+                }
+                if (fcur == "vn" && tcur == "usd") {
+                    var cv1 = amt/23000;
+                    document.getElementById("convert").innerHTML = "Result = " + cv1 + "$";
+                } else {
+                    var cv2 = amt * 23000;
+                    document.getElementById("convert").innerHTML = "Result = " + cv2 + "VNĐ";
+                }
+            }
+    </script>
+</body>
+</html>
