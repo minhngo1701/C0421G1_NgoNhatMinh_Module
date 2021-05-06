@@ -32,18 +32,8 @@
     <script>
             function convert() {
                 let amt = document.getElementById("amt").value;
-                let fcur = document.getElementById("fcur").value;
-                let tcur = document.getElementById("tcur").value;
-                if (fcur == tcur) {
-                    document.getElementById("convert").innerHTML = "Result = " + amt;
-                }
-                if (fcur == "vn" && tcur == "usd") {
-                    var cv1 = amt/23000;
-                    document.getElementById("convert").innerHTML = "Result = " + cv1 + "$";
-                } else {
-                    var cv2 = amt * 23000;
-                    document.getElementById("convert").innerHTML = "Result = " + cv2 + "VNĐ";
-                }
+                let cv = amt / 23000;
+                document.getElementById("convert").innerHTML = "result = " + cv + "USD";
             }
     </script>
 </body>
