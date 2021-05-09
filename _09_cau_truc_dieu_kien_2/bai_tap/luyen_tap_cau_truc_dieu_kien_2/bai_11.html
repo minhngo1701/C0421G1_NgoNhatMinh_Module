@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            let money = prompt("Nhập tiền thu nhập tính thuế: ");
+            if (money <= 5000000) {
+                let thue1 = money * 0.05;
+                alert("Thuế TNCN phải trả = " + thue1);
+            } else if (money <= 10000000) {
+                let thue2 = money * 0.1 - 250000;
+                alert("Thuế TNCN phải trả = " + thue2);
+            }else if (money <= 18000000) {
+                let thue3 = money * 0.15 - 750000;
+                alert("Thuế TNCN phải trả = " + thue3);
+            }else if (money <= 32000000) {
+                let thue4 = money * 0.2 - 1650000;
+                alert("Thuế TNCN phải trả = " + thue4);
+            }else if (money <= 52000000) {
+                let thue5 = money * 0.25 - 3250000;
+                alert("Thuế TNCN phải trả = " + thue5);
+            }else if (money <= 80000000) {
+                let thue6 = money * 0.3 - 5850000;
+                alert("Thuế TNCN phải trả = " + thue6);
+            } else {
+                let thue7 = money * 0.35 - 9850000;
+                alert("Thuế TNCN phải trả = " + thue7)
+            }
+        </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            let kwh = prompt("Số Kwh:");
+            let ph = 1678 * 50;
+            let ph1 = 1734 * 50;
+            let ph2 = 2014 * 100;
+            let ph3 = 2536 * 100;
+            let ph4 = 2834 * 100;
+
+            if (kwh <= 50) {
+                let g1 = 1678 * kwh;
+                alert("Giá tiền điện = " + g1);
+            } else if (kwh <= 100) {
+                let g2 = (kwh - 50) * 1734 + ph;
+                alert("Giá tiền điện = " + g2);
+            } else if (kwh <= 200) {
+                let g3 = (kwh - 100) * 2014 + ph1 + ph;
+                alert("Giá tiền điện = " + g3)
+            } else if (kwh <= 300) {
+                let g4 = (kwh - 200) * 2536 + ph + ph1 + ph2;
+                alert("Giá tiền điện = " + g4);
+            } else if (kwh <= 400) {
+                let g5 = (kwh - 300) * 2834 + ph + ph1 + ph2 + ph3;
+                alert("Giá tiền điện = " + g5);
+            } else {
+                let g6 = (kwh - 400) * 2927 + ph + ph1 + ph2 + ph3 * ph4;
+                alert("Giá tiền điện = " + g6)
+            }
+        </script>
+</body>
+</html>
