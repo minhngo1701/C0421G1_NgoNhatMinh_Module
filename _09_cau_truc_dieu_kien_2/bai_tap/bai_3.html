@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <textarea id="input" cols="20" rows="4"></textarea>
+        <table>
+            <tr>
+                <td><input type="button" value="1" onclick="mot()"></td>
+                <td><input type="button" value="2" onclick="hai()"></td>
+                <td><input type="button" value="3" onclick="ba()"></td>
+                <td><input type="button" value="+" onclick="cong()"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="4" onclick="four()"></td>
+                <td><input type="button" value="5" onclick="nam()"></td>
+                <td><input type="button" value="6" onclick="sau()"></td>
+                <td><input type="button" value="-" onclick="tru()"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="7" onclick="bay()"></td>
+                <td><input type="button" value="8" onclick="tam()"></td>
+                <td><input type="button" value="9" onclick="chin()"></td>
+                <td><input type="button" value="x" onclick="nhan()"></td>
+            </tr>
+            <tr>
+                <td><input type="reset" value="C" onclick="reset()"></td>
+                <td><input type="button" value="0" onclick="zero()"></td>
+                <td><input type="button" value="=" onclick="tinh()"></td>
+                <td><input type="button" value="/" onclick="chia()"></td>
+            </tr>
+        </table>
+        <script>
+                function mot() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + 1;
+                }
+                function hai() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + 2;
+                }
+                function ba() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + 3;
+                }
+                function cong() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + "+";
+                }
+                function four() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + 4;
+                }
+                function nam() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + 5;
+                }
+                function sau() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + 6;
+                }
+                function tru() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + "-";
+                }
+                function bay() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + 7;
+                }
+                function tam() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + 8;
+                }
+                function chin() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + 9;
+                }
+                function nhan() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + "*";
+                }
+                function reset() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = "";
+                }
+                function zero() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + 0;
+                }
+                function tinh() {
+                    document.getElementById("input").innerText = eval(document.getElementById("input").value);
+                }
+                function chia() {
+                    let mt = document.getElementById("input").value;
+                    document.getElementById("input").innerText = mt + "/";
+                }
+        </script>
+</body>
+</html>
