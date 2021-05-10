@@ -6,16 +6,11 @@
 </head>
 <body>
         <script>
-            let a = "<table border='1' width='300' cellspacing='0' cellpadding = '3'>";
-            for (i = 1; i <= 10; i++) {
-                a = a + "<tr>";
-                for (j = 1; j <= 10; j++) {
-                    a = a + "<td>" + j*i + "</td>"
-                }
-                a = a + "</tr>"
-            }
-            a = a + "</table>";
-            document.write(a);
+            let value = null;
+            do {
+                value = prompt("Nhập số từ 1 -> 10");
+            } while (value < 1 || value > 10);
+            document.write("Số bạn vừa nhập là: " + value);
         </script>
 </body>
 </html>
