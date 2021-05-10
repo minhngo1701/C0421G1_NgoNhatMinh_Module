@@ -79,7 +79,7 @@
                 }
                 function nhan() {
                     let mt = document.getElementById("input").value;
-                    document.getElementById("input").innerText = mt + "x";
+                    document.getElementById("input").innerText = mt + "*";
                 }
                 function reset() {
                     let mt = document.getElementById("input").value;
@@ -90,14 +90,7 @@
                     document.getElementById("input").innerText = mt + 0;
                 }
                 function tinh() {
-                    let mt = document.getElementById("input").value;
-                    let add = parseInt(mt) + parseInt(mt);
-                    let sub = parseInt(mt) - parseInt(mt)
-                    let multi = parseInt(mt) * parseInt(mt)
-                    let div = parseInt(mt) / parseInt(mt)
-                    if (add == cong()) {
-                        document.getElementById("input").innerText = add;
-                    }
+                    document.getElementById("input").innerText = eval(document.getElementById("input").value);
                 }
                 function chia() {
                     let mt = document.getElementById("input").value;
