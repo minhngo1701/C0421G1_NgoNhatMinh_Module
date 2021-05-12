@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <input type="button" value="Chơi" onclick="play()">
+        <script>
+            function play() {
+                let a = parseInt(prompt("Nhập khoảng:"));
+                let b = Math.random()*a;
+                let c;
+                for (i = 0; i < 3; i++)  {
+                    c = parseInt(prompt("Nhập số dự đoán:"));
+                    if (c == b) {
+                        alert("Chúc mừng");
+                        break;
+                    } else if (b < c) {
+                        alert("lớn hơn");
+                     } else {
+                        alert("bé hơn");
+                    }
+                }
+
+            }
+        </script>
+</body>
+</html>
