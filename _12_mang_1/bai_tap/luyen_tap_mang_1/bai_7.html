@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            let arr = [5,23,10,6,35,0,3,14,21,8];
+            let v = parseInt(prompt("Nhập số V:"));
+            for (let i = 0; i< arr.length; i++) {
+                // v = parseInt(prompt("Nhập số V:"));
+                if (v === arr[i]) {
+                    arr.splice(i,1);
+                    arr.push(0);
+                    document.write(arr);
+                }
+            }
+        </script>
+</body>
+</html>
