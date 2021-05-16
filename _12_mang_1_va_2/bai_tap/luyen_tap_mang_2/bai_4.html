@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            let str = ["Toi ten la nguyen van a "];
+            let char = 0;
+            let count = 0;
+            for (let i = 0; i < str.length; i++) {
+                for (let j = 0; j < str[i].length; j++) {
+                    if (str[i][j] !== " ") {
+                        char += str[i][j];
+                    } else {
+                        char.toString();
+                        count++;
+                    }
+
+                }
+            }
+            document.write("Số từ trong mảng = " + count);
+        </script>
+</body>
+</html>
