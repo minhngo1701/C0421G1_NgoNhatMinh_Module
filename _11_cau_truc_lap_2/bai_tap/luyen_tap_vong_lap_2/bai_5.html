@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            let z = parseInt(prompt("Nhập số tiền:"));
+            let th = parseInt(prompt("Nhập số tháng:"));
+            let t = 0;
+
+            for (let i = 1; i <= th; i++) {
+                if (i == th) {
+                    if (i <= 3) {
+                        t = t + z * 3.95 / 100 / 12 * th;
+                    } else if (i <= 12) {
+                        t += z * 6.5 / 100 / 12 * th;
+                    } else if (i <= 18) {
+                        t += z * 6.7 / 100 / 12 * th;
+                    } else {
+                        t += z * 0.1 / 12 * th;
+                    }
+                }
+            }
+            document.write("Số tiền lãi = " + t);
+        </script>
+</body>
+</html>
