@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            function reverseNumber(x) {
+               let first = 0;
+               let last = x.length - 1;
+               while (first < last){
+                   let z = x[first];
+                   x[first] = x[last];
+                   x[last] = z;
+                   first++;
+                   last--;
+               }
+               return x;
+            }
+            let arr = new Array(5);
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = parseInt(prompt("Nhập arr[" + i + "]:"));
+            }
+            let d = reverseNumber(arr);
+            alert(d);
+        </script>
+</body>
+</html>

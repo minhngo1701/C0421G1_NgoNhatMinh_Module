@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            let arr1 = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+            let arr2 = ["Ursa Minor", "Tarurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
+            function toString(str) {
+                let check = false;
+                for (let i = 0; i < arr1.length; i++) {
+                    if (str === arr1[i]) {
+                        check = true;
+                        return arr2[i];
+                    } else {
+                        check = true;
+                    }
+                }
+                if (check) {
+                    return "không có ngôi sao nào";
+                }
+            }
+            let ip = prompt("Nhập tên ngôi sao:");
+            let m = toString(ip);
+            alert(m);
+        </script>
+</body>
+</html>

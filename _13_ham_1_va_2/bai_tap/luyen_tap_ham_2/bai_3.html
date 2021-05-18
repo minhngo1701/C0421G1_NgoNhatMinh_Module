@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            function factorialFunct(x) {
+                let s = 1;
+                for (let i = 1; i <= x; i++) {
+                    s = s * i;
+                }
+                return s;
+            }
+            let n = parseInt(prompt("Nhập n:"));
+            let f = factorialFunct(n);
+            alert(f);
+        </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            let f = 0;
+            function swapNumber(x, y) {
+                f = x[0];
+                x[0] = y[0];
+                y[0] = f;
+                return "a = " + x[0] + " , " + " b = " + y[0];
+            }
+            let a = new Array(1);
+            for (let i = 0; i < a.length; i++) {
+                a[i] = parseInt(prompt("Nhập a:"));
+            }
+            let b = new Array(1);
+            for (let i = 0; i < b.length; i++) {
+                b[i] = parseInt(prompt("Nhập b:"));
+            }
+            let z = swapNumber(a, b);
+            alert(z);
+        </script>
+</body>
+</html>

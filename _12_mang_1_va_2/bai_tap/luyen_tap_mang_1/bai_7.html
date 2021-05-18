@@ -8,13 +8,17 @@
         <script>
             let arr = [5,23,10,6,35,0,3,14,21,8];
             let v = parseInt(prompt("Nhập số V:"));
-            for (let i = 0; i< arr.length; i++) {
-                if (v === arr[i]) {
-                    arr.splice(i,1);
-                    arr.push(0);
-                    document.write(arr);
-                }
+            let d = null;
+            let last = arr.length - 1;
+            for (let i = arr.length - 1; i >= 0; i--) {
+                if (v === arr[i]);
+                arr[i-1] = arr[i];
+                v = d;
+                arr[i] = v;
+                // arr[i-1] = arr[i];
             }
+            arr[last] = 0;
+            document.write(arr);
         </script>
 </body>
 </html>

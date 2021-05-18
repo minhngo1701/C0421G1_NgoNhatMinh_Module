@@ -8,22 +8,19 @@
         <script>
             function isPrime(number) {
                 let s = 1;
-                let p = "";
                 for (let i = 2; i <= number; i++){
                     if (number % i === 0) {
                         s++;
                     }
                 }
                 if (s === 2) {
-                    p = " là số nguyên tố";
+                    document.write("là số nguyên tố");
                 } else {
-                    p =" không phải là số nguyên tố";
+                   document.write("không phải là số nguyên tố");
                 }
-                return p
             }
             let snt = parseInt(prompt("Nhập sô bất kì:"));
-            let check = isPrime(snt);
-            alert(check);
+            isPrime(snt);
         </script>
 </body>
 </html>

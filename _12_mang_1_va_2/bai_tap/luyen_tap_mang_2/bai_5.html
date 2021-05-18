@@ -7,16 +7,25 @@
 <body>
         <script>
             let a = (prompt("Nhập a:"));
-            let str = [a];
             let b = (prompt("Nhập b:"));
-            let str1 = [b];
-            for (let i = 0; i < str.length; i++) {
-                if (str[i] === str1[i]) {
-                    document.write("hai chuỗi giống nhau");
-                    break;
-                }else {
-                    document.write("hai chuỗi khác nhau");
+
+            let str = a.split("");
+            let str1 = b.split("");
+            let check = true;
+            if (str.length == str1.length) {
+                for (let i = 0; i < str.length; i++) {
+                    if (str[i] != str1[i]) {
+                        check = false;
+                        break;
+                    }
                 }
+            }else {
+                check = false;
+            }
+            if (check) {
+                document.write("Hai chuỗi giồng nhau");
+            } else {
+                document.write("Hai chuỗi khác nhau");
             }
 
         </script>
