@@ -8,16 +8,20 @@
         <script>
             let arr = [5,23,10,6,35,0,3,14,21,8];
             let v = parseInt(prompt("Nhập số V:"));
-            let d = null;
-            let last = arr.length - 1;
-            for (let i = arr.length - 1; i >= 0; i--) {
-                if (v === arr[i]);
-                arr[i-1] = arr[i];
-                v = d;
-                arr[i] = v;
-                // arr[i-1] = arr[i];
+            let index = 0;
+            let check = false;
+            for (let i = 0; i < arr.length; i++) {
+                if (v === arr[i]) {
+                    index = i;
+                    check = true;
+                    }
             }
-            arr[last] = 0;
+            if (check == true) {
+                for (let i = index; i < arr.length; i++) {
+                    arr[i] = arr[i + 1];
+                }
+            }
+            arr[arr.length - 1] = 0;
             document.write(arr);
         </script>
 </body>
