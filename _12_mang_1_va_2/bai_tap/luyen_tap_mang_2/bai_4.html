@@ -6,19 +6,16 @@
 </head>
 <body>
         <script>
-            let str = ["Toi ten la nguyen van a "];
+            let str = "Toi ten la nguyen van a ";
             let char = 0;
             let count = 0;
             for (let i = 0; i < str.length; i++) {
-                for (let j = 0; j < str[i].length; j++) {
-                    if (str[i][j] !== " ") {
-                        char += str[i][j];
+                    if (str[i] !== " ") {
+                        char += str[i];
                     } else {
                         char.toString();
                         count++;
                     }
-
-                }
             }
             document.write("Số từ trong mảng = " + count);
         </script>
