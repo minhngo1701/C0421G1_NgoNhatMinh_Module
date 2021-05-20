@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            class myTemperature {
+                constructor(c) {
+                    this.c = c;
+                }
+                swapCToF(c) {
+                    alert("Độ F = " + ((c * 1.8) + 32));
+                }
+                swapCToK(c) {
+                    alert("Độ K = " + (c + 273.15));
+                }
+            }
+            let temperature = new myTemperature();
+            let t = parseInt(prompt("Nhập độ C:"));
+            temperature.swapCToF(t);
+            temperature.swapCToK(t);
+        </script>
+</body>
+</html>

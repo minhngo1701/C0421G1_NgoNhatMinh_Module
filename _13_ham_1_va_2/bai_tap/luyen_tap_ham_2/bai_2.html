@@ -6,18 +6,17 @@
 </head>
 <body>
         <script>
-            function perimeterCỉcle(r) {
-                    return 2 * r * 3.14;
+            function perimeterCircle(r) {
+                return r* r * Math.PI;
+            }
+            function perimeterCircle1(r) {
+                return 2* r * Math.PI;
             }
             let n = parseInt(prompt("Nhập bán kính:"));
-            let s = perimeterCỉcle(n);
-            alert("Chu vi hình tròn = " + s);
-            function perimeterCỉcle(d) {
-                return d * 3.14;
-            }
-            let n = parseInt(prompt("Nhập đường kính:"));
-            let p = perimeterCỉcle(n);
+            let p = perimeterCircle(n);
+            let s = perimeterCircle1(n);
             alert("diện tích hình tròn = " + p);
+            alert("Chu vi hình tròn =" + s);
         </script>
 </body>
 </html>

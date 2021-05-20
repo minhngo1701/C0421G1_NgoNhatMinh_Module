@@ -13,17 +13,15 @@
         let char = prompt("Nhập ký tự bất kì:")
         function countCharacter(x, y) {
             let count = 0;
-            let check = false
             for (let i = 0; i < x.length; i++) {
                 if (y === x[i]) {
                     count++;
-                    check = true;
                 }
             }
-            if (check) {
-                return count;
-            } else {
-                return -1;
+            if (count == 0) {
+                return "không tồn tại trong mảng";
+            }else {
+                return "Số lần xuất hiện là " + count;
             }
         }
         let z = countCharacter(array, char);

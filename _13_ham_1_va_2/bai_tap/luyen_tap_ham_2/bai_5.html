@@ -6,19 +6,19 @@
 </head>
 <body>
         <script>
-            function isMax(a, b, c) {
-                if (a > b && a > c) {
-                    return "số lớn nhất là x";
-                } else if (b > c) {
-                    return "số lớn nhất là y";
+            function isMin(a, b, c) {
+                if (a < b && a < c) {
+                    return "số nhỏ nhất là x";
+                } else if (b < c) {
+                    return "số nhỏ nhất là y";
                 } else {
-                    return "số lớn nhất là z";
+                    return "số nhỏ nhất là z";
                 }
             }
             let x = parseInt(prompt("Nhập x:"));
             let y = parseInt(prompt("Nhập y:"));
             let z = parseInt(prompt("Nhập z:"));
-            let d = isMax(x, y, z);
+            let d = isMin(x, y, z);
             alert(d);
         </script>
 </body>

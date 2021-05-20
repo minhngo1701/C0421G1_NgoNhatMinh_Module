@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            class myDate {
+                constructor(day,month,year) {
+                    this.day = day;
+                    this.month = month;
+                    this.year = year;
+                }
+                getDay() {
+                    alert(this.day + "/" + this.month + "/" + this.year);
+                }
+                setDay(day,month,year) {
+                    alert(day + "/" + month + "/" + year);
+                }
+                toString() {
+                    alert("dd" + "/" + "mm" + "/" + "yyyy");
+                }
+            };
+            let date = new myDate(19,5,2021);
+            // date.getDay();
+            // date.setDay("21","05","2021")
+            // date.toString();
+
+        </script>
+</body>
+</html>
