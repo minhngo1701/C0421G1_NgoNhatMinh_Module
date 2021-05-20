@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <h2>Add New Product</h2>
+        <input type="text" id="input" placeholder="New product">
+        <input type="button" value="add" onclick="addList()">
+        <h2>Display All Product</h2>
+        <p id="display"></p>
+        <script>
+            let array = ["gà","bò","lợn","cá"];
+            function addList() {
+                let y = document.getElementById("input").value;
+                array.push(y);
+                 alert("Đã thêm " + y + " vào danh sách");
+                 displayList()
+                document.getElementById("input").value = "";
+            }
+            function displayList() {
+                let bang = "<table border='1'>"
+                    bang = bang + "<tr>" +
+                        "<th>" + 'STT' + "</th>" +
+                        "<th>" + 'Tên sản phẩm' + "</th>"+
+                        "<th>" + 'Sửa sp' + "</th>"+
+                        "<th>" + 'Xóa sp' + "</th>"
+                         + "</tr>";
+                for (let i = 0; i < array.length; i++)  {
+                    bang = bang + "<tr>" +
+                    "<td>" + i + "</td>"+
+                    "<td onclick='displProduct(" + i + ")' id='editP'>" + array[i] + "</td>"+
+                    "<td>" + "<button onclick='editProduct(" + i + ")'>Edit</button>" + "</td>"+
+                    "<td>" + "<button onclick='deleteProduct(" + i + ")'>Delete</button>" + "</td>"+
+                    "</tr>";
+                }
+                bang = bang + "</table>";
+                document.getElementById("display").innerHTML = bang;
+            }
+            displayList();
+            function deleteProduct(x) {
+                let p = confirm("Bạn chắc chắn muốn xóa " + array[x]);
+                if (p) {
+                    array.splice(x,1);
+                    displayList();
+                }
+            }
+
+            function editProduct(ind) {
+                array[ind] = prompt("Edit your product:");
+                    displayList();
+            }
+        </script>
+</body>
+</html>
