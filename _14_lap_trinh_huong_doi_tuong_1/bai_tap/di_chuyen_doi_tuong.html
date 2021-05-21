@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="game"></div>
+<script>
+    class moveHero {
+        constructor(image, top, left, size, speed) {
+            this.image = image;
+            this.top = top;
+            this.left = left;
+            this.size = size;
+            this.speed = speed;
+        }
+
+        getHeroElement() {
+            return '<img width="' + this.size + '"' +
+                ' height="' + this.size + '"' +
+                ' src="' + this.image + '"' +
+                ' style="top: ' + this.top + 'px; left:' + this.left + 'px;position:absolute;"  />';
+        }
+
+        moveRight() {
+            this.left += 20 + this.speed;
+            console.log('ok: ' + this.left);
+        }
+
+        moveLeft() {
+            this.left -= 20 + this.speed;
+            console.log('ok: ' + this.left);
+        }
+
+        moveDown() {
+            this.top += 20 + this.speed;
+            console.log('ok: ' + this.top);
+        }
+
+        moveTop() {
+            this.top -= 20 + this.speed;
+            console.log('ok: ' + this.top);
+        }
+
+        speed() {
+            return this.speed;
+        }
+
+    }
+
+    var hero = new moveHero('anh/bong.jpg', 20, 30, 225, 100);
+
+    function start() {
+        if (hero.left < window.innerWidth - hero.size) {
+            hero.moveRight();
+        } else if (hero.top < window.innerWidth - hero.size) {
+                hero.moveDown();
+        } else if (hero.left < window.innerWidth - hero.size) {
+                hero.moveLeft();
+        }
+            //     // } else {
+            //     //         hero.moveDown();
+            //     // }
+            document.getElementById('game').innerHTML = hero.getHeroElement();
+            setTimeout(start, 500)
+
+    }
+        start();
+</script>
+</body>
+</html>

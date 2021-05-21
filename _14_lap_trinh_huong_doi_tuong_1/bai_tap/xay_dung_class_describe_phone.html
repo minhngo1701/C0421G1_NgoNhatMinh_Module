@@ -6,40 +6,70 @@
 </head>
 <body>
         <script>
-            class getDescribePhone {
-                constructor(batterry,spaceEdit,spaceReceive,spaceSend) {
-                    this.batterry = batterry;
-                    this.spaceEdit = spaceEdit;
-                    this.spaceReceive = spaceReceive;
-                    this.spaceSend =spaceSend;
+            class describePhone {
+                constructor(mobile, battery, status) {
+                    this.mobile = mobile;
+                    this.batterry = battery;
+                    this.status = status;
+                    this.mess = "";
                 }
-                getOnOff(on, off) {
-                   if (on == true) {
-                       alert("On");
-                   } else {
-                       alert("off");
-                   }
-                }
-                getTurnOnTurnOff() {
 
+                setMessage(mess) {
+                    this.mess = mess;
                 }
-                getEditMess(mess) {
-                    return mess;
-                }
-                getReceiveMess() {
-                    return ;
-                }
-                getSendMess() {
-                    return this.spaceSend;
-                }
-                getWatchMessReceive() {
 
+                getMessage() {
+                    return this.mess
                 }
-                getWatchMessSend() {
 
+                sendMessage(mess, mobile) {
+                    mobile.setMessage(mess);
                 }
-                get
+
+                turnOn() {
+                    this.status = true;
+                }
+                turnOff() {
+                    this.status = false;
+                }
+                status() {
+                    if (this.status) {
+                        console.log("On");
+                    } else {
+                        console.log("Off");
+                    }
+                }
+
+                work() {
+                    if (this.status !== true) {
+                        console.log("Không thể hoạt động")
+                    }
+                }
+
+                chargeBattery() {
+                    for (let i = this.batterry; i <= 100; i++) {
+                        console.log("Đang sạc " + i + "%");
+                        if (i === 100) {
+                            console.log("Pin đầy 100%");
+                        }
+                    }
+                }
+                decreaseBattery() {
+                    this.batterry--;
+                    console.log(this.batterry);
+                }
             }
+            let iphone = new describePhone("iphone",30,true);
+            let nokia = new describePhone("nokia",100,true);
+            iphone.sendMessage("hello", nokia);
+            let n = nokia.getMessage();
+            console.log(n);
+            iphone.turnOff();
+            iphone.status();
+            iphone.work();
+            iphone.status();
+            iphone.work();
+            iphone.chargeBattery();
         </script>
 </body>
 </html>

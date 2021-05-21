@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        class Apple{
+            constructor(weight) {
+                this.weight = weight;
+            }
+            decrease(){
+                if (this.weight > 0) {
+                    this.weight--;
+                }
+            }
+            isEmpty(){
+                if (this.weight == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            getWeight() {
+                return this.weight;
+            }
+
+        }
+        class Human{
+            constructor(name,gender,weight) {
+                this.name = name;
+                this.gender = gender;
+                this.weight = weight;
+            }
+            setName(apple) {
+                this.name = apple;
+            }
+            getNam() {
+                return this.name;
+            }
+            setWeight(apple) {
+                this.weight = apple;
+            }
+            getWeight() {
+                return this.weight;
+            }
+            say(str) {
+                alert(this.name+ " say " + str);
+            }
+            isMale() {
+                if (this.gender === "Male") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            checkApple(apple) {
+                if (apple.getWeight() > 0) {
+                    return true
+                } else {
+                    return false;
+                }
+            }
+            eat(apple) {
+                if (apple.getWeight() > 0) {
+                    this.weight++;
+                    apple.decrease();
+                }
+            }
+        }
+        let apple = new Apple(10);
+        let human1 = new Human("Adam", "Male", 70);
+        let human2 = new Human("Eva", "Female", 45);
+        human1.say("Hi, i'm Adam");
+        human2.say("Hi, i'm Eva");
+
+        // human1.eat(apple);
+        // alert("cân nặng apple:" + apple.getWeight());
+        // alert("cân nặng của Adam:" + human1 .getWeight());
+        // human2.eat(apple);
+        // alert("cân nặng apple:" + apple.getWeight());
+        // alert("cân nặng của Eva:" + human2.getWeight());
+
+        while (apple.isEmpty() === false) {
+            human1.eat(apple);
+            human2.eat(apple);
+        }
+        alert("Cân nặng quả táo:" + apple.getWeight());
+        alert("Cân nặng của Adam:" + human1.getWeight());
+        alert("Cân nặng của Eva:" + human2.getWeight());
+    </script>
+</body>
+</html>
