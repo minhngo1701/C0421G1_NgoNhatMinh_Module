@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        class Remote{
+            constructor(id) {
+                this.id = id;
+            }
+            controlSwapRemote(channel) {
+                 tv.controlSwapTv(channel);
+            }
+            volumeUp(tv) {
+                tv.volumeUpTv();
+            }
+            volumeDown(tv) {
+                tv.volumeDownTv();
+            }
+            turnOn(tv) {
+                tv.turnOn();
+            }
+            turnOff(tv) {
+                tv.turnOff();
+            }
+        }
+        class Tv{
+            constructor(id,volume,status) {
+                this.id = id;
+                this.volume = volume;
+                this.status = status;
+            }
+            controlSwapTv(channel) {
+               this.id = channel;
+            }
+            volumeUpTv() {
+                this.volume++;
+            }
+            volumeDownTv() {
+                this.volume--;
+            }
+            turnOn() {
+                this.status = true;
+            }
+            turnOff() {
+                this.status = false;
+            }
+        }
+        let remote = new Remote(1);
+        let tv = new Tv(5, 10, true);
+        tv.controlSwapTv(7);
+        console.log(tv.id);
+        remote.controlSwapRemote(3);
+        console.log(tv.id);
+        tv.volumeUpTv();
+        console.log(tv.volume);
+        remote.volumeUp(tv);
+        remote.volumeUp(tv);
+        console.log(tv.volume);
+        remote.turnOff(tv);
+        console.log(tv.status);
+    </script>
+</body>
+</html>
