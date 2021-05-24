@@ -16,6 +16,7 @@
 
                 setMessage(mess) {
                     this.mess = mess;
+                    this.batterry.decreaseBattery();
                 }
 
                 getMessage() {
@@ -24,16 +25,21 @@
 
                 sendMessage(mess, mobile) {
                     mobile.setMessage(mess);
+                    this.batterry.decreaseBattery();
                 }
 
                 turnOn() {
                     this.status = true;
+                    this.batterry.decreaseBattery();
+
                 }
                 turnOff() {
                     this.status = false;
+                    this.batterry.decreaseBattery();
                 }
                 status() {
                     if (this.status) {
+                        this.batterry.decreaseBattery();
                         console.log("On");
                     } else {
                         console.log("Off");
@@ -55,8 +61,9 @@
                     }
                 }
                 decreaseBattery() {
-                    this.batterry--;
-                    console.log(this.batterry);
+                    if (this.batterry > 0) {
+                        this.batterry--;
+                    }
                 }
             }
             let iphone = new describePhone("iphone",30,true);
@@ -67,6 +74,7 @@
             iphone.turnOff();
             iphone.status();
             iphone.work();
+            iphone.turnOn()
             iphone.status();
             iphone.work();
             iphone.chargeBattery();
