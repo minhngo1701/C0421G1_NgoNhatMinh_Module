@@ -7,18 +7,47 @@
 <body>
         <div id="list"></div>
         <script>
-            function drinkList() {
-                let list = "<ol type='1'>" +
-                    "<li>"+"<button>Cafe</button>"+"</li>"+
-                        "<li>"+"<button onclick='bill()'>Cam vắt</button>"+"</li>" +
-                        "<li>"+"<button onclick='bill()'>Nước ép cà rốt</button>"+"</li>" +
-                        "<li>"+"<button onclick='bill()'>Nước ép cà chua</button>"+"</li>"+
-                        "<li>"+"<button onclick='bill()'>Nước lọc</button>"+"</li>"+
-                        "<li>"+"<button onclick='bill()'>Nước dừa</button>"+"</li>" +
-                        "<li>" +"<button onclick='bill()'>Thoát gọi món</button>"+"</li>" + "</ol>";
-                document.getElementById("list").innerHTML = list;
-            }
-            drinkList();
+            do {
+                let n = prompt("Nhập tên thức uống:");
+                let x;
+                let y = 0;
+                switch (n) {
+                    case "Cafe":
+                        x = parseInt(prompt("Giá 10 nghìn đồng. Mời nhập số lượng:"));
+                        y = x * 10000;
+                        alert("Tổng tiền là " + y + "đồng");
+                        break;
+                    case "Cam vắt":
+                        x = parseInt(prompt("Giá 12 nghìn đồng. Mời nhập số lượng:"));
+                        y = x * 12000;
+                        break;
+                        alert("Tổng tiền là " + y + "đồng");
+                    case "Nước ép cà rốt":
+                        x = parseInt(prompt("Giá 15 nghìn đồng. Mời nhập số lượng:"));
+                        y = x * 15000;
+                        alert("Tổng tiền là " + y + "đồng");
+                        break;
+                    case "Nước ép cà chua":
+                        x = parseInt(prompt("Giá 15 nghìn đồng. Mời nhập số lượng:"));
+                        y = x * 15000;
+                        alert("Tổng tiền là " + y + "đồng");
+                        break;
+                    case "Nước lọc":
+                        x = parseInt(prompt("Giá 5 nghìn đồng. Mời nhập số lượng:"));
+                        y = x * 5000;
+                        alert("Tổng tiền là " + y + "đồng");
+                        break;
+                    case "Nước dừa":
+                        x = parseInt(prompt("Giá 25 nghìn đồng. Mời nhập số lượng:"));
+                        y = x * 25000;
+                        alert("Tổng tiền là " + y + "đồng");
+                        break;
+                }
+                if (n == 7) {
+                    alert("Thoát gọi món");
+                    break;
+                }
+            }while (true)
         </script>
 </body>
 </html>
