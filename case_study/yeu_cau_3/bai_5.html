@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <div id="list"></div>
+        <script>
+            function drinkList() {
+                let list = "<ol type='1'>" +
+                    "<li>"+"<button>Cafe</button>"+"</li>"+
+                        "<li>"+"<button onclick='bill()'>Cam vắt</button>"+"</li>" +
+                        "<li>"+"<button onclick='bill()'>Nước ép cà rốt</button>"+"</li>" +
+                        "<li>"+"<button onclick='bill()'>Nước ép cà chua</button>"+"</li>"+
+                        "<li>"+"<button onclick='bill()'>Nước lọc</button>"+"</li>"+
+                        "<li>"+"<button onclick='bill()'>Nước dừa</button>"+"</li>" +
+                        "<li>" +"<button onclick='bill()'>Thoát gọi món</button>"+"</li>" + "</ol>";
+                document.getElementById("list").innerHTML = list;
+            }
+            drinkList();
+        </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            let l = parseInt(prompt("Nhập lương:"));
+            let t = 0;
+            let lt = 0;
+            if (l >= 15) {
+                t = l * 20 /100;
+                lt = l - t;
+            } else if (7 <= l ) {
+                t = l * 10 / 100;
+                lt = l - t;
+            } else {
+                t = l * 5 /100;
+                lt = l - t;
+            }
+            document.write("Thuế thu nhập = " + t + " triệu VND " + "<br>" + "Lương ròng = " + lt + " triệu VND");
+        </script>
+</body>
+</html>

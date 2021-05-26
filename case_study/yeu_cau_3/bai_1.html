@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let n = parseInt(prompt("Nhập só element:"));
+        let a = new Array(n);
+        for (let i = 0; i < a.length; i++) {
+            a[i] = parseInt(prompt("Nhập a[" + i + "]"));
+        }
+        function prefixSums(a) {
+            let s = a[0];
+            let b = [];
+            let p = 0;
+            for (let j = 0; j < a.length; j++) {
+                if (j == 0) {
+                    s = a[j];
+                } else {
+                    p = s + a[j];
+                    s = p;
+                }
+                b.push(s);
+            }
+            document.write(b);
+        }
+        prefixSums(a);
+    </script>
+</body>
+</html>

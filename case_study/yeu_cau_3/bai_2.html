@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            function missingValue(a,b) {
+                let arr = [];
+                let check = true;
+                for (let i = 0; i < b.length; i++) {
+                    for (let j = 0; j < a.length; j++) {
+                        if (b[i] == a[j]) {
+                            check = true;
+                            break;
+                        } else {
+                            check = false;
+                        }
+                    }
+                    if (check == false) {
+                        arr.push(b[i]);
+                    }
+                }
+                document.write(arr);
+            }
+
+            let n = parseInt(prompt("Nhập só element:"));
+            let a = new Array(n);
+            for (let i = 0; i < a.length; i++) {
+                a[i] = parseInt(prompt("Nhập a[" + i + "]"));
+            }
+            let m = parseInt(prompt("Nhập só element:"));
+            let b = new Array(m);
+            for (let i = 0; i < b.length; i++) {
+                b[i] = parseInt(prompt("Nhập b[" + i + "]"));
+            }
+            missingValue(a,b);
+        </script>
+</body>
+</html>

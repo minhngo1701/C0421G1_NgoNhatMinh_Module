@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            function maxFraction(a, b) {
+                let max = a[0]/b[0];
+                let p = a[0];
+                let q = b[0]
+                for (let i = 0; i < a.length; i++) {
+                    if ((a[i]/b[i]) > max) {
+                        max = a[i]/b[i];
+                        p = a[i];
+                        q = b[i];
+                    }
+
+                }
+                let m = a.indexOf(p);
+                return m ;
+            }
+            let a = [3,4,2];
+            let b = [2,2,4];
+            let c = maxFraction(a,b);
+            document.write(c);
+        </script>
+</body>
+</html>
