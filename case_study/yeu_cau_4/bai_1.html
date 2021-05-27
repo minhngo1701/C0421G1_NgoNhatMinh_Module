@@ -6,24 +6,35 @@
 </head>
 <body>
         <script>
+
             function editString(str) {
-                let m = str.toLowerCase();
-                let check = true;
-                for (let i = 0; i < m.length; i++) {
-                    if (m[i] == "") {
-                        m.splice(i,1);
-                    }
-                    if (m[i-1] == "" && m[i+1] == 'string') {
-                         check = true;
-                    }
+                let str2 = []
+                for (let i = 0; i < str.length; i++) {
+                    str2.push(str[i]);
                 }
-                if (check) {
-                    m[i].toLowerCase();
+                for (let i = 0; i < str2.length; i++) {
+                    str2[i] = str2[i].charAt(0).toUpperCase() + str2[i].substring(1);
                 }
-                document.write(m);
+                let p = str2.join(" ");
+                return p;
             }
-            let str = "PRo  vIp  SO  mot";
-            editString(str);
+            function findMaxMinString(s) {
+                let max = s[0];
+                for (let i = 0; i < s.length; i++) {
+                    if (s[i].length > max.length) {
+                        max = s[i];
+                    }
+                }
+                document.write("Từ dài nhất là " + max);
+            }
+            function main(x) {
+                let k = editString(x);
+                document.write(k + "<br>");
+                findMaxMinString(x)
+            }
+            let str = prompt("Nhập chuỗi:");
+            let n = str.toLowerCase().split("  ")
+            main(n)
         </script>
 </body>
 </html>
