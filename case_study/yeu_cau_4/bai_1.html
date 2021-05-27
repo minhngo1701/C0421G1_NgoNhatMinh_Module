@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            function editString(str) {
+                let m = str.toLowerCase();
+                let check = true;
+                for (let i = 0; i < m.length; i++) {
+                    if (m[i] == "") {
+                        m.splice(i,1);
+                    }
+                    if (m[i-1] == "" && m[i+1] == 'string') {
+                         check = true;
+                    }
+                }
+                if (check) {
+                    m[i].toLowerCase();
+                }
+                document.write(m);
+            }
+            let str = "PRo  vIp  SO  mot";
+            editString(str);
+        </script>
+</body>
+</html>

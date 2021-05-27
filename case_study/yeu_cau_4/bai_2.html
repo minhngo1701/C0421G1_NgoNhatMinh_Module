@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function differentSymbolsNaive(str) {
+            let arr = [];
+            for (let i = 0; i < str.length; i++) {
+                if (arr.indexOf(str[i]) === -1) {
+                    arr.push(str[i]);
+                }
+            }
+            return arr.length;
+        }
+        let n = prompt("Nhập chuỗi:");
+        let m = differentSymbolsNaive(n);
+        document.write(m);
+    </script>
+</body>
+</html>
