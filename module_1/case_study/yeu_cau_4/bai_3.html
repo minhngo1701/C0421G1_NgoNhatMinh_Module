@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            function commonCharacterCount(a,b) {
+                let m = [];
+                let first = 0;
+                for (let i = 0; i < a.length; i++) {
+                    if (a.indexOf(b[i]) !== -1 && m[first] === m[first+1]) {
+                        m.push(b[i]);
+                        m.splice(i,1);
+                        first++
+                    }
+                }
+                document.write(m);
+            }
+            let a = prompt("a:")
+            let b = prompt("b:")
+            commonCharacterCount(a,b);
+        </script>
+</body>
+</html>

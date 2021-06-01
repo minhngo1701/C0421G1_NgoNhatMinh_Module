@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            let ind = parseInt(prompt("Nhập số lượng phần tử của mảng:"));
+            let array = [];
+            for (let i = 0; i < ind; i++) {
+                array[i] = parseInt(prompt("Nhập phần tử arr[" + i + "]"));
+            }
+
+            function findMaxScore(arr) {
+                let index = 0;
+                let max = arr[0];
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i] >= max) {
+                        max = arr[i];
+                        index = i;
+                    }
+                }
+                console.log("Max = " + max + " " + " Vị trí thứ " + index);
+            }
+
+            findMaxScore(array);
+        </script>
+</body>
+</html>

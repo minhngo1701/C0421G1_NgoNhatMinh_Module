@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            // Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử, nhập/tạo phần tử số nguyên V.
+            // Chương trình tìm xem V có nằm trong mảng số nguyên không?
+            // Nếu V thuộc mảng số nguyên thì in ra "V is in the array" còn lại in ra "V is not in the array".
+            let arr = [5,23,10,6,35,0,3,14,21,8];
+            let v = parseInt(prompt("Nhập số V:"));
+            let check = false;
+            for (let i = 0; i < arr.length; i++) {
+                if (v === arr[i]) {
+                    document.write(v + " nằm trong mảng");
+                    check = true;
+                    break;
+                }
+            }
+            if (check === false) {
+                document.write(v + " không nằm trong mảng");
+            }
+        </script>
+</body>
+</html>

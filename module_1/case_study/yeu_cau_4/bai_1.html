@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+
+            function editString(str) {
+                let str2 = str.toLowerCase().split(" ")
+                for (let i = 0; i < str2.length; i++) {
+                    if (str2[i] !== "") {
+                    str2[i] = str2[i].charAt(0).toUpperCase() + str2[i].substring(1);
+                    arr.push(str2[i])
+                    }
+                }
+                return arr.join(" ");
+            }
+            function findMaxMinString(s) {
+                let max = s[0];
+                for (let i = 0; i < s.length; i++) {
+                    if (s[i].length > max.length) {
+                        max = s[i];
+                    }
+                }
+                document.write("Từ dài nhất là " + max);
+            }
+            function main(x) {
+                findMaxMinString(x)
+            }
+            let str = prompt("Nhập chuỗi:");
+            let arr = [];
+            let k = editString(str);
+            document.write(k + "<br>");
+            main(arr)
+        </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            class Student{
+                constructor(stt, name, dateOfBirth, scoreAverage) {
+                    this.stt = stt;
+                    this.name = name;
+                    this.dateOfBirth = dateOfBirth;
+                    this.scoreAverage = scoreAverage;
+                }
+
+                getscoreAverage() {
+                    return this.scoreAverage;
+                }
+                check(){
+                    if (this.getscoreAverage() > 8) {
+                        console.log(this.name + " là học sinh giỏi")
+                    } else if (this.getscoreAverage() >= 6.5) {
+                        console.log(this.name + " là học sinh khá");
+                    } else if (this.getscoreAverage() >= 5) {
+                        console.log(this.name + " là học sinh trung bình");
+                    } else if (this.getscoreAverage() >= 3.5) {
+                        console.log(this.name + " là học sinh yếu");
+                    } else {
+                        console.log(this.name + " là học kém");
+                    }
+                }
+            }
+            let student1 = new Student(1, "Nguyễn Văn A", "1/1/2000", 8.5);
+            let student2 = new Student(2, "Nguyễn Văn B", "2/1/2000", 6);
+            let student3 = new Student(3, "Nguyễn Văn C", "3/1/2000", 7.8);
+            console.log(student1);
+            console.log(student2);
+            console.log(student3);
+            student1.check();
+            student2.check();
+            student3.check();
+        </script>
+</body>
+</html>

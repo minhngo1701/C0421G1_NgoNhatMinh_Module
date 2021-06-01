@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function differentSymbolsNaive(str1,str2) {
+            let arr = [];
+            for (let i = 0; i < str2.length; i++) {
+                if (str1.indexOf(str2[i]) === -1) {
+                    arr.push(str2[i])
+                }
+            }
+            document.write(arr.length);
+        }
+
+    </script>
+</body>
+</html>

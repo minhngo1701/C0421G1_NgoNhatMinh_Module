@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // Viết hàm truyền vào một mảng ký tự, và một ký tự bất kỳ, kiểm tra xem ký tự bất kỳ đó có nằm trong mảng không.
+        // Nếu có trả về số lần xuất hiện của ký tự đó, nếu không trả về -1.
+        let array = new Array(5);
+        for (let i = 0; i < array.length; i++) {
+            array[i] = prompt("Nhập array[" + i + "]:");
+        }
+        let char = prompt("Nhập ký tự bất kì:")
+        function countCharacter(x, y) {
+            let count = 0;
+            for (let i = 0; i < x.length; i++) {
+                if (y === x[i]) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                return "không tồn tại trong mảng";
+            }else {
+                return "Số lần xuất hiện là " + count;
+            }
+        }
+        let z = countCharacter(array, char);
+        alert(z);
+
+    </script>
+</body>
+</html>

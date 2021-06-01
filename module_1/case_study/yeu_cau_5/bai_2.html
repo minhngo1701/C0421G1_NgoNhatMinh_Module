@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let n = parseInt(prompt("Nhập số cột:"))
+    let m = parseInt(prompt("Nhập số hàng:"))
+    let arr = [];
+    for (let i = 0; i < n; i++) {
+        let arr2 = [];
+        for (let i = 0; i < m; i++) {
+            arr2[i] = parseInt(prompt("Nhập element "));
+        }
+
+        arr[i] = arr2;
+    }
+    console.log(arr)
+    // function findPrime(arr) {
+    //     let count = 0;
+    //     console.log("Các số nguyên tố có trong mảng:")
+    //     for (let i = 0; i < arr.length; i++) {
+    //         for (let j = 0; j < arr[i].length; j++) {
+    //             let p = 1;
+    //             for (let k = 2; k <= arr[i][j]; k++) {
+    //                 if (arr[i][j] % k === 0) {
+    //                     p += 1;
+    //                 }
+    //             }
+    //             if (p === 2) {
+    //                 console.log(arr[i][j]);
+    //                 count++;
+    //             }
+    //         }
+    //     }
+    //     console.log("Số lượng só nguyên tố trong mảng: " + count);
+    // }
+    //
+    // findPrime(arr);
+</script>
+</body>
+</html>

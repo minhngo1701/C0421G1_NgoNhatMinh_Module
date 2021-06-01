@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            let int = parseInt(prompt("Nhập số:"));
+            function isMainNumber(n) {
+                let check = false;
+                for (let i = 1; i <= n; i++) {
+                    if ((i * i) === n) {
+                        check = true;
+                    }
+                }
+                // if (check == true) {
+                //     return true;
+                // } else {
+                //     return false;
+                // }
+                return check;
+            }
+            console.log(isMainNumber(int));
+        </script>
+</body>
+</html>

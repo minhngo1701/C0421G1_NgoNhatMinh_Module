@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            let array = new Array(5);
+            for (let i = 0; i < array.length; i++) {
+                array[i] = parseInt(prompt("Nhập array[" + i + "]"));
+            }
+            for (let i = 0; i < array.length; i++) {
+                array.sort(function (a,b) {
+                    return a - b;
+                });
+            }
+            console.log(array);
+        </script>
+</body>
+</html>
