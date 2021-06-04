@@ -9,10 +9,10 @@ public class AddElement {
         do {
             System.out.println("Enter number element:");
             size = sc.nextInt();
-            if (size > 10) {
+            if (size >= 10) {
                 System.out.println("Size not exceed 10");
             }
-        } while (size > 10);
+        } while (size >= 10);
         int array[] = new int[10];
         for (int i = 0; i < size; i++){
             System.out.print("Element array[" + i + "]:");
