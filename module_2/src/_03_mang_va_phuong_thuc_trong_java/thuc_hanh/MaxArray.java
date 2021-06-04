@@ -5,9 +5,10 @@ import java.util.Scanner;
 public class MaxArray {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter size:");
-        int size = sc.nextInt();
+        int size;
         do {
+            System.out.println("Enter size:");
+            size = sc.nextInt();
             if (size > 20) {
                 System.out.println("Size not exceed 20");
             }

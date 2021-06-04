@@ -6,7 +6,7 @@ public class PrintDraw {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
-        while (choice != 4) {
+        while (true) {
             System.out.println("Menu");
             System.out.println("1. Draw the rectangle");
             System.out.println("2. Draw the triangle");
@@ -52,7 +52,8 @@ public class PrintDraw {
                     }
                     break;
                 case 4:
-                    System.exit(0);
+                    System.exit(1);
+                    break;
                 default:
                     System.out.println("No choice!");
             }
