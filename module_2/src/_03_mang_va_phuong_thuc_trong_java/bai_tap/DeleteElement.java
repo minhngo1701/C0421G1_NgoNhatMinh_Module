@@ -21,20 +21,13 @@ public class DeleteElement {
 
         System.out.println("Enter number need delete:");
         int number = sc.nextInt();
-
-        int index = 0;
-        boolean check = false;
         for (int i = 0; i < size; i++) {
             if (number == array[i]) {
-               index = i;
-               check = true;
+                for (int j = i; j <= size - 1; j++) {
+                     array[j] = array[j + 1];
+                }
+                i--;
             }
-        }
-        if (check) {
-            for (int j = index; j < size-1; j++) {
-                array[j] = array[j+1];
-            }
-            array[size-1] = 0;
         }
         for (int element : array) {
             System.out.print(element + " ");
