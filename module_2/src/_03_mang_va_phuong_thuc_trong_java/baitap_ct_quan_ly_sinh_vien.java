@@ -2,7 +2,7 @@ package _03_mang_va_phuong_thuc_trong_java;
 
 import java.util.Scanner;
 
-public class bai_tap_anh_trung {
+public class baitap_ct_quan_ly_sinh_vien {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
