@@ -49,9 +49,10 @@ public class MoveAblePoint extends Point {
             float[] array2 = {getxSpeed(), getySpeed()};
             return array2;
     }
-    public void move() {
-        setxSpeed(getX() + xSpeed);
-        setySpeed(getY() + ySpeed);
+    public MoveAblePoint move() {
+        setX(getX() + xSpeed);
+        setY(getY() + ySpeed);
+        return this;
     }
 
     @Override
