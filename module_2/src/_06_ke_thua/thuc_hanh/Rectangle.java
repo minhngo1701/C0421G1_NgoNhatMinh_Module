@@ -1,6 +1,8 @@
 package _06_ke_thua.thuc_hanh;
 
-public class Rectangle extends Shape {
+import _07_abstractclass_interface.bai_tap.Resizeable;
+
+public class Rectangle extends Shape implements Resizeable {
     private double width = 1.0;
     private double height = 1.0;
 
@@ -54,5 +56,11 @@ public class Rectangle extends Shape {
 
         rectangle = new Rectangle("blue", false, 2.5, 3.5 );
         System.out.println(rectangle);
+    }
+
+    @Override
+    public void resize(double percent) {
+        this.width = this.width * percent;
+        this.height = this.height * percent;
     }
 }

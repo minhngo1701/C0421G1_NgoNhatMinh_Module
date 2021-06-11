@@ -1,6 +1,8 @@
 package _06_ke_thua.thuc_hanh;
 
-public class Square extends Rectangle {
+import _07_abstractclass_interface.bai_tap.Resizeable;
+
+public class Square extends Rectangle implements Resizeable {
     public Square() {
     }
 
@@ -18,6 +20,9 @@ public class Square extends Rectangle {
         setWidth(side);
         setHeight(side);
     }
+    public double getArea() {
+        return super.getWidth() * super.getHeight();
+    }
     @Override
     public void setWidth(double width) {
         setSide(width);
@@ -31,6 +36,11 @@ public class Square extends Rectangle {
         return "A Square with side = " + getSide() + ", which is a subclass of " + super.toString();
     }
 
+    @Override
+    public void resize(double percent) {
+        super.resize(percent);
+    }
+
     public static void main(String[] args) {
         Square square = new Square();
         System.out.println(square);
@@ -40,5 +50,6 @@ public class Square extends Rectangle {
 
         square = new Square("blue", false, 3.3);
         System.out.println(square);
+        System.out.println(square.getArea());
     }
 }

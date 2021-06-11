@@ -1,6 +1,8 @@
 package _06_ke_thua.thuc_hanh;
 
-public class Circle extends Shape {
+import _07_abstractclass_interface.bai_tap.Resizeable;
+
+public class Circle extends Shape implements Resizeable {
     private double radius = 1.0;
 
     public Circle() {}
@@ -32,7 +34,10 @@ public class Circle extends Shape {
     public String toString() {
         return "A Circle with radius = " + getRadius() + ", which is a subclass of " + super.toString();
     }
-
+    @Override
+    public void resize(double percent) {
+        this.radius = percent;
+    }
     public static void main(String[] args) {
         Circle circle = new Circle();
         System.out.println(circle);
@@ -43,4 +48,5 @@ public class Circle extends Shape {
         Circle circle2 = new Circle("yellow", false, 3.5);
         System.out.println(circle2);
     }
+
 }
