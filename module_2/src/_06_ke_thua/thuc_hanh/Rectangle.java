@@ -60,7 +60,7 @@ public class Rectangle extends Shape implements Resizeable {
 
     @Override
     public void resize(double percent) {
-        this.width = this.width * percent;
-        this.height = this.height * percent;
+        this.width += this.width * (percent/100);
+        this.height += this.height * (percent/100);
     }
 }

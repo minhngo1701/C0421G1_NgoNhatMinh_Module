@@ -1,8 +1,9 @@
 package _06_ke_thua.thuc_hanh;
 
+import _07_abstractclass_interface.bai_tap.Colorable;
 import _07_abstractclass_interface.bai_tap.Resizeable;
 
-public class Circle extends Shape implements Resizeable {
+public class Circle extends Shape implements Resizeable{
     private double radius = 1.0;
 
     public Circle() {}
@@ -36,7 +37,7 @@ public class Circle extends Shape implements Resizeable {
     }
     @Override
     public void resize(double percent) {
-        this.radius = percent;
+        this.radius += (percent/100) * this.radius;
     }
     public static void main(String[] args) {
         Circle circle = new Circle();

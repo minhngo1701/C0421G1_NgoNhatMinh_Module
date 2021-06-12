@@ -1,8 +1,9 @@
 package _06_ke_thua.thuc_hanh;
 
+import _07_abstractclass_interface.bai_tap.Colorable;
 import _07_abstractclass_interface.bai_tap.Resizeable;
 
-public class Square extends Rectangle implements Resizeable {
+public class Square extends Rectangle implements Resizeable, Colorable {
     public Square() {
     }
 
@@ -17,19 +18,17 @@ public class Square extends Rectangle implements Resizeable {
         return getWidth();
     }
     public void setSide(double side) {
-        setWidth(side);
-        setHeight(side);
+        super.setWidth(side);
+        super.setHeight(side);
     }
-    public double getArea() {
-        return super.getWidth() * super.getHeight();
+
+    @Override
+    public void setWidth(double side) {
+        setSide(side);
     }
     @Override
-    public void setWidth(double width) {
-        setSide(width);
-    }
-    @Override
-    public void setHeight(double height) {
-        setSide(height);
+    public void setHeight(double side) {
+        setSide(side);
     }
     @Override
     public String toString() {
@@ -38,7 +37,7 @@ public class Square extends Rectangle implements Resizeable {
 
     @Override
     public void resize(double percent) {
-        super.resize(percent);
+        setSide(getSide() + getSide()*(percent/100));
     }
 
     public static void main(String[] args) {
@@ -48,8 +47,15 @@ public class Square extends Rectangle implements Resizeable {
         square = new Square(2.3);
         System.out.println(square);
 
-        square = new Square("blue", false, 3.3);
-        System.out.println(square);
+        square = new Square("blue", false, 2.4);
+//        System.out.println(square);
+//        System.out.println(square.getArea());
+        square.setSide(4.2);
         System.out.println(square.getArea());
+    }
+
+    @Override
+    public void howToColor() {
+        System.out.println("Color all four sides");
     }
 }

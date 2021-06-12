@@ -22,15 +22,31 @@ public class ResizeableTest {
         resizeables[0] = new Circle(3.4);
         resizeables[1] = new Rectangle(2, 4);
         resizeables[2] = new Square(3);
+        double percent = Math.round(Math.random()*100) + 1;
+
+        System.out.println("Pre-resize: ");
 
         for (Resizeable resizeable : resizeables) {
-            resizeable.resize(3);
             if (resizeable instanceof Circle) {
                 System.out.println("Area circle is: " + ((Circle) resizeable).getArea());
             } else if (resizeable instanceof Rectangle) {
                 System.out.println("Area rectangle is: " + ((Rectangle) resizeable).getArea());
             } else if (resizeable instanceof Square) {
-                System.out.println("Area square is: " + ((Square) resizeable).getArea());
+                System.out.println("Area square is: " + ((Square)resizeable).getArea());
+            } else {
+                System.out.println("Invalid");
+            }
+        }
+
+        System.out.println("After-resize: ");
+        for (Resizeable resizeable : resizeables) {
+            resizeable.resize(percent);
+            if (resizeable instanceof Circle) {
+                System.out.println("Area circle is: " + ((Circle) resizeable).getArea());
+            } else if (resizeable instanceof Rectangle) {
+                System.out.println("Area rectangle is: " + ((Rectangle) resizeable).getArea());
+            } else if (resizeable instanceof Square) {
+                System.out.println("Area square is: " + ((Square)resizeable).getArea());
             } else {
                 System.out.println("Invalid");
             }
