@@ -1,11 +1,13 @@
 package _10_dsa_danh_sach.bai_tap;
 
+import java.util.LinkedList;
+
 public class MyLinkedList<E> {
     private Node head;
     private Node tail;
     private int numNodes = 0;
 
-    public class Node {
+    private class Node {
         private Node next;
         private Object data;
 
@@ -37,10 +39,87 @@ public class MyLinkedList<E> {
             tail.next = new Node(data);
             tail = tail.next;
         }
+        numNodes++;
     }
     public void add(int index, E data) {
         Node temp = head;
         Node holder;
+
+        for (int i = 0; i < index - 1; i++) {
+            temp = temp.next;
+        }
+        holder = temp.next;
+        temp.next = new Node(data);
+        temp.next.next = holder;
+        numNodes++;
+    }
+
+    public E get(int index) {
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return (E) temp.data;
+    }
+    public int size(){
+        return numNodes;
+    }
+    public E removeFirst(){
+        if (numNodes == 0) {
+            return null;
+        }
+        Node temp = head;
+        head = head.next;
+        numNodes--;
+        if (numNodes == 1) {
+            head = tail = null;
+        }
+        return (E) temp;
+    }
+    public E removeLast() {
+
+        if (numNodes == 0) return null; // Nothing to remove
+        else if (numNodes == 1) { // Only one element in the list
+            Node temp = head;
+            head = tail = null; // list becomes empty
+            numNodes = 0;
+            return (E) temp.data;
+        } else {
+            Node current = head;
+
+            for (int i = 0; i < numNodes - 2; i++)
+                current = current.next;
+
+            Node temp = tail;
+            tail = current;
+            tail.next = null;
+            numNodes--;
+            return (E) temp.data;
+        }
+
+    }
+    public E remove(int index) {
+        if (index < 0 || index >= numNodes){
+            return null;
+        }
+        else if (index == 0) {
+            return removeFirst();
+        }
+        else if (index == numNodes - 1) {
+            return removeLast();
+        }
+        else {
+            Node previous = head;
+
+            for (int i = 1; i < index; i++) {
+                previous = previous.next;
+            }
+
+            Node current = previous.next;
+            previous.next = current.next;
+            numNodes--;
+            return (E) current.data;
+        }
     }
 
     public void printList() {
@@ -50,4 +129,36 @@ public class MyLinkedList<E> {
             temp = temp.next;
         }
     }
+    public int indexOf(E data) {
+        Node temp = head;
+        int index = 0;
+        while (temp != null){
+            if (temp.getData().equals(data)){
+                return index;
+            }
+            index++;
+            temp = temp.next;
+        }
+        return -1;
+    }
+    public MyLinkedList<E> clone() {
+        if (numNodes == 0) {
+            return null;
+        }
+        MyLinkedList<E> newLL = new MyLinkedList<>();
+        Node temp = head;
+        for (int i = 0; i < numNodes; i++){
+            newLL.addLast((E) temp.data);
+            temp = temp.next;
+        }
+        return newLL;
+    }
+    public boolean contain(E data) {
+        if (indexOf(data) != -1) {
+            return true;
+        }
+        return false;
+    }
+
+
 }
