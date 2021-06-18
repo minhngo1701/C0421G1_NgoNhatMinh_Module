@@ -159,6 +159,30 @@ public class MyLinkedList<E> {
         }
         return false;
     }
+    public E getFirst() {
+        Node temp = head;
+        if (head == null) {
+            return null;
+        }
+        return (E) temp.data;
+    }
+    public E getLast() {
+        Node temp = tail;
+        if (tail == null) {
+            return null;
+        }
+        return (E) temp.data;
+    }
 
-
+    public void clear() {
+        Node temp = head;
+        Node holder;
+        for (int i = 0; temp != null; i++) {
+            holder = temp.next;
+            temp.next = null;
+            temp = holder;
+        }
+        tail = head = temp;
+        numNodes = 0;
+    }
 }
