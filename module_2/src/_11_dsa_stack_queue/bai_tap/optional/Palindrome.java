@@ -18,15 +18,13 @@ public class Palindrome {
         for (int i = 0; i < stack.size(); i++) {
             if (stack.peek().equals(str.charAt(i))) {
                 check = true;
-                break;
             } else {
-                check = false;
+                System.out.println("Không phải là chuỗi palindrome");
+                break;
             }
 
         }
-        if (check == false) {
-            System.out.println("Không phải là chuỗi palindrome");
-        } else {
+        if (check) {
             System.out.println("là chuỗi palindrome");
         }
     }

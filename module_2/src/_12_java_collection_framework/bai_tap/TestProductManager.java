@@ -8,15 +8,15 @@ public class TestProductManager {
         Scanner sc = new Scanner(System.in);
         ProductManager productManager = new ProductManager();
         while (true) {
-            System.out.println("-------Hệ thống quản lý sản phẩm-------");
-            System.out.println("1. Thêm sản phẩm");
-            System.out.println("2. Sửa sản phẩm theo id");
-            System.out.println("3. Xóa sản phẩm theo id");
-            System.out.println("4. Hiển thị danh sách sản phẩm");
-            System.out.println("5. Tìm kiếm sản phẩm theo tên");
-            System.out.println("6. Sắp xếp sản phẩm tăng dần");
-            System.out.println("7. Sắp xếp sản phẩm giảm dần");
-            System.out.println("8. Thoát");
+            System.out.println("-------Product Manager-------");
+            System.out.println("1. Add products");
+            System.out.println("2. Edit products information");
+            System.out.println("3. Delete products by id");
+            System.out.println("4. Display products list");
+            System.out.println("5. Search products by name");
+            System.out.println("6. Sort products by cost ascending");
+            System.out.println("7. Sort products by cost descending");
+            System.out.println("8. Exit");
             System.out.println("Enter your choice: ");
             int choice = sc.nextInt();
 
@@ -26,15 +26,27 @@ public class TestProductManager {
                     break;
                 case 2:
                     productManager.editProductById();
+                    break;
                 case 3:
                     productManager.removeProductById();
                     break;
                 case 4:
                     productManager.showProduct();
                     break;
+                case 5:
+                    productManager.findProduct();
+                    break;
+                case 6:
+                    productManager.ascending();
+                    break;
+                case 7:
+                    productManager.descending();
+                    break;
                 case 8:
                     System.exit(1);
                     break;
+                default:
+                    System.out.println("Please re-enter your choice: ");
             }
         }
 
