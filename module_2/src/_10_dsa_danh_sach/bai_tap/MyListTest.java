@@ -19,6 +19,6 @@ public class MyListTest {
 //        System.out.println(myList);
 //        System.out.println(myList.get(1));
 //        System.out.println(myList.contain("Minh"));
-        System.out.println(myList.clone());
+//        System.out.println(myList.clone());
     }
 }
