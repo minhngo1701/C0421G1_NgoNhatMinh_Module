@@ -2,12 +2,10 @@ package _12_java_collection_framework.bai_tap;
 
 import java.util.Scanner;
 
-public class TestProductManager {
-
-
+public class TestProductManagerLinkedList {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ProductManager productManager = new ProductManager();
+        ProductManagerLinkedList productManagerLinked = new ProductManagerLinkedList();
         while (true) {
             System.out.println("-------Product Manager-------");
             System.out.println("1. Add products");
@@ -23,25 +21,25 @@ public class TestProductManager {
 
             switch (choice) {
                 case 1:
-                    productManager.addProduct(new Product());
+                    productManagerLinked.addProduct1(new Product());
                     break;
                 case 2:
-                    productManager.editProductById();
+                    productManagerLinked.editProductById1();
                     break;
                 case 3:
-                    productManager.removeProductById();
+                    productManagerLinked.removeProductById1();
                     break;
                 case 4:
-                    productManager.showProduct();
+                    productManagerLinked.displayProduct1();
                     break;
                 case 5:
-                    productManager.findProduct();
+                    productManagerLinked.findProduct1();
                     break;
                 case 6:
-                    productManager.ascending();
+                    productManagerLinked.ascending1();
                     break;
                 case 7:
-                    productManager.descending();
+                    productManagerLinked.descending1();
                     break;
                 case 8:
                     System.exit(1);

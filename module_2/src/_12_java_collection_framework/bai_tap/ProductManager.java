@@ -2,9 +2,8 @@ package _12_java_collection_framework.bai_tap;
 
 import java.util.*;
 
-public class ProductManager  {
+public class ProductManager {
     private ArrayList<Product> products = new ArrayList<>(20);
-
 
 
    public void addProduct(Product p) {
