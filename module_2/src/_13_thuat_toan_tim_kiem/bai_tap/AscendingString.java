@@ -10,27 +10,26 @@ public class AscendingString {
         String str = sc.nextLine();
 
         LinkedList<Character> max = new LinkedList<>();
-        System.out.println(max.size());
-//        for (int i = 0; i < str.length(); i++) {
-//            LinkedList<Character> list = new LinkedList<>();
-//            list.add(str.charAt(i));
-//            for (int j = 0; j < str.length(); j++) {
-//                if (str.charAt(j) > list.getLast()) {
-//                    list.add(str.charAt(j));
-//                }
-//            }
-//            if (list.size() > max.size()) {
-//                max.clear();
-//                max.addAll(list);
-//            }
-//            list.clear();
-//            System.out.println(list.size());
-//        }
-//
-//
-//        for (Character character:max) {
-//            System.out.print(character);
-//        }
+        for (int i = 0; i < str.length(); i++) {
+            LinkedList<Character> list = new LinkedList<>();
+            list.add(str.charAt(i));
+            for (int j = 0; j < str.length(); j++) {
+                if (str.charAt(j) > list.getLast()) {
+                    list.add(str.charAt(j));
+                }
+            }
+            if (list.size() > max.size()) {
+                max.clear();
+                max.addAll(list);
+            }
+            list.clear();
+            System.out.println(list.size());
+        }
+
+
+        for (Character character:max) {
+            System.out.print(character);
+        }
 
     }
 }
