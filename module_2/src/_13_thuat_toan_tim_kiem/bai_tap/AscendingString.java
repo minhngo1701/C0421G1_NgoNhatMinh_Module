@@ -23,7 +23,6 @@ public class AscendingString {
                 max.addAll(list);
             }
             list.clear();
-            System.out.println(list.size());
         }
 
 
