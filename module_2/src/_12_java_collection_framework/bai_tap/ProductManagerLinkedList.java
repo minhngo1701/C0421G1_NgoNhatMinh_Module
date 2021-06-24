@@ -62,8 +62,6 @@ public class ProductManagerLinkedList {
         } else {
             for (Product product : productLinkedList) {
                 if (product.getId() == idEdit) {
-                    System.out.println("Enter new id:");
-                    product.setId(Integer.parseInt(sc.nextLine()));
                     System.out.println("Enter new name: ");
                     product.setName(sc.nextLine());
                     System.out.println("Enter new cost");
