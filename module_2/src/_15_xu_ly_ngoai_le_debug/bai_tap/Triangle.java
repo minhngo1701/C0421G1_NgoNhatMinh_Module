@@ -4,31 +4,37 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Triangle {
-
-    public static void main(String[] args) throws IllegalTriangleException {
-        Scanner sc = new Scanner(System.in);
-
-        try {
-            System.out.println("Nhập cạnh a: ");
-            int a = sc.nextInt();
-            System.out.println("Nhập cạnh b: ");
-            int b = sc.nextInt();
-            System.out.println("Nhập cạnh c: ");
-            int c = sc.nextInt();
-            triangle(a, b, c);
-        } catch (NumberFormatException e) {
-            System.err.println("Phải nhập số");
-        }
+    int a,b,c;
+    public Triangle(){
+    }
+    public Triangle(int a, int b, int c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
     }
 
-    public static void triangle(int a, int b, int c) throws IllegalTriangleException {
-        if (a > 0 && b > 0 && c > 0 && (a + b) > c && (a + c) > b && (c + b) > a) {
-            System.out.println("a,b,c là 3 cạnh của tam giác");
-        } else {
-            throw new IllegalTriangleException("Cạnh tạm giác không thể là số âm hoặc tổng hai cạnh phải lớn hơn cạnh còn lại.");
-        }
-
+    public int getA() {
+        return a;
     }
 
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+
+    public int getC() {
+        return c;
+    }
+
+    public void setC(int c) {
+        this.c = c;
+    }
 
 }
