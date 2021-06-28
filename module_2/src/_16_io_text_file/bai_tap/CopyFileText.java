@@ -13,7 +13,6 @@ public class CopyFileText {
             String line;
             while ((line = bufferedReader.readLine()) != null && !line.equals("")) {
                 list.add(line);
-                System.out.println(line);
             }
             bufferedReader.close();
         } catch (FileNotFoundException e) {
@@ -41,7 +40,7 @@ public class CopyFileText {
         list = copyFileText.readFile("src\\_16_io_text_file\\thuc_hanh\\test\\file.txt");
         System.out.println(list);
         for (String n : list) {
-            copyFileText.writeFile("src\\_16_io_text_file\\thuc_hanh\\test\\newfile.txt", n);
+            copyFileText.writeFile("src\\_16_io_text_file\\bai_tap\\newfile.txt", n);
         }
     }
 }
