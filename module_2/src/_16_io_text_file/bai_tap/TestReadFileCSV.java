@@ -11,6 +11,5 @@ public class TestReadFileCSV {
             Country country = new Country(Integer.parseInt(split[0]), split[1], split[2]);
             System.out.println(country);
         }
-
     }
 }
