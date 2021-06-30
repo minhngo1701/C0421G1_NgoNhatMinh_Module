@@ -20,10 +20,13 @@ public class CustomerManagement {
             int choice = input().nextInt();
             switch (choice) {
                 case 1:
+                    new CustomerServiceImpl().display();
                     break;
                 case 2:
+                    new CustomerServiceImpl().add();
                     break;
                 case 3:
+                    new CustomerServiceImpl().edit();
                     break;
                 case 4:
                     new FuramaController().displayMainMenu();

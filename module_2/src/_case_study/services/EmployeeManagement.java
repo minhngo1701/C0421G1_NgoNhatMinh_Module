@@ -20,10 +20,13 @@ public class EmployeeManagement {
             int choice = input().nextInt();
             switch (choice) {
                 case 1:
+                    new EmployeeServiceImpl().display();
                     break;
                 case 2:
+                    new EmployeeServiceImpl().add();
                     break;
                 case 3:
+                    new EmployeeServiceImpl().edit();
                     break;
                 case 4:
                     new FuramaController().displayMainMenu();

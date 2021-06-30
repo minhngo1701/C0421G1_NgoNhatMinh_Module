@@ -3,7 +3,7 @@ package _case_study.models;
 public abstract class Person {
     private int id;
     private String name;
-    private String dateOfbirth;
+    private String dateOfBirth;
     private String gender;
     private String identityNumber;
     private String phoneNumber;
@@ -12,10 +12,10 @@ public abstract class Person {
     public Person() {
     }
 
-    public Person(int id, String name, String dateOfbirth, String gender, String identityNumber, String phoneNumber, String email) {
+    public Person(int id, String name, String dateOfBirth, String gender, String identityNumber, String phoneNumber, String email) {
         this.id = id;
         this.name = name;
-        this.dateOfbirth = dateOfbirth;
+        this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.identityNumber = identityNumber;
         this.phoneNumber = phoneNumber;
@@ -38,15 +38,15 @@ public abstract class Person {
         this.name = name;
     }
 
-    public String getDateOfbirth() {
-        return dateOfbirth;
+    public String getDateOfbirth(String s) {
+        return dateOfBirth;
     }
 
     public void setDateOfbirth(String dateOfbirth) {
-        this.dateOfbirth = dateOfbirth;
+        this.dateOfBirth = dateOfbirth;
     }
 
-    public String getGender() {
+    public String getGender(String s) {
         return gender;
     }
 
@@ -54,7 +54,7 @@ public abstract class Person {
         this.gender = gender;
     }
 
-    public String getIdentityNumber() {
+    public String getIdentityNumber(String s) {
         return identityNumber;
     }
 
@@ -80,14 +80,14 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", dateOfbirth='" + dateOfbirth + '\'' +
+                ", dateOfbirth='" + dateOfBirth + '\'' +
                 ", gender='" + gender + '\'' +
                 ", identityNumber='" + identityNumber + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+                ", email='" + email + '\''
+                ;
     }
 }

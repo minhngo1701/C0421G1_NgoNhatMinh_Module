@@ -8,8 +8,8 @@ public class Employee extends Person {
     public Employee() {
     }
 
-    public Employee(int id, String name, String dateOfbirth, String gender, String identityNumber, String phoneNumber, String email, String education, String position, double salary) {
-        super(id, name, dateOfbirth, gender, identityNumber, phoneNumber, email);
+    public Employee(int id, String name, String dateOfBirth, String gender, String identityNumber, String phoneNumber, String email, String education, String position, double salary) {
+        super(id, name, dateOfBirth, gender, identityNumber, phoneNumber, email);
         this.education = education;
         this.position = position;
         this.salary = salary;
@@ -41,6 +41,6 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return super.toString() + ", education=" + getEducation() + ", position=" + getPosition() + ", salary=" + getSalary();
+        return "{" + super.toString() + ", education=" + getEducation() + ", position=" + getPosition() + ", salary=" + getSalary()+ "}";
     }
 }
