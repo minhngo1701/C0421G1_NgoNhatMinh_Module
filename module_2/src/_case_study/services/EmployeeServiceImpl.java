@@ -1,6 +1,7 @@
 package _case_study.services;
 
 import _case_study.models.Employee;
+import _case_study.utils.ReadAndWriteFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +9,11 @@ import java.util.Scanner;
 
 public class EmployeeServiceImpl implements EmployeeService {
     private static List<Employee> list = new ArrayList<>(50);
-    public  Scanner sc = new Scanner(System.in);
-    private  Employee employee = new Employee();
+    public Scanner sc = new Scanner(System.in);
+    private Employee employee = new Employee();
+    private static ReadAndWriteFile<Employee> readandWriteFile = new ReadAndWriteFile();
+    private static final String FILE_PATH = "src\\_case_study\\data\\Employee.csv";
+
     @Override
     public void add() {
         System.out.println("Enter id: ");
@@ -33,6 +37,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println("Enter salary: ");
         employee.setSalary(sc.nextDouble());
         list.add(employee);
+        String str = employee.getId() + "," + employee.getName() + "," + employee.getDateOfbirth() + "," + employee.getGender() + employee.getIdentityNumber()
+                + "," + employee.getPhoneNumber() + "," + employee.getEmail() + "," + employee.getEducation() + "," + employee.getPosition() + "," + employee.getSalary();
+        readandWriteFile.writeFile(FILE_PATH, str);
     }
 
     @Override
@@ -76,12 +83,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void display() {
-        if (list.size() == 0) {
-            System.out.println("List is empty");
-        } else {
-            for (Employee employee : list) {
-                System.out.println(employee);
-            }
+        List<Employee> employees = readandWriteFile.readFile(FILE_PATH);
+        for (Employee employee : employees) {
+            System.out.println(employee);
         }
     }
 }
+

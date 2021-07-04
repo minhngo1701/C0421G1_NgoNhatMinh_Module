@@ -5,17 +5,25 @@ public class Contract {
     private String code;
     private double depositAmount;
     private double totalPayment;
-    private int id;
+    private int customerID;
 
     public Contract() {
     }
 
-    public Contract(int contractID, String code, double depositAmount, double totalPayment, int id) {
+    public Contract(int contractID, String code, double depositAmount, double totalPayment, int customerID) {
         this.contractID = contractID;
         this.code = code;
         this.depositAmount = depositAmount;
         this.totalPayment = totalPayment;
-        this.id = id;
+        this.customerID = customerID;
+    }
+
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
     }
 
     public int getContractID() {
@@ -50,13 +58,6 @@ public class Contract {
         this.totalPayment = totalPayment;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Override
     public String toString() {
@@ -65,7 +66,7 @@ public class Contract {
                 ", code='" + code + '\'' +
                 ", depositAmount=" + depositAmount +
                 ", totalPayment=" + totalPayment +
-                ", id=" + id +
+                ", customerID=" + customerID +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package _case_study.services;
+package _case_study.controller;
 
 import _case_study.controller.FuramaController;
 

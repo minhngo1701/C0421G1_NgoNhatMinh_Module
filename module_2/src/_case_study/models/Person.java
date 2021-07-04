@@ -38,7 +38,7 @@ public abstract class Person {
         this.name = name;
     }
 
-    public String getDateOfbirth(String s) {
+    public String getDateOfbirth() {
         return dateOfBirth;
     }
 
@@ -46,7 +46,7 @@ public abstract class Person {
         this.dateOfBirth = dateOfbirth;
     }
 
-    public String getGender(String s) {
+    public String getGender() {
         return gender;
     }
 
@@ -54,7 +54,7 @@ public abstract class Person {
         this.gender = gender;
     }
 
-    public String getIdentityNumber(String s) {
+    public String getIdentityNumber() {
         return identityNumber;
     }
 

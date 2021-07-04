@@ -1,7 +1,5 @@
 package _case_study.controller;
 
-import _case_study.services.*;
-
 import java.util.Scanner;
 
 public class FuramaController {
