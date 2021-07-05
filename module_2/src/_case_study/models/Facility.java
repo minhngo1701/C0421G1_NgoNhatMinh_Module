@@ -1,6 +1,8 @@
 package _case_study.models;
 
-public abstract class Facility {
+import java.io.Serializable;
+
+public abstract class Facility implements Serializable {
     private String nameService;
     private double area;
     private double rentcost;
@@ -60,12 +62,10 @@ public abstract class Facility {
 
     @Override
     public String toString() {
-        return "Facility{" +
-                "nameService='" + nameService + '\'' +
-                ", area=" + area +
-                ", rentcost=" + rentcost +
-                ", numberPerson=" + numberPerson +
-                ", typeRent='" + typeRent + '\'' +
-                '}';
+        return nameService +
+                "," + area +
+                "," + rentcost +
+                "," + numberPerson +
+                "," + typeRent;
     }
 }

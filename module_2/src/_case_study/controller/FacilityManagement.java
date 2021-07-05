@@ -1,5 +1,7 @@
 package _case_study.controller;
 
+import _case_study.services.FacilityServiceImpl;
+
 import java.util.Scanner;
 
 public class FacilityManagement {
@@ -18,8 +20,10 @@ public class FacilityManagement {
             int choice = input().nextInt();
             switch (choice) {
                 case 1:
+                    new FacilityServiceImpl().display();
                     break;
                 case 2:
+                    new FacilityServiceImpl().add();
                     break;
                 case 3:
                     break;

@@ -1,34 +1,69 @@
 package _case_study.utils;
 
+import _case_study.models.Facility;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ReadAndWriteFile<T> {
-    public List<T> readFile(String filePath) {
-        List<T> list = null;
+    public void writeFileByByteStream(List<T> list, String filePath) {
+        File file = new File(filePath);
+        FileOutputStream outputStream = null;
+        ObjectOutputStream objectOutputStream = null;
         try {
-            FileReader reader = new FileReader(filePath);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            String line = null;
-            if ((line = bufferedReader.readLine()) != null) {
-                list.add((T) line);
+            outputStream = new FileOutputStream(file);
+            objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(list);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                outputStream.close();
+                objectOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            bufferedReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        return list;
     }
-    public void writeFile(String filePath, String line) {
+
+    public void writeFileByByteStreamUseMap(Map<Facility, Integer> map, String filePath) {
+        File file = new File(filePath);
+        FileOutputStream outputStream = null;
+        ObjectOutputStream objectOutputStream = null;
         try {
-            FileWriter writer = new FileWriter(filePath, true);
-            BufferedWriter bufferedWriter = new BufferedWriter(writer);
-            bufferedWriter.write(line);
-            bufferedWriter.newLine();
-            bufferedWriter.close();
+            outputStream = new FileOutputStream(file);
+            objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(map);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                outputStream.close();
+                objectOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    public static Object read(String diaChi) {
+        //Khai báo đối tượng FileInputStream và ObjectInputStream trỏ tới null
+        FileInputStream FIn = null;
+        ObjectInputStream OIn = null;
+        Object read = null;
+        try {
+            //Khở tạo đối tượng với địa chỉ truyền vào
+            FIn = new FileInputStream(new java.io.File(diaChi));
+            OIn = new ObjectInputStream(FIn);
+            read = OIn.readObject();
+            FIn.close();
+            OIn.close();
+            return read;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return null;
     }
 }
