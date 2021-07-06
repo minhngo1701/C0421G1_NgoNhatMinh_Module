@@ -47,11 +47,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void edit() {
+        list = (List<Employee>) readandWriteFile.readFile(FILE_PATH);
         System.out.println("Enter id need to edit: ");
         int idEdit = Integer.parseInt(sc.nextLine());
         if (list.isEmpty()) {
             System.out.println("Nothing to edit");
         } else {
+            boolean check = false;
             for (Employee employee : list) {
                 if (idEdit == employee.getId()) {
                     System.out.println("Enter new name: ");
@@ -72,16 +74,19 @@ public class EmployeeServiceImpl implements EmployeeService {
                     employee.setPosition(sc.nextLine());
                     System.out.println("Enter new salary: ");
                     employee.setSalary(sc.nextDouble());
-                } else {
-                    System.out.println("Can't find id of employee");
+                    check = true;
                 }
             }
+            if (check == false) {
+                System.out.println("Can't find employee in list");
+            }
         }
+        readandWriteFile.writeFileByByteStream(list,FILE_PATH);
     }
 
     @Override
     public void display() {
-        list = (List<Employee>) readandWriteFile.read(FILE_PATH);
+        list = (List<Employee>) readandWriteFile.readFile(FILE_PATH);
 
         if (list == null) {
             System.out.println("list is empty");

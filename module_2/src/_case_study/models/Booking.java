@@ -1,6 +1,10 @@
 package _case_study.models;
 
-public class Booking {
+import org.jetbrains.annotations.NotNull;
+
+import java.io.Serializable;
+
+public class Booking implements Serializable {
     private String code;
     private String dateStart;
     private String dateEnd;
@@ -80,4 +84,5 @@ public class Booking {
                 ", typeService='" + typeService + '\'' +
                 '}';
     }
+
 }

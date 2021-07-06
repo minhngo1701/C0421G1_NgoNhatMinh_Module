@@ -43,11 +43,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void edit() {
+        linkedList = (List<Customer>) new ReadAndWriteFile<Customer>().readFile(FILE_PATH);
         System.out.println("Enter id need to edit: ");
         int idEdit = Integer.parseInt(sc.nextLine());
         if (linkedList.isEmpty()) {
             System.out.println("Nothing to edit");
         } else {
+            boolean check = false;
             for (Customer customer : linkedList) {
                 if (idEdit == customer.getId()) {
                     System.out.println("Enter new name customer: ");
@@ -66,17 +68,19 @@ public class CustomerServiceImpl implements CustomerService {
                     customer.setTypeCustomer(sc.nextLine());
                     System.out.println("Enter new address: ");
                     customer.setAddress(sc.nextLine());
-
-                } else {
-                    System.out.println("Can't find id of customer");
+                    check = true;
                 }
             }
+            if (check == false) {
+                System.out.println("Can't find customer in list");
+            }
         }
+        new ReadAndWriteFile<Customer>().writeFileByByteStream(linkedList,FILE_PATH);
     }
 
     @Override
     public void display() {
-        linkedList = (LinkedList<Customer>) new ReadAndWriteFile<Customer>().read(FILE_PATH);
+        linkedList = (LinkedList<Customer>) new ReadAndWriteFile<Customer>().readFile(FILE_PATH);
         if (linkedList == null) {
             System.out.println("list is empty");
         } else {
@@ -84,5 +88,11 @@ public class CustomerServiceImpl implements CustomerService {
                 System.out.println(customer);
             }
         }
+    }
+
+    @Override
+    public List<Customer> getAll() {
+        linkedList = (List<Customer>) new ReadAndWriteFile<Customer>().readFile(FILE_PATH);
+        return linkedList;
     }
 }
