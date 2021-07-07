@@ -9,6 +9,19 @@ public class FacilityManagement {
         Scanner sc = new Scanner(System.in);
         return sc;
     }
+    private static int choiceNumber() {
+        boolean checkValid = false;
+        int choice = 0;
+        while (!checkValid) {
+            try {
+                choice = Integer.parseInt(input().nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
+    }
     public void displayFacilityMenu() {
         while (true) {
             System.out.println("-----Facility Menu-----");
@@ -17,8 +30,7 @@ public class FacilityManagement {
             System.out.println("3. Display list facility maintenance");
             System.out.println("4. Return main menu");
             System.out.println("Enter your choice");
-            int choice = input().nextInt();
-            switch (choice) {
+            switch (choiceNumber()) {
                 case 1:
                     new FacilityServiceImpl().display();
                     break;
@@ -54,6 +66,7 @@ public class FacilityManagement {
                 default:
                     System.out.println("Please re-enter:");
             }
+
         }
     }
 }

@@ -21,14 +21,7 @@ public class FacilityServiceImpl implements FacilityService {
     private static final String FILE_PATH_HOUSE = "src\\_case_study\\data\\House.csv";
     private static final String FILE_PATH_ROOM = "src\\_case_study\\data\\Room.csv";
 
-    static {
-        facilityVilla.put(new Villa("villa", 300, 1000000,6,"tháng","TCVN", 20, 4), 1);
-        facilityHouse.put(new House("house", 240, 1000000,3,"tháng","TCVN", 2), 2);
-        facilityRoom.put(new Room("room", 100, 200000,4,"ngày","Lái xe"), 1);
-        new ReadAndWriteFile<Facility>().writeFileByByteStreamUseMap(facilityVilla,FILE_PATH_VILLA);
-        new ReadAndWriteFile<Facility>().writeFileByByteStreamUseMap(facilityHouse,FILE_PATH_HOUSE);
-        new ReadAndWriteFile<Facility>().writeFileByByteStreamUseMap(facilityRoom,FILE_PATH_ROOM);
-    }
+
 
     @Override
     public void add() {
@@ -63,6 +56,10 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void addNewVilla() {
+        facilityVilla = (Map<Facility, Integer>) new ReadAndWriteFile<Facility>().readFile(FILE_PATH_VILLA);
+        if (facilityVilla == null) {
+            facilityVilla = new LinkedHashMap<>();
+        }
         System.out.println("Add new Service:");
         String service = input().nextLine();
         System.out.println("Add new area:");
@@ -88,6 +85,10 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void addNewHouse() {
+        facilityHouse = (Map<Facility, Integer>) new ReadAndWriteFile<Facility>().readFile(FILE_PATH_HOUSE);
+        if (facilityHouse == null) {
+            facilityHouse = new LinkedHashMap<>();
+        }
         System.out.println("Add new Service:");
         String service = input().nextLine();
         System.out.println("Add new area:");
@@ -110,6 +111,10 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void addNewRoom() {
+        facilityRoom = (Map<Facility, Integer>) new ReadAndWriteFile<Facility>().readFile(FILE_PATH_ROOM);
+        if (facilityRoom == null) {
+            facilityRoom = new LinkedHashMap<>();
+        }
         System.out.println("Add new Service:");
         String service = input().nextLine();
         System.out.println("Add new area:");

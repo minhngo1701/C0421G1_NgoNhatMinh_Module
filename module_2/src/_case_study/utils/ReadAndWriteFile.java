@@ -3,10 +3,7 @@ package _case_study.utils;
 import _case_study.models.Facility;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class ReadAndWriteFile<T> {
     public void writeFileByByteStream(List<T> list, String filePath) {
@@ -62,6 +59,23 @@ public class ReadAndWriteFile<T> {
                 outputStream.close();
                 objectOutputStream.close();
             } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void writeFileUseQueue(Queue<T> queue, String filePath) {
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(filePath);
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+            fileOutputStream.close();
+            objectOutputStream.close();
+            }catch (IOException e) {
                 e.printStackTrace();
             }
         }

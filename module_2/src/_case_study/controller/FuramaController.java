@@ -7,6 +7,19 @@ public class FuramaController {
         Scanner sc = new Scanner(System.in);
         return sc;
     }
+    private static int choiceNumber() {
+        boolean checkValid = false;
+        int choice = 0;
+        while (!checkValid) {
+            try {
+                choice = Integer.parseInt(input().nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
+    }
     public void displayMainMenu() {
         while (true) {
             System.out.println("-----Main Menu-----");
@@ -17,8 +30,7 @@ public class FuramaController {
             System.out.println("5. Promotion Management");
             System.out.println("6. Exit");
             System.out.println("Enter your choice");
-            int choice = input().nextInt();
-            switch (choice) {
+            switch (choiceNumber()) {
                 case 1:
                     new EmployeeManagement().displayEmployeesMenu();
                     break;

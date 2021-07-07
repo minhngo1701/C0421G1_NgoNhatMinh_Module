@@ -10,6 +10,19 @@ public class EmployeeManagement {
         Scanner sc = new Scanner(System.in);
         return sc;
     }
+    private static int choiceNumber() {
+        boolean checkValid = false;
+        int choice = 0;
+        while (!checkValid) {
+            try {
+                choice = Integer.parseInt(input().nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
+    }
     public void displayEmployeesMenu() {
         while (true) {
             System.out.println("-----Employees Menu-----");
@@ -18,8 +31,7 @@ public class EmployeeManagement {
             System.out.println("3. Edit employees");
             System.out.println("4. Return main menu");
             System.out.println("Enter your choice:");
-            int choice = input().nextInt();
-            switch (choice) {
+            switch (choiceNumber()) {
                 case 1:
                     new EmployeeServiceImpl().display();
                     break;

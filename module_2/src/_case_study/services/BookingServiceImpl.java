@@ -1,30 +1,26 @@
 package _case_study.services;
 
 import _case_study.libs.BookingComparator;
-import _case_study.models.Booking;
-import _case_study.models.Customer;
-import _case_study.models.Facility;
+import _case_study.models.*;
+import _case_study.utils.ReadAndWriteFile;
 
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class BookingServiceImpl implements BookingService {
     private static Set<Booking> bookings = new TreeSet<>(new BookingComparator());
+    private static final String FILE_PATH = "src\\_case_study\\data\\Booking.csv";
 
     public static Scanner input() {
         Scanner sc = new Scanner(System.in);
         return sc;
     }
-    static {
-        bookings.add(new Booking("ndfjhn","10/7/2021","20/7/2021",4,"Villa","ngày"));
-        bookings.add(new Booking("ndfjhn","5/7/2021","6/9/2021",4,"House","tháng"));
-        bookings.add(new Booking("ndfjhn","8/7/2021","13/7/2021",4,"House","ngày"));
-        bookings.add(new Booking("ndfjhn","1/7/2021","4/7/2021",4,"Room","ngày"));
-    }
+
     @Override
     public void add() {
+        bookings = (Set<Booking>) new ReadAndWriteFile<Booking>().readFile(FILE_PATH);
+        if (bookings == null) {
+            bookings = new TreeSet<>(new BookingComparator());
+        }
         System.out.println("Display list customer:");
         new CustomerServiceImpl().display();
         System.out.println("Display list Facility");
@@ -37,15 +33,29 @@ public class BookingServiceImpl implements BookingService {
                 idCustomer = customer.getId();
             }
         }
-        System.out.println("Enter service you want:");
-        String service = input().nextLine();
+
         Map<Facility, Integer> facility1 = new FacilityServiceImpl().getAll();
-        String nameService = null;
+        Map<Facility, Integer> facilityVilla = new LinkedHashMap<>();
+        Map<Facility, Integer> facilityHouse = new LinkedHashMap<>();
+        Map<Facility, Integer> facilityRoom = new LinkedHashMap<>();
+        System.out.println("Enter name service:");
+        String nameService = input().nextLine();
         for (Facility facility : facility1.keySet()) {
-            if (service.equals(facility.getNameService())) {
-                nameService = facility.getNameService();
+            if (nameService.equals(facility.getNameService())) {
+                facility1.put(facility, facility1.get(facility) + 1);
             }
         }
+        for (Facility key : facility1.keySet()) {
+            if (key instanceof Villa) {
+                facilityVilla.put(key,facility1.get(key));
+            } else if (key instanceof House) {
+                facilityHouse.put(key,facility1.get(key));
+            } else if (key instanceof Room) {
+                facilityRoom.put(key,facility1.get(key));
+            }
+        }
+
+
         System.out.println("Enter id booking:");
         String idBooking = input().nextLine();
         System.out.println("Enter date start:");
@@ -56,9 +66,11 @@ public class BookingServiceImpl implements BookingService {
         String typeService = input().nextLine();
         bookings.add(new Booking(idBooking, dateStart, dateEnd, idCustomer, nameService, typeService));
 
-
-
-}
+        new ReadAndWriteFile<Booking>().writeFileUseSet(bookings, FILE_PATH);
+        new ReadAndWriteFile<Booking>().writeFileByByteStreamUseMap(facilityVilla, "src\\_case_study\\data\\Villa.csv");
+        new ReadAndWriteFile<Booking>().writeFileByByteStreamUseMap(facilityHouse, "src\\_case_study\\data\\House.csv");
+        new ReadAndWriteFile<Booking>().writeFileByByteStreamUseMap(facilityRoom, "src\\_case_study\\data\\Room.csv");
+    }
 
     @Override
     public void delete() {
@@ -72,8 +84,18 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public void display() {
-        for (Booking booking : bookings) {
-            System.out.println(booking);
+        bookings = (Set<Booking>) new ReadAndWriteFile<Booking>().readFile(FILE_PATH);
+        if (bookings == null) {
+            System.out.println("List is empty");
+        } else {
+            for (Booking booking : bookings) {
+                System.out.println(booking);
+            }
         }
+    }
+
+    @Override
+    public Set<Booking> getAll() {
+        return bookings;
     }
 }

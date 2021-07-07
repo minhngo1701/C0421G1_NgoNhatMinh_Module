@@ -16,6 +16,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void add() {
+        list = (List<Employee>) new ReadAndWriteFile<Employee>().readFile(FILE_PATH);
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+
         System.out.println("Enter id: ");
         employee.setId(Integer.parseInt(sc.nextLine()));
         System.out.println("Enter name: ");

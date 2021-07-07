@@ -14,6 +14,10 @@ public class CustomerServiceImpl implements CustomerService {
     private static final String FILE_PATH = "src\\_case_study\\data\\Customer.csv";
     @Override
     public void add() {
+        linkedList = (List<Customer>) new ReadAndWriteFile<Customer>().readFile(FILE_PATH);
+        if (linkedList == null) {
+            linkedList = new LinkedList<>();
+        }
         System.out.println("Enter id customer: ");
         customer.setId(Integer.parseInt(sc.nextLine()));
         System.out.println("Enter name customer: ");
