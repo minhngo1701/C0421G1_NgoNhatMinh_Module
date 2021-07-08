@@ -1,6 +1,7 @@
 package _case_study.services;
 
 import _case_study.libs.BookingComparator;
+import _case_study.libs.Regex;
 import _case_study.models.*;
 import _case_study.utils.ReadAndWriteFile;
 
@@ -9,7 +10,7 @@ import java.util.*;
 public class BookingServiceImpl implements BookingService {
     private static Set<Booking> bookings = new TreeSet<>(new BookingComparator());
     private static final String FILE_PATH = "src\\_case_study\\data\\Booking.csv";
-
+    private static Regex regex = new Regex();
     public static Scanner input() {
         Scanner sc = new Scanner(System.in);
         return sc;
@@ -73,10 +74,22 @@ public class BookingServiceImpl implements BookingService {
         String idBooking = input().nextLine();
         System.out.println("Enter date start:");
         String dateStart = input().nextLine();
+        while (!regex.regexDateMonth(String.valueOf(dateStart))) {
+            System.out.println("Enter wrong");
+            dateStart = input().nextLine();
+        }
         System.out.println("Enter date end: ");
         String dateEnd = input().nextLine();
+        while (!regex.regexDateMonth(String.valueOf(dateEnd))) {
+            System.out.println("Enter wrong");
+            dateEnd= input().nextLine();
+        }
         System.out.println("Enter type of service:");
         String typeService = input().nextLine();
+        while (!regex.regexService(typeService)) {
+            System.out.println("Enter wrong");
+            typeService = input().nextLine();
+        }
         bookings.add(new Booking(idBooking, dateStart, dateEnd, idCustomer, nameService, typeService));
 
         new ReadAndWriteFile<Booking>().writeFileUseSet(bookings, FILE_PATH);

@@ -1,5 +1,6 @@
 package _case_study.services;
 
+import _case_study.libs.Regex;
 import _case_study.models.Facility;
 import _case_study.models.House;
 import _case_study.models.Room;
@@ -13,7 +14,7 @@ public class FacilityServiceImpl implements FacilityService {
     private static Map<Facility, Integer> facilityHouse = new LinkedHashMap<>();
     private static Map<Facility, Integer> facilityRoom = new LinkedHashMap<>();
     private static Map<Facility, Integer> facility = new LinkedHashMap<>();
-
+    private static Regex regex = new Regex();
     private static Scanner input() {
         Scanner sc = new Scanner(System.in);
         return sc;
@@ -51,23 +52,7 @@ public class FacilityServiceImpl implements FacilityService {
         return choice;
     }
 
-    private static double choiceNumberDoubleArea() {
-        boolean checkValid = false;
-        double choice = 0.0;
-        while (!checkValid) {
-            try {
-                choice = Double.parseDouble(input().nextLine());
-                if (choice > 30) {
-                    checkValid = true;
-                }
-            } catch (NumberFormatException e) {
-                System.out.print("You must enter a number: ");
-            } catch (Exception e) {
-                System.out.print("Area must bigger 30");
-            }
-        }
-        return choice;
-    }
+
 
     @Override
     public void add() {
@@ -108,20 +93,45 @@ public class FacilityServiceImpl implements FacilityService {
         }
         System.out.println("Add new Service:");
         String service = input().nextLine();
+        while (!regex.regexFacilities(service)) {
+            System.out.println("Enter wrong");
+            service = input().nextLine();
+        }
         System.out.println("Add new area:");
-        double area = choiceNumberDoubleArea();
+        double area = choiceNumberDouble();
         System.out.println("Add new cost rent:");
         double rentCost = choiceNumberDouble();
+        while (!regex.regexRentCost(String.valueOf(rentCost))) {
+            System.out.println("Enter wrong");
+            rentCost = choiceNumberDouble();
+        }
         System.out.println("Add new amount person:");
         int amountPerson = choiceNumber();
+        while (!regex.regexNumberPeople(String.valueOf(amountPerson))) {
+            System.out.println("Enter wrong");
+            amountPerson = input().nextInt();
+        }
         System.out.println("Add new type rent:");
         String typeRent = input().nextLine();
+        while (!regex.regexRentType(String.valueOf(typeRent))) {
+            System.out.println("Enter wrong");
+            typeRent = input().nextLine();
+        }
         System.out.println("Add new Standard:");
         String standard = input().nextLine();
         System.out.println("Add new swimming pool area:");
-        double poolArea = choiceNumberDoubleArea();
+        double poolArea = choiceNumberDouble();
+        while (!regex.regexPoolArea(String.valueOf(poolArea))) {
+            System.out.println("Enter wrong");
+            poolArea = choiceNumberDouble();
+        }
         System.out.println("Add new floor:");
         int floor = choiceNumber();
+        while (!regex.regexNumberFloor(String.valueOf(floor))) {
+            System.out.println("Enter wrong");
+            amountPerson = input().nextInt();
+        }
+
 
         facilityVilla.put(new Villa(service, area, rentCost, amountPerson, typeRent, standard, poolArea, floor), 0);
         facility.putAll(facilityVilla);
@@ -137,18 +147,38 @@ public class FacilityServiceImpl implements FacilityService {
         }
         System.out.println("Add new Service:");
         String service = input().nextLine();
+        while (!regex.regexFacilities(service)) {
+            System.out.println("Enter wrong");
+            service = input().nextLine();
+        }
         System.out.println("Add new area:");
-        double area = choiceNumberDoubleArea();
+        double area = input().nextDouble();
         System.out.println("Add new cost rent:");
         double rentCost = choiceNumberDouble();
+        while (!regex.regexRentCost(String.valueOf(rentCost))) {
+            System.out.println("Enter wrong");
+            rentCost = choiceNumberDouble();
+        }
         System.out.println("Add new amount person:");
         int amountPerson = choiceNumber();
+        while (!regex.regexNumberPeople(String.valueOf(amountPerson))) {
+            System.out.println("Enter wrong");
+            amountPerson = input().nextInt();
+        }
         System.out.println("Add new type rent:");
         String typeRent = input().nextLine();
+        while (!regex.regexRentType(String.valueOf(typeRent))) {
+            System.out.println("Enter wrong");
+           typeRent = input().nextLine();
+        }
         System.out.println("Add new Standard:");
         String standard = input().nextLine();
         System.out.println("Add new floor:");
         int floor = choiceNumber();
+        while (!regex.regexNumberFloor(String.valueOf(floor))) {
+            System.out.println("Enter wrong");
+            floor = input().nextInt();
+        }
         facilityHouse.put(new House(service, area, rentCost, amountPerson, typeRent, standard, floor), 0);
         facility.putAll(facilityHouse);
         new ReadAndWriteFile<Facility>().writeFileByByteStreamUseMap(facilityHouse, FILE_PATH_HOUSE);
@@ -163,12 +193,24 @@ public class FacilityServiceImpl implements FacilityService {
         }
         System.out.println("Add new Service:");
         String service = input().nextLine();
+        while (!regex.regexFacilities(service)) {
+            System.out.println("Enter wrong");
+            service = input().nextLine();
+        }
         System.out.println("Add new area:");
-        double area = choiceNumberDoubleArea();
+        double area = input().nextDouble();
         System.out.println("Add new cost rent:");
         double rentCost = choiceNumberDouble();
+        while (!regex.regexRentCost(String.valueOf(rentCost))) {
+            System.out.println("Enter wrong");
+            rentCost = choiceNumberDouble();
+        }
         System.out.println("Add new amount person:");
         int amountPerson = choiceNumber();
+        while (!regex.regexNumberPeople(String.valueOf(amountPerson))) {
+            System.out.println("Enter wrong");
+            amountPerson = input().nextInt();
+        }
         System.out.println("Add new type rent:");
         String typeRent = input().nextLine();
         System.out.println("Add new free service");
