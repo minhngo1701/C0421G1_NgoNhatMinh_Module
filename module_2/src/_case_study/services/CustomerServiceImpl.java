@@ -10,8 +10,21 @@ import java.util.Scanner;
 public class CustomerServiceImpl implements CustomerService {
     public static List<Customer> linkedList = new LinkedList<>();
     public static Customer customer = new Customer();
-    public Scanner sc = new Scanner(System.in);
+    public static Scanner sc = new Scanner(System.in);
     private static final String FILE_PATH = "src\\_case_study\\data\\Customer.csv";
+    private static int choiceNumber() {
+        boolean checkValid = false;
+        int choice = 0;
+        while (!checkValid) {
+            try {
+                choice = Integer.parseInt(sc.nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
+    }
     @Override
     public void add() {
         linkedList = (List<Customer>) new ReadAndWriteFile<Customer>().readFile(FILE_PATH);
@@ -19,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
             linkedList = new LinkedList<>();
         }
         System.out.println("Enter id customer: ");
-        customer.setId(Integer.parseInt(sc.nextLine()));
+        customer.setId(choiceNumber());
         System.out.println("Enter name customer: ");
         customer.setName(sc.nextLine());
         System.out.println("Enter date of birth customer: ");
@@ -49,7 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void edit() {
         linkedList = (List<Customer>) new ReadAndWriteFile<Customer>().readFile(FILE_PATH);
         System.out.println("Enter id need to edit: ");
-        int idEdit = Integer.parseInt(sc.nextLine());
+        int idEdit = choiceNumber();
         if (linkedList.isEmpty()) {
             System.out.println("Nothing to edit");
         } else {

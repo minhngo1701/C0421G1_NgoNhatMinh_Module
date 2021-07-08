@@ -1,5 +1,7 @@
 package _case_study.controller;
 
+import _case_study.services.PromotionService;
+
 import java.util.Scanner;
 
 public class PromotionManagement {
@@ -30,10 +32,13 @@ public class PromotionManagement {
 
             switch (choiceNumber()) {
                 case 1:
+                    new PromotionService().displayCustomerBooking();
                     break;
                 case 2:
+                    new PromotionService().displayCustomerVoucher();
                     break;
                 case 3:
+                    new  FuramaController().displayMainMenu();
                     break;
                 default:
                     System.out.println("Please re-enter:");

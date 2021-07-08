@@ -9,10 +9,36 @@ import java.util.Scanner;
 
 public class EmployeeServiceImpl implements EmployeeService {
     private static List<Employee> list = new ArrayList<>();
-    public Scanner sc = new Scanner(System.in);
+    public static Scanner sc = new Scanner(System.in);
     private  Employee employee = new Employee();
     private static  ReadAndWriteFile readandWriteFile = new ReadAndWriteFile();
     private static final String FILE_PATH = "src\\_case_study\\data\\Employee.csv";
+    private static int choiceNumber() {
+        boolean checkValid = false;
+        int choice = 0;
+        while (!checkValid) {
+            try {
+                choice = Integer.parseInt(sc.nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
+    }
+    private static double choiceNumberDouble() {
+        boolean checkValid = false;
+        double choice = 0.0;
+        while (!checkValid) {
+            try {
+                choice = Double.parseDouble(sc.nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
+    }
 
     @Override
     public void add() {
@@ -22,7 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
 
         System.out.println("Enter id: ");
-        employee.setId(Integer.parseInt(sc.nextLine()));
+        employee.setId(choiceNumber());
         System.out.println("Enter name: ");
         employee.setName(sc.nextLine());
         System.out.println("Enter date of birth: ");
@@ -40,7 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println("Enter position: ");
         employee.setPosition(sc.nextLine());
         System.out.println("Enter salary: ");
-        employee.setSalary(sc.nextDouble());
+        employee.setSalary(choiceNumberDouble());
         list.add(employee);
         readandWriteFile.writeFileByByteStream(list, FILE_PATH);
     }
@@ -54,7 +80,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void edit() {
         list = (List<Employee>) readandWriteFile.readFile(FILE_PATH);
         System.out.println("Enter id need to edit: ");
-        int idEdit = Integer.parseInt(sc.nextLine());
+        int idEdit = choiceNumber();
         if (list.isEmpty()) {
             System.out.println("Nothing to edit");
         } else {
@@ -78,7 +104,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     System.out.println("Enter new position: ");
                     employee.setPosition(sc.nextLine());
                     System.out.println("Enter new salary: ");
-                    employee.setSalary(sc.nextDouble());
+                    employee.setSalary(choiceNumberDouble());
                     check = true;
                 }
             }

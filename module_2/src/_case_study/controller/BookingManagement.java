@@ -50,6 +50,7 @@ public class BookingManagement {
                      new ContractServiceImpl().display();
                      break;
                  case 5:
+                     new ContractServiceImpl().edit();
                      break;
                  case 6:
                      new FuramaController().displayMainMenu();

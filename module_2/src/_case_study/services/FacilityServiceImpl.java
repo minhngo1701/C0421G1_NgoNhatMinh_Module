@@ -13,15 +13,61 @@ public class FacilityServiceImpl implements FacilityService {
     private static Map<Facility, Integer> facilityHouse = new LinkedHashMap<>();
     private static Map<Facility, Integer> facilityRoom = new LinkedHashMap<>();
     private static Map<Facility, Integer> facility = new LinkedHashMap<>();
+
     private static Scanner input() {
         Scanner sc = new Scanner(System.in);
         return sc;
     }
+
     private static final String FILE_PATH_VILLA = "src\\_case_study\\data\\Villa.csv";
     private static final String FILE_PATH_HOUSE = "src\\_case_study\\data\\House.csv";
     private static final String FILE_PATH_ROOM = "src\\_case_study\\data\\Room.csv";
 
+    private static int choiceNumber() {
+        boolean checkValid = false;
+        int choice = 0;
+        while (!checkValid) {
+            try {
+                choice = Integer.parseInt(input().nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
+    }
 
+    private static double choiceNumberDouble() {
+        boolean checkValid = false;
+        double choice = 0.0;
+        while (!checkValid) {
+            try {
+                choice = Double.parseDouble(input().nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
+    }
+
+    private static double choiceNumberDoubleArea() {
+        boolean checkValid = false;
+        double choice = 0.0;
+        while (!checkValid) {
+            try {
+                choice = Double.parseDouble(input().nextLine());
+                if (choice > 30) {
+                    checkValid = true;
+                }
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            } catch (Exception e) {
+                System.out.print("Area must bigger 30");
+            }
+        }
+        return choice;
+    }
 
     @Override
     public void add() {
@@ -48,7 +94,7 @@ public class FacilityServiceImpl implements FacilityService {
         for (Facility key : facilityHouse.keySet()) {
             System.out.println(key + " - " + facilityHouse.get(key));
         }
-       getAllRoom();
+        getAllRoom();
         for (Facility key : facilityRoom.keySet()) {
             System.out.println(key + " - " + facilityRoom.get(key));
         }
@@ -63,23 +109,23 @@ public class FacilityServiceImpl implements FacilityService {
         System.out.println("Add new Service:");
         String service = input().nextLine();
         System.out.println("Add new area:");
-        double area = input().nextDouble();
+        double area = choiceNumberDoubleArea();
         System.out.println("Add new cost rent:");
-        double rentCost = input().nextDouble();
+        double rentCost = choiceNumberDouble();
         System.out.println("Add new amount person:");
-        int amountPerson = input().nextInt();
+        int amountPerson = choiceNumber();
         System.out.println("Add new type rent:");
         String typeRent = input().nextLine();
         System.out.println("Add new Standard:");
         String standard = input().nextLine();
         System.out.println("Add new swimming pool area:");
-        double poolArea = input().nextDouble();
+        double poolArea = choiceNumberDoubleArea();
         System.out.println("Add new floor:");
-        int floor = input().nextInt();
+        int floor = choiceNumber();
 
-        facilityVilla.put(new Villa(service, area,rentCost,amountPerson,typeRent,standard,poolArea,floor), 0);
+        facilityVilla.put(new Villa(service, area, rentCost, amountPerson, typeRent, standard, poolArea, floor), 0);
         facility.putAll(facilityVilla);
-        new ReadAndWriteFile<Facility>().writeFileByByteStreamUseMap(facilityVilla,FILE_PATH_VILLA);
+        new ReadAndWriteFile<Facility>().writeFileByByteStreamUseMap(facilityVilla, FILE_PATH_VILLA);
 
     }
 
@@ -92,20 +138,20 @@ public class FacilityServiceImpl implements FacilityService {
         System.out.println("Add new Service:");
         String service = input().nextLine();
         System.out.println("Add new area:");
-        double area = input().nextDouble();
+        double area = choiceNumberDoubleArea();
         System.out.println("Add new cost rent:");
-        double rentCost = input().nextDouble();
+        double rentCost = choiceNumberDouble();
         System.out.println("Add new amount person:");
-        int amountPerson = input().nextInt();
+        int amountPerson = choiceNumber();
         System.out.println("Add new type rent:");
         String typeRent = input().nextLine();
         System.out.println("Add new Standard:");
         String standard = input().nextLine();
         System.out.println("Add new floor:");
-        int floor = input().nextInt();
-        facilityHouse.put(new House(service,area,rentCost,amountPerson,typeRent,standard,floor), 0);
+        int floor = choiceNumber();
+        facilityHouse.put(new House(service, area, rentCost, amountPerson, typeRent, standard, floor), 0);
         facility.putAll(facilityHouse);
-        new ReadAndWriteFile<Facility>().writeFileByByteStreamUseMap(facilityHouse,FILE_PATH_HOUSE);
+        new ReadAndWriteFile<Facility>().writeFileByByteStreamUseMap(facilityHouse, FILE_PATH_HOUSE);
 
     }
 
@@ -118,23 +164,23 @@ public class FacilityServiceImpl implements FacilityService {
         System.out.println("Add new Service:");
         String service = input().nextLine();
         System.out.println("Add new area:");
-        double area = input().nextDouble();
+        double area = choiceNumberDoubleArea();
         System.out.println("Add new cost rent:");
-        double rentCost = input().nextDouble();
+        double rentCost = choiceNumberDouble();
         System.out.println("Add new amount person:");
-        int amountPerson = input().nextInt();
+        int amountPerson = choiceNumber();
         System.out.println("Add new type rent:");
         String typeRent = input().nextLine();
         System.out.println("Add new free service");
         String freeService = input().nextLine();
-        facilityRoom.put(new Room(service,area,rentCost,amountPerson,typeRent,freeService), 0);
+        facilityRoom.put(new Room(service, area, rentCost, amountPerson, typeRent, freeService), 0);
         facility.putAll(facilityRoom);
-        new ReadAndWriteFile<Facility>().writeFileByByteStreamUseMap(facilityRoom,FILE_PATH_ROOM);
+        new ReadAndWriteFile<Facility>().writeFileByByteStreamUseMap(facilityRoom, FILE_PATH_ROOM);
     }
 
     @Override
     public Map<Facility, Integer> getAll() {
-       return facility;
+        return facility;
     }
 
     @Override

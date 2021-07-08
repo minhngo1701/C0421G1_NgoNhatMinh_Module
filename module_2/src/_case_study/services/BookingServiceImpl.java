@@ -14,6 +14,19 @@ public class BookingServiceImpl implements BookingService {
         Scanner sc = new Scanner(System.in);
         return sc;
     }
+    private static int choiceNumber() {
+        boolean checkValid = false;
+        int choice = 0;
+        while (!checkValid) {
+            try {
+                choice = Integer.parseInt(input().nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
+    }
 
     @Override
     public void add() {
@@ -26,7 +39,7 @@ public class BookingServiceImpl implements BookingService {
         System.out.println("Display list Facility");
         new FacilityServiceImpl().display();
         System.out.println("Enter your choice id:");
-        int choiceID = input().nextInt();
+        int choiceID = choiceNumber();
         int idCustomer = 0;
         for (Customer customer : new CustomerServiceImpl().getAll()) {
             if (choiceID == customer.getId()) {
