@@ -28,9 +28,9 @@ public class PromotionService {
 
     public void displayCustomerVoucher() {
         bookings = (Set<Booking>) new ReadAndWriteFile<Booking>().readFile("src\\_case_study\\data\\Booking.csv");
-        int voucher50 = 2;
-        int voucher20 = 3;
-        int voucher10 = 4;
+        int voucher50 = 1;
+        int voucher20 = 1;
+        int voucher10 = 2;
         for (Booking booking : bookings) {
             for (Customer customer : new CustomerServiceImpl().getAll()) {
                 if (booking.getCustomerID() == customer.getId()) {
@@ -38,18 +38,29 @@ public class PromotionService {
                 }
             }
         }
-        while (!stackCustomer.isEmpty()) {
 
-            for (int i = 0; i < voucher50; i++) {
-                System.out.println(stackCustomer.pop() + " get voucher 50%");
-            }
-            for (int i = 0; i < voucher20; i++) {
-                System.out.println(stackCustomer.pop() + " get voucher 20%");
-            }
-            for (int i = 0; i < voucher10; i++) {
-                System.out.println(stackCustomer.pop() + " get voucher 10%");
-            }
+                boolean check = true;
+                for (int i = 1; i <= voucher10; i++) {
+                    try {
+                        System.out.println(stackCustomer.pop() + " get voucher 10%");
+                    }catch (EmptyStackException e) {
+                        System.out.println("List is empty");
+                    }
+                }
+                for (int j = 1; j <= voucher20; j++) {
+                    try {
+                        System.out.println(stackCustomer.pop() + " get voucher 20%");
+                    }catch (EmptyStackException e) {
+                        System.out.println("List is empty");
+                    }
+                }
+                for (int k = 1; k <= voucher50; k++) {
+                    try {
+                        System.out.println(stackCustomer.pop() + " get voucher 50%");
+                    }catch (EmptyStackException e) {
+                        System.out.println("List is empty");
+                    }
+                }
 
-        }
     }
 }
