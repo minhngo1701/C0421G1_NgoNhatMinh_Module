@@ -1,27 +1,12 @@
 package _case_study.controller;
 
+import _case_study.libs.Exception;
 import _case_study.services.FacilityServiceImpl;
 
 import java.util.Scanner;
 
-public class FacilityManagement {
-    public static Scanner input() {
-        Scanner sc = new Scanner(System.in);
-        return sc;
-    }
-    private static int choiceNumber() {
-        boolean checkValid = false;
-        int choice = 0;
-        while (!checkValid) {
-            try {
-                choice = Integer.parseInt(input().nextLine());
-                checkValid = true;
-            } catch (NumberFormatException e) {
-                System.out.print("You must enter a number: ");
-            }
-        }
-        return choice;
-    }
+public class FacilityManagement extends Exception {
+
     public void displayFacilityMenu() {
         while (true) {
             System.out.println("-----Facility Menu-----");
@@ -40,8 +25,7 @@ public class FacilityManagement {
                         System.out.println("2. Add new House");
                         System.out.println("3. Add new Room");
                         System.out.println("4. Back to menu");
-                        int input = input().nextInt();
-                        switch (input){
+                        switch (choiceNumber()){
                             case 1:
                                 new FacilityServiceImpl().addNewVilla();
                                 break;

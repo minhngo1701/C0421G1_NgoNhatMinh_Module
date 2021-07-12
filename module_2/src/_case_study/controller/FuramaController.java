@@ -1,26 +1,12 @@
 package _case_study.controller;
 
+import _case_study.libs.Exception;
+
 import java.util.Scanner;
 
-public class FuramaController {
-    public static Scanner input() {
-        Scanner sc = new Scanner(System.in);
-        return sc;
-    }
-    private static int choiceNumber() {
-        boolean checkValid = false;
-        int choice = 0;
-        while (!checkValid) {
-            try {
-                choice = Integer.parseInt(input().nextLine());
-                checkValid = true;
-            } catch (NumberFormatException e) {
-                System.out.print("You must enter a number: ");
-            }
-        }
-        return choice;
-    }
-    public void displayMainMenu() {
+public class FuramaController extends Exception {
+
+    public static void displayMainMenu() {
         while (true) {
             System.out.println("-----Main Menu-----");
             System.out.println("1. Employee Management");
@@ -54,4 +40,5 @@ public class FuramaController {
             }
         }
     }
+
 }

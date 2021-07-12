@@ -1,28 +1,14 @@
 package _case_study.controller;
 
 import _case_study.controller.FuramaController;
+import _case_study.libs.Exception;
 import _case_study.services.CustomerServiceImpl;
 
+import java.beans.Expression;
 import java.util.Scanner;
 
-public class CustomerManagement {
-    public static Scanner input() {
-        Scanner sc = new Scanner(System.in);
-        return sc;
-    }
-    private static int choiceNumber() {
-        boolean checkValid = false;
-        int choice = 0;
-        while (!checkValid) {
-            try {
-                choice = Integer.parseInt(input().nextLine());
-                checkValid = true;
-            } catch (NumberFormatException e) {
-                System.out.print("You must enter a number: ");
-            }
-        }
-        return choice;
-    }
+public class CustomerManagement extends Exception {
+
     public void displayCustomerMenu() {
         while (true) {
             System.out.println("-----Customer Menu-----");

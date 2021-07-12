@@ -1,5 +1,7 @@
 package _case_study.services;
 
+import _case_study.libs.Exception;
+import _case_study.libs.Regex;
 import _case_study.models.Employee;
 import _case_study.utils.ReadAndWriteFile;
 
@@ -7,66 +9,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl extends Exception implements EmployeeService {
     private static List<Employee> list = new ArrayList<>();
     public static Scanner sc = new Scanner(System.in);
-    private  Employee employee = new Employee();
-    private static  ReadAndWriteFile readandWriteFile = new ReadAndWriteFile();
+    private Employee employee = new Employee();
+    private static ReadAndWriteFile readandWriteFile = new ReadAndWriteFile();
     private static final String FILE_PATH = "src\\_case_study\\data\\Employee.csv";
-    private static int choiceNumber() {
-        boolean checkValid = false;
-        int choice = 0;
-        while (!checkValid) {
-            try {
-                choice = Integer.parseInt(sc.nextLine());
-                checkValid = true;
-            } catch (NumberFormatException e) {
-                System.out.print("You must enter a number: ");
-            }
-        }
-        return choice;
-    }
-    private static double choiceNumberDouble() {
-        boolean checkValid = false;
-        double choice = 0.0;
-        while (!checkValid) {
-            try {
-                choice = Double.parseDouble(sc.nextLine());
-                checkValid = true;
-            } catch (NumberFormatException e) {
-                System.out.print("You must enter a number: ");
-            }
-        }
-        return choice;
-    }
-
+    private static Regex regex = new Regex();
     @Override
     public void add() {
         list = (List<Employee>) new ReadAndWriteFile<Employee>().readFile(FILE_PATH);
+        int id = 0;
         if (list == null) {
             list = new ArrayList<>();
+            id = 1;
+            employee.setId(id);
+        } else {
+            employee.setId(list.get(list.size() - 1).getId() + 1);
         }
 
-        System.out.println("Enter id: ");
-        employee.setId(choiceNumber());
         System.out.println("Enter name: ");
-        employee.setName(sc.nextLine());
+        employee.setName(regex.regexNameTest());
         System.out.println("Enter date of birth: ");
-        employee.setDateOfbirth(sc.nextLine());
+        employee.setDateOfbirth(regex.regexDateMonthTest());
         System.out.println("Enter gender: ");
-        employee.setGender(sc.nextLine());
+        employee.setGender(regex.regexNameTest());
         System.out.println("Enter identity number: ");
-        employee.setIdentityNumber(sc.nextLine());
+        employee.setIdentityNumber(regex.regexIdentityNumberTest());
         System.out.println("Enter phone number: ");
-        employee.setPhoneNumber(sc.nextLine());
+        employee.setPhoneNumber(regex.regexPhoneNumberTest());
         System.out.println("Enter email: ");
-        employee.setEmail(sc.nextLine());
+        employee.setEmail(regex.regexEmailTest());
         System.out.println("Enter education: ");
-        employee.setEducation(sc.nextLine());
+        employee.setEducation(regex.regexNameTest());
         System.out.println("Enter position: ");
-        employee.setPosition(sc.nextLine());
+        employee.setPosition(regex.regexNameTest());
         System.out.println("Enter salary: ");
-        employee.setSalary(choiceNumberDouble());
+        employee.setSalary(choiceDouble());
         list.add(employee);
         readandWriteFile.writeFileByByteStream(list, FILE_PATH);
     }
@@ -88,23 +67,23 @@ public class EmployeeServiceImpl implements EmployeeService {
             for (Employee employee : list) {
                 if (idEdit == employee.getId()) {
                     System.out.println("Enter new name: ");
-                    employee.setName(sc.nextLine());
+                    employee.setName(regex.regexNameTest());
                     System.out.println("Enter new date of birth: ");
-                    employee.setDateOfbirth(sc.nextLine());
+                    employee.setDateOfbirth(regex.regexDateMonthTest());
                     System.out.println("Enter new gender: ");
-                    employee.setGender(sc.nextLine());
+                    employee.setGender(regex.regexNameTest());
                     System.out.println("Enter new identity number: ");
-                    employee.setIdentityNumber(sc.nextLine());
+                    employee.setIdentityNumber(regex.regexIdentityNumberTest());
                     System.out.println("Enter new phone number: ");
-                    employee.setPhoneNumber(sc.nextLine());
+                    employee.setPhoneNumber(regex.regexPhoneNumberTest());
                     System.out.println("Enter new email: ");
-                    employee.setEmail(sc.nextLine());
+                    employee.setEmail(regex.regexEmailTest());
                     System.out.println("Enter new education: ");
-                    employee.setEducation(sc.nextLine());
+                    employee.setEducation(regex.regexNameTest());
                     System.out.println("Enter new position: ");
-                    employee.setPosition(sc.nextLine());
+                    employee.setPosition(regex.regexNameTest());
                     System.out.println("Enter new salary: ");
-                    employee.setSalary(choiceNumberDouble());
+                    employee.setSalary(choiceDouble());
                     check = true;
                 }
             }
@@ -112,7 +91,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 System.out.println("Can't find employee in list");
             }
         }
-        readandWriteFile.writeFileByByteStream(list,FILE_PATH);
+        readandWriteFile.writeFileByByteStream(list, FILE_PATH);
     }
 
     @Override
