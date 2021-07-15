@@ -97,14 +97,14 @@ public class EmployeeServiceImpl extends Exception implements EmployeeService {
     @Override
     public void display() {
         list = (List<Employee>) readandWriteFile.readFile(FILE_PATH);
-
         if (list == null) {
-            System.out.println("list is empty");
-        } else {
+            System.out.println("List is empty");
+        }else {
             for (Employee employee : list) {
                 System.out.println(employee);
             }
         }
+
     }
 
 }

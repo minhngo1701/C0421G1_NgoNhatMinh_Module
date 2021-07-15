@@ -14,7 +14,7 @@ public class Regex extends Exception {
     static final String REGEX_NUMBER_OF_FLOOR = "^[0-9]+$"; // số nguyên dương
     static final String REGEX_RENT_OF_TYPE = "^[ngàyNgàythángThángnămNăm]+$";
     static final String REGEX_DD_MM_YY = "^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d$";
-    static final String REGEX_NAME = "^[a-zA-Z ]{2,}$";
+    static final String REGEX_NAME = "^[a-zA-Z0-9- ]{2,}$";
     static final String REGEX_PHONE_NUMBER = "^[0-9]{10,11}$";
     static final String REGEX_IDENTITY_NUMBER = "^[0-9]{9}$";
     static final String REGEX_EMAIL = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$";
