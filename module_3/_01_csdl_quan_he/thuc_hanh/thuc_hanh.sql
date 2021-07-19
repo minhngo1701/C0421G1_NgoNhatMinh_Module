@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS thuc_hanh;
 CREATE DATABASE thuc_hanh;
 USE thuc_hanh;
 CREATE TABLE student (
@@ -44,3 +45,10 @@ VALUES (
     20,
     "Viet Nam"
 );
+
+DELETE FROM teacher
+WHERE id = 2;
+
+UPDATE teacher
+SET `name` = 'Long'
+WHERE id = 1;
