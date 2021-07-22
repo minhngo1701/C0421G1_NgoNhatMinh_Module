@@ -39,12 +39,12 @@ CREATE TABLE Mark
     FOREIGN KEY (id_student) REFERENCES student (id_student)
 );
 
-INSERT INTO class (id_class, class_name, start_date, `status`)
-VALUES (1, 'A1', '2008-12-20', 1);
-INSERT INTO class (id_class, class_name, start_date, `status`)
-VALUES (2, 'A2', '2008-12-22', 1);
-INSERT INTO class (id_class, class_name, start_date, `status`)
-VALUES (3, 'B3', current_date, 0);
+INSERT INTO class (class_name, start_date, `status`)
+VALUES ('A1', '2008-12-20', 1);
+INSERT INTO class (class_name, start_date, `status`)
+VALUES ('A2', '2008-12-02', 1);
+INSERT INTO class (class_name, start_date, `status`)
+VALUES ('B3', current_date, 0);
 
 INSERT INTO Student (student_name, address, phone, `status`, id_class)
 VALUES ('Hung', 'Ha Noi', '0912113113', 1, 1);

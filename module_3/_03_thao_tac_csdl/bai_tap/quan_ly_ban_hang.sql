@@ -71,34 +71,3 @@ VALUES (2, 5, 4);
 INSERT INTO order_detail(id_order, id_product, order_detail_qty) 
 VALUES (2, 3, 3);
 
-ALTER TABLE order_detail
-ADD price_product INT;
-
-UPDATE order_detail
-SET price = order_detail_qty * product_price
-WHERE id_product = 1 AND id_order = 1;
-
-UPDATE order_detail
-SET price_product = order_detail_qty * product_price
-WHERE id_product = 3 AND id_order = 1;
-
-UPDATE order_detail
-SET price_product = order_detail_qty * product_price
-WHERE id_product = 4 AND id_order = 1;
-
-UPDATE order_detail
-SET price_product = 3
-WHERE id_product = 1 AND id_order = 2;
-
-UPDATE order_detail
-SET price_product = 8
-WHERE id_product = 5 AND id_order = 2;
-
-UPDATE order_detail
-SET price_product = 21
-WHERE id_product = 3 AND id_order = 2;
-
-UPDATE order_detail
-SET price_product = 24
-WHERE id_product = 1 AND id_order = 3;
-
