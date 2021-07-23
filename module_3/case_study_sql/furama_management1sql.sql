@@ -1,1 +1,0 @@
-SELECT * FROM furama_management.employee;
