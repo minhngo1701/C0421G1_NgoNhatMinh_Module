@@ -98,3 +98,104 @@ INNER JOIN contract ct ON ct.contract_id = cd.contract_id
 INNER JOIN customer c ON c.customer_id = ct.customer_id
 INNER JOIN type_of_customer tc ON c.type_of_customer_id = tc.type_of_customer_id
 WHERE tc.type_of_customer_name = 'Diamond' AND (c.address = 'Vinh' or c.address = 'Quang Ngai');
+
+-- 12.	Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, SoLuongDichVuDikem 
+-- (được tính dựa trên tổng Hợp đồng chi tiết), 
+-- TienDatCoc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2019 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2019.
+SELECT ct.contract_id, e.employee_name, c.customer_name, c.phone_number, s.service_name, count(cd.contract_detail_id) as 'so_luong_dvdk', ct.money_deposit
+FROM contract_detail cd
+INNER JOIN contract ct ON cd.contract_id = ct.contract_id
+INNER JOIN employee e ON ct.employee_id = e.employee_id
+INNER JOIN customer c ON ct.customer_id = c.customer_id
+INNER JOIN service s ON ct.service_id = s.service_id
+INNER JOIN accompanied_service acs ON cd.accompanied_service_id = acs.accompanied_service_id
+WHERE ct.date_start_contract IN (
+	SELECT date_start_contract
+    FROM contract
+    WHERE (month(date_start_contract) IN (10, 11, 12)) AND (year(date_start_contract) = 2019)
+)
+AND ct.date_start_contract NOT IN (
+	SELECT date_start_contract
+    FROM contract
+    WHERE (month(date_start_contract) IN (1, 2, 3, 4, 5, 6)) AND (year(date_start_contract) = 2019)
+)
+GROUP BY acs.accompanied_service_id;
+
+-- 13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
+-- (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
+SELECT acs.accompanied_service_id, acs.accompanied_service_name, count(cd.contract_detail_id) as 'so_lan_su_dung_nhieu_nhat'
+FROM accompanied_service acs
+INNER JOIN contract_detail cd ON acs.accompanied_service_id = cd.accompanied_service_id
+GROUP BY cd.accompanied_service_id
+HAVING so_lan_su_dung_nhieu_nhat >= ALL (
+	SELECT count(cd.contract_detail_id) FROM contract_detail cd GROUP BY cd.accompanied_service_id
+);
+
+-- 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
+-- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.
+SELECT ct.contract_id, s.service_name, acs.accompanied_service_name, count(cd.contract_detail_id) as 'so_lan_su_dung'
+FROM accompanied_service acs
+INNER JOIN contract_detail cd ON acs.accompanied_service_id = cd.accompanied_service_id
+INNER JOIN contract ct ON ct.contract_id = cd.contract_id
+INNER JOIN service s ON s.service_id = ct.service_id
+GROUP BY cd.accompanied_service_id
+HAVING so_lan_su_dung = 1;
+
+-- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai, DiaChi 
+-- mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.
+SELECT e.employee_id, e.employee_name, ed.education_name, p.part_name, e.phone_number, e.address, count(ct.contract_id) as 'so_luong_hop_dong'
+FROM employee e
+INNER JOIN education ed ON ed.education_id = e.education_id
+INNER JOIN part p ON p.part_id = e.part_id
+INNER JOIN contract ct ON ct.employee_id = e.employee_id
+WHERE (year(ct.date_start_contract) >= 2018) AND (year(ct.date_start_contract) <= 2019)
+GROUP BY ct.employee_id
+HAVING so_luong_hop_dong <= 3;
+
+-- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
+CREATE TEMPORARY TABLE temp (
+	SELECT e.employee_id
+    FROM contract ct
+    RIGHT JOIN employee e ON e.employee_id = ct.employee_id
+    WHERE (year(ct.date_start_contract) >= 2017) AND (year(ct.date_start_contract) <= 2019)
+);
+DELETE FROM employee
+WHERE employee_id not IN (
+	SELECT *
+    FROM temp
+);
+SELECT *
+FROM temp;
+DROP TABLE temp;
+SET SQL_SAFE_UPDATES = 0;
+
+-- 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
+-- chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.
+CREATE TEMPORARY TABLE temp1 (
+	SELECT c.customer_id
+	FROM customer c
+	INNER JOIN contract ct ON c.customer_id = ct.customer_id
+	INNER JOIN type_of_customer tc ON tc.type_of_customer_id = c.type_of_customer_id
+    WHERE year(ct.date_start_contract) = 2019 AND ct.total_money > 10000000 AND type_of_customer_name = 'Platinium'
+	
+);
+UPDATE customer c
+SET c.type_of_customer_id = 1
+WHERE c.customer_id in (
+	SELECT * 
+    FROM temp1
+);
+
+DROP TABLE temp1;
+
+-- 20.	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống, thông tin hiển thị bao gồm ID 
+-- (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.
+SELECT e.employee_id, e.employee_name, e.email, e.phone_number, e.date_of_birth, e.address , 
+c.customer_id, c.customer_name, c.email, c.phone_number, c.date_of_birth, c.address
+FROM employee e
+LEFT JOIN customer c ON e.employee_id = c.customer_id
+UNION ALL
+SELECT e.employee_id, e.employee_name, e.email, e.phone_number, e.date_of_birth, e.address , 
+c.customer_id, c.customer_name, c.email, c.phone_number, c.date_of_birth, c.address
+FROM employee e
+RIGHT JOIN customer c ON e.employee_id = c.customer_id;

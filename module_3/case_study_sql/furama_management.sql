@@ -94,9 +94,9 @@ CREATE TABLE contract (
     date_end_contract DATE,
     money_deposit INT,
     total_money INT,
-    FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
-    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (service_id) REFERENCES service(service_id)
+    FOREIGN KEY (employee_id) REFERENCES employee(employee_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (service_id) REFERENCES service(service_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
