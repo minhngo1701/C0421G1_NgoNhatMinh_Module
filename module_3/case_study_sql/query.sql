@@ -1,4 +1,5 @@
 USE furama_management;
+SET SQL_SAFE_UPDATES = 0;
 
 -- 2.	Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự.
 SELECT *
@@ -167,7 +168,6 @@ WHERE employee_id not IN (
 SELECT *
 FROM temp;
 DROP TABLE temp;
-SET SQL_SAFE_UPDATES = 0;
 
 -- 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
 -- chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.
@@ -188,14 +188,127 @@ WHERE c.customer_id in (
 
 DROP TABLE temp1;
 
+-- 18.	Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng).
+CREATE TEMPORARY TABLE temp2 (
+	SELECT c.customer_id
+    FROM customer c
+    INNER JOIN contract ct ON c.customer_id = ct.customer_id
+    WHERE year(ct.date_start_contract) < 2016
+);
+DELETE FROM customer
+WHERE customer_id IN (
+	SELECT *
+    FROM temp2
+);
+DROP TABLE temp2;
+
+-- 19.	Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.
+CREATE TEMPORARY TABLE temp3 (
+	SELECT count(cd.contract_detail_id), acs.accompanied_service_id as 'accompanied_service_id'
+    FROM contract_detail cd
+    INNER JOIN contract ct ON cd.contract_id = ct.contract_id
+    INNER JOIN accompanied_service acs ON acs.accompanied_service_id = cd.accompanied_service_id
+    WHERE year(ct.date_start_contract) = 2019
+    GROUP BY acs.accompanied_service_id
+    HAVING count(cd.contract_detail_id) > 10
+);
+UPDATE accompanied_service
+SET price = price*2
+WHERE accompanied_service_id IN (
+  SELECT accompanied_service_id
+  FROM temp3
+);
+DROP TABLE temp3;
+
 -- 20.	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống, thông tin hiển thị bao gồm ID 
 -- (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.
-SELECT e.employee_id, e.employee_name, e.email, e.phone_number, e.date_of_birth, e.address , 
-c.customer_id, c.customer_name, c.email, c.phone_number, c.date_of_birth, c.address
+SELECT e.employee_id, e.employee_name, e.email, e.phone_number, e.date_of_birth, e.address 
 FROM employee e
-LEFT JOIN customer c ON e.employee_id = c.customer_id
 UNION ALL
-SELECT e.employee_id, e.employee_name, e.email, e.phone_number, e.date_of_birth, e.address , 
-c.customer_id, c.customer_name, c.email, c.phone_number, c.date_of_birth, c.address
+SELECT c.customer_id, c.customer_name, c.email, c.phone_number, c.date_of_birth, c.address
+FROM customer c;
+
+-- 21. Tạo khung nhìn có tên là V_NHANVIEN để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Hải Châu” 
+-- và đã từng lập hợp đồng cho 1 hoặc nhiều Khách hàng bất kỳ  với ngày lập hợp đồng là “12/12/2019”
+CREATE VIEW v_employee 
+AS
+SELECT e.employee_id, e.employee_name, e.address, ct.date_start_contract
 FROM employee e
-RIGHT JOIN customer c ON e.employee_id = c.customer_id;
+INNER JOIN contract ct ON ct.employee_id = e.employee_id
+WHERE e.address = 'Hải Châu' AND year(ct.date_start_contract) = '2019-12-12';
+
+-- 22. Thông qua khung nhìn V_NHANVIEN thực hiện cập nhật địa chỉ thành “Liên Chiểu” đối với tất cả các Nhân viên được nhìn thấy bởi khung nhìn này.
+UPDATE v_employee
+SET employee.address = 'Liên Chiểu'
+
+-- 23. Tạo Store procedure Sp_1 Dùng để xóa thông tin của một Khách hàng nào đó với Id Khách hàng được truyền vào như là 1 tham số của Sp_1
+delimiter //
+create procedure sp_1(p_keyword INT)
+begin
+	DELETE FROM customer c
+    WHERE c.customer_id = p_keyword;
+end;
+// delimiter ;
+
+call sp_1(1);
+
+-- 24. Tạo Store procedure Sp_2 Dùng để thêm mới vào bảng HopDong với yêu cầu Sp_2 phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung, 
+-- với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.
+delimiter //
+CREATE PROCEDURE sp_2 (
+p_employee_id INT,
+p_customer_id INT,
+p_service_id INT,
+p_date_start_contract DATE,
+p_date_end_contract DATE,
+p_money_deposit INT
+)
+BEGIN
+	IF (p_employee_id IN (SELECT employee_id FROM employee) 
+    AND p_customer_id IN (SELECT customer_id FROM customer)
+    AND p_service_id IN (SELECT service_id FROM service)) 
+    THEN 
+    INSERT INTO contract (employee_id, customer_id, service_id, date_start_contract, date_end_contract, money_deposit)
+    VALUES (p_employee_id, p_customer_id, p_service_id, p_date_start_contract, p_date_end_contract, p_money_deposit);
+    else
+    select 'sai r';
+    end if;
+END;
+// delimiter ;
+CALL sp_2(1,1,1, '2015-09-24', '2015-10-02', 200000);
+-- 25. Tạo triggers có tên Tr_1 Xóa bản ghi trong bảng HopDong 
+-- thì hiển thị tổng số lượng bản ghi còn lại có trong bảng HopDong ra giao diện console của database
+
+delimiter //
+CREATE TRIGGER tr_1	
+BEFORE DELETE 
+ON contract FOR EACH ROW
+BEGIN
+	SET @display = (SELECT count(contract_id) FROM contract);
+END;
+// delimiter ;
+DELETE 
+FROM contract
+WHERE contract_id = 2;
+
+-- 26.	Tạo triggers có tên Tr_2 Khi cập nhật Ngày kết thúc hợp đồng, cần kiểm tra xem thời gian cập nhật có phù hợp hay không, với quy tắc sau: 
+-- Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày. 
+-- Nếu dữ liệu hợp lệ thì cho phép cập nhật, 
+-- nếu dữ liệu không hợp lệ thì in ra thông báo “Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày” trên console của database
+delimiter //
+CREATE TRIGGER tr_2
+BEFORE UPDATE
+ON contract FOR EACH ROW
+BEGIN
+	DECLARE check_date VARCHAR(255);
+    SET check_date = 'Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày';
+    IF (datediff(new.date_end_contract, old.date_start_contract) < 2) 
+    THEN
+    SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = check_date;
+    END IF;
+END;
+// delimiter ;
+UPDATE contract
+SET date_end_contract = '2020-03-12'
+WHERE contract_id = 4;
+
