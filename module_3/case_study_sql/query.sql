@@ -4,7 +4,7 @@ SET SQL_SAFE_UPDATES = 0;
 -- 2.	Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự.
 SELECT *
 FROM employee
-WHERE (employee_name LIKE 't%' or employee_name LIKE 'h%' OR employee_name LIKE 'k%') AND length(employee_name) <= 15;
+WHERE (substring_index(employee_name, ' ', -1) LIKE 't%' or substring_index(employee_name, ' ', -1) LIKE 'h%' OR substring_index(employee_name, ' ', -1) LIKE 'k%') AND length(employee_name) <= 15;
 
 -- 3.	Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
 SELECT *
@@ -172,17 +172,21 @@ DROP TABLE temp;
 -- 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
 -- chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.
 CREATE TEMPORARY TABLE temp1 (
-	SELECT c.customer_id
+	SELECT sum(rent_cost + amount*price) as 'tong_tien', c.customer_id as 'customer_id'
 	FROM customer c
-	INNER JOIN contract ct ON c.customer_id = ct.customer_id
-	INNER JOIN type_of_customer tc ON tc.type_of_customer_id = c.type_of_customer_id
-    WHERE year(ct.date_start_contract) = 2019 AND ct.total_money > 10000000 AND type_of_customer_name = 'Platinium'
-	
+	LEFT JOIN contract ct ON c.customer_id = ct.customer_id
+	LEFT JOIN type_of_customer tc ON tc.type_of_customer_id = c.type_of_customer_id
+	LEFT JOIN service s ON s.service_id = ct.service_id
+	LEFT JOIN contract_detail cd ON cd.contract_id = ct.contract_id
+	LEFT JOIN accompanied_service acs ON acs.accompanied_service_id = cd.accompanied_service_id
+    WHERE year(ct.date_start_contract) = 2019 AND type_of_customer_name = 'Platinium'
+	GROUP BY ct.customer_id
+    HAVING tong_tien > 10000000
 );
 UPDATE customer c
-SET c.type_of_customer_id = 1
-WHERE c.customer_id in (
-	SELECT * 
+SET c.type_of_customer_id = 'Diamond'
+WHERE customer_id in (
+	SELECT customer_id
     FROM temp1
 );
 
@@ -239,7 +243,8 @@ WHERE e.address = 'Hải Châu' AND year(ct.date_start_contract) = '2019-12-12';
 
 -- 22. Thông qua khung nhìn V_NHANVIEN thực hiện cập nhật địa chỉ thành “Liên Chiểu” đối với tất cả các Nhân viên được nhìn thấy bởi khung nhìn này.
 UPDATE v_employee
-SET employee.address = 'Liên Chiểu'
+SET address = 'Liên Chiểu';
+
 
 -- 23. Tạo Store procedure Sp_1 Dùng để xóa thông tin của một Khách hàng nào đó với Id Khách hàng được truyền vào như là 1 tham số của Sp_1
 delimiter //
