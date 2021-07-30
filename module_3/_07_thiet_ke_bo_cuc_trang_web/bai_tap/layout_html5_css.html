@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo layout</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        [class*="col-"] {
+            float: left;
+            padding: 10px;
+        }
+        ..col-1 {width: 8.33%}
+        .col-2 {width: 16.66%}
+        .col-3 {width: 25%}
+        .col-4 {width: 33.32%}
+        .col-5 {width: 41.65%}
+        .col-6 {width: 50%}
+        .col-7 {width: 58.31%}
+        .col-8 {width: 66.64%}
+        .col-9 {width: 75%}
+        .col-10 {width: 83.33%}
+        .col-11 {width: 91.63%}
+        .col-12 {width: 100%}
+        .row::after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+        .color-black-white {
+            color: white;
+            background-color: black;
+        }
+
+        .color-gray {
+           background-color: lightgrey;
+        }
+        .color-white {
+            background-color: white;
+        }
+
+        .space {
+            margin-top: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="row color-black-white" style="margin-bottom: 5px">
+        <div class="col-12">
+            <h1>Monday Times</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            News Sports Weather
+        </div>
+    </div>
+    <div class="row color-gray space" >
+        <div class="col-12"><h3>New Section</h3>
+            <div class="row space">
+                <div class="col-12 color-white"><h3>New Artical</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem.
+                        Morbi condimentum est nibh, et consectetur tortor feugiat at.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem.
+                        Morbi condimentum est nibh, et consectetur tortor feugiat at.
+                    </p>
+                </div>
+                <div class="col-12 color-white space"><h3>New Artical</h3>
+                    <p class="color-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem.
+                        Morbi condimentum est nibh, et consectetur tortor feugiat at.
+                    </p>
+                    <p class="color-white">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem.
+                        Morbi condimentum est nibh, et consectetur tortor feugiat at.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 color-black-white">
+            © 2014 Monday Times. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

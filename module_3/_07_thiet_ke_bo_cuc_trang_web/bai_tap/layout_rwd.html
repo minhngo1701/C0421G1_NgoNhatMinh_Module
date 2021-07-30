@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Layout RWD</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        [class*="col-"] {
+            float: left;
+            padding: 10px;
+        }
+        .col-1 {width: 8.33%}
+        .col-2 {width: 16.66%}
+        .col-3 {width: 25%}
+        .col-4 {width: 33.32%}
+        .col-5 {width: 41.65%}
+        .col-6 {width: 50%}
+        .col-7 {width: 58.31%}
+        .col-8 {width: 66.64%}
+        .col-9 {width: 75%}
+        .col-10 {width: 83.33%}
+        .col-11 {width: 91.63%}
+        .col-12 {width: 100%}
+        .row::after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+         li {
+            float: left;
+            height: 20px;
+             padding: 5px;
+             margin: 2px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .right {
+            float: right;
+        }
+        .color-black-grey {
+            background-color: rgba(0, 0, 0, 0.99);
+            color: lightgrey;
+        }
+        li:hover {
+            color: white;
+            background-color: black;
+        }
+        .center {
+            text-align: center;
+        }
+        .top {
+            margin-top: 10px;
+        }
+        .box {
+            padding: 20px;
+            border: 1px solid;
+            border-radius: 5px;
+            margin: 30px;
+        }
+        .link {
+            margin: 20px;
+        }
+        .footer {
+            margin-top: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row color-black-grey">
+        <div class="col-8">
+            <div class="row">
+                <div class="col-12">
+                    <ul>
+                        <li>Logo</li>
+                        <li>Home</li>
+                        <li>About</li>
+                        <li>Projects</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 ">
+            <div class="row right">
+                <div class="col-12">
+                    <ul>
+                        <li>Login</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <div class="row center link">
+                <div class="col-12">
+                    link
+                </div>
+            </div>
+            <div class="row center link">
+                <div class="col-12">
+                    link
+                </div>
+            </div>
+            <div class="row center link">
+                <div class="col-12">
+                    link
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Welcome</h1>
+                    <p>text</p>
+                </div>
+            </div>
+            <div class="row top">
+                <div class="col-12">
+                    <hr>
+                </div>
+            </div>
+            <div class="row top">
+                <div class="col-12">
+                    <h3>Test</h3>
+                    <p>abcde</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="row box center">
+                <div class="col-12">
+                    ADS
+                </div>
+            </div>
+            <div class="row box center top">
+                <div class="col-12">
+                    ADS
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row center color-black-grey footer">
+        <div class="col-12" >
+            Footer text
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Facebook</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+        *{
+            box-sizing: border-box;
+        }
+
+        [class*="col-"] {
+            float: left;
+            padding: 10px;
+        }
+        .col-1 {width: 8.33%}
+        .col-2 {width: 16.66%}
+        .col-3 {width: 25%}
+        .col-4 {width: 33.32%}
+        .col-5 {width: 41.65%}
+        .col-6 {width: 50%}
+        .col-7 {width: 58.31%}
+        .col-8 {width: 66.64%}
+        .col-9 {width: 75%}
+        .col-10 {width: 83.33%}
+        .col-11 {width: 91.63%}
+        .col-12 {width: 100%}
+        .row::after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+        .header {
+            border: 1px solid;
+            padding: 2px;
+            margin: 2px;
+        }
+        .left {
+            float: left;
+        }
+        .search {
+            border-radius: 6px;
+            padding: 5px;
+            margin: 2px;
+            outline: none;
+            position: relative;
+        }
+
+        .prop {
+            font-size: 10px;
+            padding: 10px;
+            margin: 2px;
+            outline: none;
+        }
+        .right {
+            float: right;
+        }
+        .login {
+            padding: 5px;
+            margin: 5px;
+        }
+        .advertisement {
+            font-size: 20px;
+            border-radius: 5px;
+            border: solid;
+            padding: 20px;
+            margin: 15px;
+            outline: none;
+            border-width: 1px;
+        }
+        .center {
+            text-align: center;
+        }
+        .color-lightgrey {
+            background-color: lightgrey;
+        }
+        .color-white {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="row header">
+        <div class="col-4">
+            <div class="row left">
+                <div class="col-12">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Ảnh nền facebook" width="30px" height="30px">
+                </div>
+            </div>
+            <div class="row left">
+                <div class="col-12 ">
+                    <input class="search" type="text" placeholder="Tìm kiếm trên facebook">
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row left prop">
+                <div class="col-12">
+                    Home
+                </div>
+            </div>
+            <div class="row left prop">
+                <div class="col-12">
+                    Page
+                </div>
+            </div>
+            <div class="row left prop">
+                <div class="col-12">
+                    Group
+                </div>
+            </div>
+            <div class="row left prop">
+                <div class="col-12">
+                    Games
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row right prop">
+                <div class="col-12 login">
+                    Login
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row color-lightgrey">
+        <div class="col-4">
+            <div class="row">
+                <div class="col-12">
+                    Bạn bè
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 ">
+                    Nhóm
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 ">
+                    Market place
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 ">
+                    Watch
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 ">
+                    Sự kiện
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 ">
+                    Trang
+                </div>
+            </div>
+        </div>
+        <div class="col-4 color-white">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Bài viết</h3>
+                    <p>Ngành IT Việt Nam hiện nay ở đầu của sự phát triển. Có thể nói IT là vua của các nghề. Vừa có tiền, có quyền. Vừa kiếm được nhiều $ lại được xã hội trọng vọng.
+
+                        Thằng em mình học bách khoa cơ khí, sinh năm 96. Tự mày mò học code rồi đi làm remote cho công ty Mỹ 2 năm nay. Mỗi tối online 3-4 giờ là xong việc. Lương tháng 3k6. Nhưng thu nhập chính vẫn là từ nhận các project bên ngoài làm thêm. Tuần làm 2,3 cái nhẹ nhàng 9,10k tiền tươi thóc thật không phải đóng thuế. Làm gần được 3 năm mà nhà xe nó đã mua đủ cả. Nghĩ mà thèm.
+
+                        Gái gú thì cứ nghe nó bảo làm CNTT thì chảy nước. Có bé kia dân du học sinh Úc, về được cô chị giới thiệu làm ngân hàng VCB. Thế nào thằng ấy đi mở thẻ tín dụng gặp phải thế là hốt được cả chị lẫn em. 3 đứa nó sống chung một căn hộ cao cấp. Nhà con bé kia biết chuyện ban đầu phản đối sau biết thằng đấy học IT thì đổi thái độ, cách ba bữa hỏi thăm, năm bữa tặng quà lấy long, luôn giục cưới kẻo lỡ kèo ngon.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-4">
+            <div class="row right prop">
+                <div class="col-12 login advertisement center">
+                    Quảng cáo
+                </div>
+                <hr>
+                <p>Được tài trợ</p>
+                <div class="col-12 login advertisement center">
+                    Quảng cáo nhà tài trợ
+                </div>
+                <hr>
+                <p>Người liên hệ</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
