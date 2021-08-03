@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-@WebServlet(name = "TimeServlet", urlPatterns = "/time")
+@WebServlet(name = "TimeServlet", urlPatterns = "")
 public class TimeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
