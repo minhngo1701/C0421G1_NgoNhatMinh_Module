@@ -14,12 +14,12 @@
             <th>Ảnh</th>
           </tr>
           <c:forEach var="customerObj" items="${customerServlet}">
-          <tr>
-            <td><c:out  value="${customerObj.name}"/> </td>
-            <td><c:out  value="${customerObj.dateOfBirth}"/></td>
-            <td><c:out  value="${customerObj.address}"/></td>
-            <td><img  src="${customerObj.image}"/></td>
-          </tr>
+              <tr>
+                <td><c:out  value="${customerObj.name}"/></td>
+                <td><c:out  value="${customerObj.dateOfBirth}"/></td>
+                <td><c:out  value="${customerObj.address}"/></td>
+                <td><img  src="${customerObj.image}" width="100px" height="100px"/></td>
+              </tr>
           </c:forEach>
       </table>
   </body>
