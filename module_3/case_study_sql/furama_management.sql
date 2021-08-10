@@ -42,6 +42,24 @@ CREATE TABLE part (
     part_name VARCHAR(50)
 );
 
+CREATE TABLE users (
+	user_name VARCHAR(255) PRIMARY KEY ,
+    user_password VARCHAR(255)
+);
+
+CREATE TABLE `role` (
+	role_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    role_name VARCHAR(255)
+);
+
+CREATE TABLE user_rode (
+	role_id INT,
+    user_name VARCHAR(255),
+    PRIMARY KEY (role_id, user_name),
+    FOREIGN KEY (role_id) REFERENCES `role`(role_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (user_name) REFERENCES `role`(user_name) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 CREATE TABLE employee (
 	employee_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     employee_name VARCHAR(50),
@@ -54,9 +72,11 @@ CREATE TABLE employee (
     phone_number VARCHAR(50),
     email VARCHAR(50),
     address VARCHAR(50),
+    user_name VARCHAR(255),
 	FOREIGN KEY (position_id) REFERENCES position (position_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY (education_id) REFERENCES education(education_id) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (part_id) REFERENCES part(part_id) ON UPDATE CASCADE ON DELETE CASCADE
+    FOREIGN KEY (part_id) REFERENCES part(part_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (user_name) REFERENCES users(user_name) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE customer (

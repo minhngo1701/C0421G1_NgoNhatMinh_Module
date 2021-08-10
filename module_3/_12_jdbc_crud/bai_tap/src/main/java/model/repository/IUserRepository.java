@@ -12,4 +12,6 @@ public interface IUserRepository {
     void delete(int id);
     List<User> search (String country);
     List<User> orderBy();
+    User getUserById(int id);
+    void insertUserStore(User user);
 }

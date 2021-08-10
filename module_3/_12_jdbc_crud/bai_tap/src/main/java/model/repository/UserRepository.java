@@ -2,6 +2,7 @@ package model.repository;
 
 import model.bean.User;
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -153,5 +154,40 @@ public class UserRepository implements IUserRepository{
             throwables.printStackTrace();
         }
         return userList;
+    }
+
+    @Override
+    public User getUserById(int id) {
+        User user = null;
+        try {
+            CallableStatement callableStatement =
+                    this.baseRepository.getConnection().prepareCall("CALL get_user_by_id(?);");
+            callableStatement.setInt(1, id);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                user = new User();
+                user.setId(id);
+                user.setName(resultSet.getString("user_name"));
+                user.setEmail(resultSet.getString("email"));
+                user.setCountry(resultSet.getString("country"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public void insertUserStore(User user) {
+        try {
+            CallableStatement callableStatement =
+                    this.baseRepository.getConnection().prepareCall("CALL insert_user(?,?,?);");
+            callableStatement.setString(1, user.getName());
+            callableStatement.setString(2, user.getEmail());
+            callableStatement.setString(3, user.getCountry());
+            callableStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
