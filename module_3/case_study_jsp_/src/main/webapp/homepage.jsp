@@ -21,34 +21,61 @@
         </div>
     </div>
 </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Employee</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Customer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Service</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contract</a>
-                </li>
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav justify-content-center me-auto mb-2 mb-lg-0">
+                    <li class="nav-item ml-lg-2">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/employee">Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/customer">Customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/service">Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contract">Contract</a>
+                    </li>
 
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                </ul>
+                <form class="d-flex justify-content-end my-2">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container-fluid">
+    <div class="col-lg-3 mb-2">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Item One</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Item two</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Item three</h3>
+            </div>
         </div>
     </div>
-</nav>
+    <div class="col-lg-9">
+
+    </div>
+</div>
+<div class="container-fluid bg-primary">
+    <p class="text-center text-dark">Footer</p>
+</div>
 <script
         src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
