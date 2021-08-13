@@ -8,13 +8,18 @@
         .right {
             float: right;
         }
+        @media only screen and (max-width: 768px) {
+            [class*="col-lg-"] {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row">
+    <div class="row bg-light">
         <div class="col-lg-6">
-            <img src="hinh_dep.jpg" alt="hinh vui" width="100" height="100">
+            <img src="monkas1.png" alt="hinh vui" width="150" height="100">
         </div>
         <div class="col-lg-6 m-auto">
             <p class="right">Ngô Nhật Minh</p>
@@ -22,24 +27,25 @@
     </div>
 </div>
 <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <nav class="navbar navbar-expand-lg navbar-primary bg-warning">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav justify-content-center me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 70px">
                     <li class="nav-item ml-lg-2">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" style="padding-left: 40px" aria-current="page"
+                           href="/homepage">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/employee">Employee</a>
+                        <a class="nav-link" href="/employee" style="padding-left: 70px">Employee</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/customer">Customer</a>
+                        <a class="nav-link" href="/customer" style="padding-left: 70px">Customer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/service">Service</a>
+                        <a class="nav-link" href="/service" style="padding-left: 70px">Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contract">Contract</a>
+                        <a class="nav-link" href="/contract" style="padding-left: 70px">Contract</a>
                     </li>
 
                 </ul>
@@ -52,25 +58,28 @@
     </nav>
 </div>
 <div class="container-fluid">
-    <div class="col-lg-3 mb-2">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Item One</h3>
+    <div class="row">
+        <div class="col-lg-3 mb-2">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Item One</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Item two</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Item three</h3>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Item two</h3>
-            </div>
+        <div class="col-lg-9 border border-1">
+            <img src="avenger.jpg" width="100%"
+                 alt="hình zui">
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Item three</h3>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-9">
-
     </div>
 </div>
 <div class="container-fluid bg-primary">

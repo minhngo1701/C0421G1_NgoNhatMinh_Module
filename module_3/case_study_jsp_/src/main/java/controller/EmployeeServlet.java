@@ -1,8 +1,7 @@
 package controller;
 
 import model.bean.employee.Employee;
-import model.service.emplyee.EmployeeService;
-import model.service.emplyee.IEmployeeService;
+import model.service.emplyee.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +15,9 @@ import java.util.List;
 @WebServlet(name = "EmployeeServlet", urlPatterns = "/employee")
 public class EmployeeServlet extends HttpServlet {
     private IEmployeeService iEmployeeService = new EmployeeService();
+    private IPositionService iPositionService = new PositionServiceImpl();
+    private IEducationService iEducationService = new EducationServiceImpl();
+    private IDivisionService iDivisionService = new DivisionServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -78,6 +80,9 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     private void showCreateEmployee(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("positionList", this.iPositionService.findAll());
+        request.setAttribute("educationList", this.iEducationService.findAll());
+        request.setAttribute("divisionList", this.iDivisionService.findAll());
         RequestDispatcher dispatcher = request.getRequestDispatcher("employee/create.jsp");
         try {
             dispatcher.forward(request, response);
@@ -89,7 +94,6 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     private void createEmployee(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
         int positionId = Integer.parseInt(request.getParameter("positionId"));
         int educationId = Integer.parseInt(request.getParameter("educationId"));
         int divisionId = Integer.parseInt(request.getParameter("divisionId"));
@@ -102,7 +106,7 @@ public class EmployeeServlet extends HttpServlet {
         String address = request.getParameter("address");
         String userName = request.getParameter("userName");
 
-        Employee employee = new Employee(id,name,dateOfBirth, idCard, salary, phone, email, address, positionId, educationId, divisionId, userName);
+        Employee employee = new Employee(name,dateOfBirth, idCard, salary, phone, email, address, positionId, educationId, divisionId, userName);
         this.iEmployeeService.create(employee);
         request.setAttribute("message", "Employee was created");
         RequestDispatcher dispatcher = request.getRequestDispatcher("employee/create.jsp");
@@ -120,6 +124,9 @@ public class EmployeeServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Employee employee = this.iEmployeeService.findById(id);
         request.setAttribute("employee", employee);
+        request.setAttribute("positionList", this.iPositionService.findAll());
+        request.setAttribute("educationList", this.iEducationService.findAll());
+        request.setAttribute("divisionList", this.iDivisionService.findAll());
         RequestDispatcher dispatcher = request.getRequestDispatcher("employee/update.jsp");
         try {
             dispatcher.forward(request, response);

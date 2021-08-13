@@ -89,21 +89,24 @@ CREATE TABLE customer (
     phone_number VARCHAR(20),
     email VARCHAR(50),
     address VARCHAR(50),
+    customer_code VARCHAR(50),
     FOREIGN KEY (type_of_customer_id) REFERENCES type_of_customer(type_of_customer_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE service (
 	service_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     service_name VARCHAR(50),
-    area INT,
-    floor INT,
-    amount_person_max INT,
-    rent_cost INT,
-    type_of_rent_id INT NOT NULL,
-    type_of_service_id INT NOT NULL,
+    service_area DOUBLE,
+    number_of_floor INT,
+    service_max_people INT,
+    service_type_id INT,
+    service_cost DOUBLE,
+    standard_room VARCHAR(45),
+    description_other_convenience VARCHAR(45),
+    rent_type_id INT,
     `status` VARCHAR(50),
-    FOREIGN KEY (type_of_rent_id) REFERENCES type_of_rent(type_of_rent_id) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (type_of_service_id) REFERENCES type_of_service(type_of_service_id) ON UPDATE CASCADE ON DELETE CASCADE
+    FOREIGN KEY (rent_type_id) REFERENCES type_of_rent(type_of_rent_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (service_type_id) REFERENCES type_of_service(type_of_service_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE contract (
@@ -131,7 +134,7 @@ CREATE TABLE contract_detail (
 );
 SET GLOBAL FOREIGN_KEY_CHECKS = 0;
 
-INSERT INTO position (position_name)
+INSERT INTO `position` (position_name)
 VALUES ('lễ tân'),
 		('phục vụ'),
         ('chuyên viên'),
@@ -195,11 +198,11 @@ VALUES ('Nguyễn Văn Hải', 1, 1, 3, '2002-07-21', '201723929', 5000000, '092
 		('Nguyễn Tùng', 2, 1, 3, '2000-03-10', '201792837', 7000000, '0932372646', 'tung@gmail.com', 'Đà Nẵng', 'Tùng'),
 		('Võ Trần Văn Khoa', 4, 3, 4, '1999-05-06', '201723984', 9000000,'0923762476', 'khoa@gmail.com', 'Quảng Trị', 'Khoa');
 
-INSERT INTO customer (type_of_customer_id,customer_name,date_of_birth,gender,identity_number,phone_number,email,address)
-VALUES (1, 'Ngô Nhật Minh', '2001-08-19', 1, '201792384', '0923764293', 'minh@gmail.com', 'Da Nang'),
-		(3, 'Trương Anh Quân', '2002-12-04', 1, '201792384', '0923764293', 'quan@gmail.com', 'Hue'),
-        (4, 'Nguyễn Tiến Danh', '2003-11-11', 1, '201792384', '0923764293', 'danh@gmail.com', 'Quảng Bình'),
-        (2, 'Nguyễn Thanh Lâm', '2002-03-12', 1, '201792384', '0923764293', 'lam@gmail.com', 'Quảng Ngãi');
+INSERT INTO customer (type_of_customer_id,customer_name,date_of_birth,gender,identity_number,phone_number,email,address,customer_code)
+VALUES (1, 'Ngô Nhật Minh', '2001-08-19', 1, '201792384', '0923764293', 'minh@gmail.com', 'Da Nang', 'KH-1234'),
+		(3, 'Trương Anh Quân', '2002-12-04', 1, '201792384', '0923764293', 'quan@gmail.com', 'Hue', 'KH-2341'),
+        (4, 'Nguyễn Tiến Danh', '2003-11-11', 1, '201792384', '0923764293', 'danh@gmail.com', 'Quảng Bình', 'KH-3422'),
+        (2, 'Nguyễn Thanh Lâm', '2002-03-12', 1, '201792384', '0923764293', 'lam@gmail.com', 'Quảng Ngãi', 'KH-3425');
         
 INSERT INTO service (service_name,area,floor,amount_person_max,rent_cost,type_of_rent_id,type_of_service_id,`status`)
 VALUES ('villa1', 240, 5, 12, 10000000, 1, 1, 'Khả dụng'),
@@ -239,5 +242,80 @@ BEGIN
     VALUES (b,c,d,e,f,g,h,j,k,l,m);
 END;
 // delimiter ;	
-CALL employee_sp(?,?,?,?,?,?,?,?,?,?,?);
 
+delimiter //
+CREATE PROCEDURE edit_sp(
+	a INT,
+    b VARCHAR(50),
+    c INT,
+    d INT,
+    e INT,
+    f DATE,
+    g VARCHAR(50),
+    h DOUBLE,
+    j VARCHAR(50),
+    k VARCHAR(50),
+    l VARCHAR(50),
+    m VARCHAR(255)
+)
+BEGIN
+	UPDATE employee
+    SET employee_name = b,position_id = c,education_id = d,part_id = e,date_of_birth = f,identity_number = g,salary = h,phone_number = j,email = k,address = l,user_name = m
+    WHERE employee_id = a;
+END;
+// delimiter ;	
+
+delimiter //
+CREATE PROCEDURE create_customer_sp(
+    b INT,
+    c VARCHAR(50),
+    d DATE,
+    e BIT,
+	f VARCHAR(50),
+    g VARCHAR(20),
+    h VARCHAR(50),
+    j VARCHAR(50),
+    m VARCHAR(50)
+)
+BEGIN
+	INSERT INTO customer(type_of_customer_id ,customer_name ,date_of_birth,gender,identity_number,phone_number,email,address,customer_code)
+    VALUES (b,c,d,e,f,g,h,j,m);
+END;
+// delimiter ;	
+
+delimiter //
+CREATE PROCEDURE update_customer_sp(
+	a INT,
+    b INT,
+    c VARCHAR(50),
+    d DATE,
+    e BIT,
+	f VARCHAR(50),
+    g VARCHAR(20),
+    h VARCHAR(50),
+    j VARCHAR(50)
+)
+BEGIN
+	UPDATE customer
+	SET type_of_customer_id = b,customer_name = c,date_of_birth = d,gender = e,identity_number = f,phone_number = g,email = h,address = j, customer_code = m
+    WHERE customer_id = a;
+END;
+// delimiter ;
+
+delimiter //
+CREATE PROCEDURE create_service_sp(
+   
+    b VARCHAR(50),
+    c INT,
+    d INT,
+    e INT,
+    f INT,
+    g INT,
+    h INT,
+    j VARCHAR(50)
+)
+BEGIN
+	INSERT INTO service (service_name,area,floor,amount_person_max,rent_cost,type_of_rent_id,type_of_service_id,`status`)
+    VALUES (b,c,d,e,f,g,h,j);
+END;
+// delimiter ;

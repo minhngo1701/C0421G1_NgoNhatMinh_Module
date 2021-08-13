@@ -1,23 +1,23 @@
 package model.bean.customer;
 
 public class TypeOfCustomer {
-    private int id;
+    private int typeCusId;
     private String typeOfCustomerName;
 
     public TypeOfCustomer() {
     }
 
     public TypeOfCustomer(int id, String typeOfCustomerName) {
-        this.id = id;
+        this.typeCusId = id;
         this.typeOfCustomerName = typeOfCustomerName;
     }
 
-    public int getId() {
-        return id;
+    public int getTypeCusId() {
+        return typeCusId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTypeCusId(int typeCusId) {
+        this.typeCusId = typeCusId;
     }
 
     public String getTypeOfCustomerName() {

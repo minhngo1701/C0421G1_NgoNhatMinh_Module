@@ -7,112 +7,98 @@
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 <body>
-<h1>Edit employee</h1>
-<p>
-    <c:if test="${message != null}">
-        <span class="text-success">${message}</span>
-    </c:if>
-</p>
-<form method="post">
-    <table border="1" cellpadding="5">
-        <c:if test="${employee != null}">
-            <input type="hidden" name="id" value="<c:out value='${employee.id}' />"/>
-        </c:if>
-        <tr>
-            <th>Employee Name:</th>
-            <td>
-                <input type="text" name="name" size="45"
-                       value="<c:out value='${employee.name}' />"
-                />
-            </td>
-        </tr>
-        <tr>
-            <th>Position Id:</th>
-            <td>
-                <input type="text" name="positionId" size="45"
-                       value="<c:out value='${employee.positionId}' />"
-                />
-            </td>
-        </tr>
-        <tr>
-            <th>Education Id:</th>
-            <td>
-                <input type="text" name="educationId" size="45"
-                       value="<c:out value='${employee.educationId}' />"
-                />
-            </td>
-        </tr>
-        <tr>
-            <th>Division Id:</th>
-            <td>
-                <input type="text" name="divisionId" size="45"
-                       value="<c:out value='${employee.divisionId}' />"
-                />
-            </td>
-        </tr>
-        <tr>
-            <th>Date Of Birth:</th>
-            <td>
-                <input type="text" name="dateOfBirth" size="45"
-                       value="<c:out value='${employee.dateOfBirth}' />"
-                />
-            </td>
-        </tr>
-        <tr>
-            <th>Id Card:</th>
-            <td>
-                <input type="text" name="idCard" size="45"
-                       value="<c:out value='${employee.id_card}' />"
-                />
-            </td>
-        </tr>
-        <tr>
-            <th>Salary:</th>
-            <td>
-                <input type="text" name="salary" size="45"
-                       value="<c:out value='${employee.salary}' />"
-                />
-            </td>
-        </tr>
-        <tr>
-            <th>Phone:</th>
-            <td>
-                <input type="text" name="phone" size="45"
-                       value="<c:out value='${employee.phone}' />"
-                />
-            </td>
-        </tr>
-        <tr>
-            <th>Email:</th>
-            <td>
-                <input type="text" name="email" size="45"
-                       value="<c:out value='${employee.email}' />"
-                />
-            </td>
-        </tr>
-        <tr>
-            <th>Address:</th>
-            <td>
-                <input type="text" name="address" size="20"
-                       value="<c:out value='${employee.address}' />"
-                />
-            </td>
-        </tr>
-        <tr>
-            <th>User Name:</th>
-            <td>
-                <input type="text" name="userName" size="45"
-                       value="<c:out value='${employee.userName}' />"
-                />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <input type="submit" value="Save"/>
-            </td>
-        </tr>
-    </table>
-</form>
+<jsp:include page="/header.jsp"></jsp:include>
+<jsp:include page="/navbar.jsp"></jsp:include>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 mb-2">
+            <jsp:include page="/body.jsp"></jsp:include>
+        </div>
+        <div class="col-lg-9 border border-1">
+            <h1>Edit employee</h1>
+            <p>
+                <c:if test="${message != null}">
+                    <span class="text-success">${message}</span>
+                </c:if>
+            </p>
+            <form method="post">
+                <div>
+                    <c:if test="${employee != null}">
+                        <input type="hidden" name="id" value="<c:out value='${employee.id}' />"/>
+                    </c:if>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Employee Name:</label>
+                    <input type="text" class="form-control" name="name" id="name"
+                           value="<c:out value='${employee.name}' />">
+                </div>
+                <div class="mb-3">
+                    <label for="positionId" class="form-label">Position:</label>
+                    <select name="positionId" class="form-select" id="positionId">
+                        <c:forEach var="positionObj" items="${positionList}">
+                            <option value="${positionObj.getPositionId()}">${positionObj.getPositionName()}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="educationId" class="form-label">Education:</label>
+                    <select name="educationId" class="form-select" id="educationId">
+                        <c:forEach var="educationObj" items="${educationList}">
+                            <option value="${educationObj.getEdudcationId()}">${educationObj.getEducationName()}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="divisionId" class="form-label">Division:</label>
+                    <select name="divisionId" class="form-select" id="divisionId">
+                        <c:forEach var="divisionObj" items="${divisionList}">
+                            <option value="${divisionObj.getDivisionId()}">${divisionObj.getDivisionName()}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="dateOfBirth" class="form-label">Date Of Birth:</label>
+                    <input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth"
+                           value="<c:out value='${employee.dateOfBirth}' />">
+                </div>
+                <div class="mb-3">
+                    <label for="idCard" class="form-label">Id Card:</label>
+                    <input type="text" class="form-control" name="idCard" id="idCard"
+                           value="<c:out value='${employee.idCard}' />">
+                </div>
+                <div class="mb-3">
+                    <label for="salary" class="form-label">Salary:</label>
+                    <input type="number" class="form-control" name="salary" id="salary"
+                           value="<c:out value='${employee.salary}' />">
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone:</label>
+                    <input type="text" class="form-control" name="phone" id="phone"
+                           value="<c:out value='${employee.phone}' />">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" name="email" id="email"
+                           value="<c:out value='${employee.email}' />">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address:</label>
+                    <input type="text" class="form-control" name="address" id="address"
+                           value="<c:out value='${employee.address}' />">
+                </div>
+                <div class="mb-3">
+                    <label for="userName" class="form-label">User Name:</label>
+                    <input type="text" class="form-control" name="userName" id="userName"
+                           value="<c:out value='${employee.userName}' />">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+<jsp:include page="/footer.jsp"></jsp:include>
 <script
         src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="

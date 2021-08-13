@@ -29,7 +29,7 @@ public class EmployeeRepositoryImpl implements IEmployeeRepository {
                 employee.setEducationId(resultSet.getInt("education_id"));
                 employee.setDivisionId(resultSet.getInt("part_id"));
                 employee.setDateOfBirth(resultSet.getString("date_of_birth"));
-                employee.setId_card(resultSet.getString("identity_number"));
+                employee.setIdCard(resultSet.getString("identity_number"));
                 employee.setSalary(resultSet.getDouble("salary"));
                 employee.setPhone(resultSet.getString("phone_number"));
                 employee.setEmail(resultSet.getString("email"));
@@ -61,7 +61,7 @@ public class EmployeeRepositoryImpl implements IEmployeeRepository {
                 employee.setEducationId(resultSet.getInt("education_id"));
                 employee.setDivisionId(resultSet.getInt("part_id"));
                 employee.setDateOfBirth(resultSet.getString("date_of_birth"));
-                employee.setId_card(resultSet.getString("identity_number"));
+                employee.setIdCard(resultSet.getString("identity_number"));
                 employee.setSalary(resultSet.getDouble("salary"));
                 employee.setPhone(resultSet.getString("phone_number"));
                 employee.setEmail(resultSet.getString("email"));
@@ -84,7 +84,7 @@ public class EmployeeRepositoryImpl implements IEmployeeRepository {
             callableStatement.setString(3, employee.getEducationId() + "");
             callableStatement.setString(4,employee.getDivisionId() + "" );
             callableStatement.setString(5, employee.getDateOfBirth() + "");
-            callableStatement.setString(6, employee.getId_card());
+            callableStatement.setString(6, employee.getIdCard());
             callableStatement.setString(7, employee.getSalary() + "");
             callableStatement.setString(8, employee.getPhone());
             callableStatement.setString(9, employee.getEmail());
@@ -107,7 +107,7 @@ public class EmployeeRepositoryImpl implements IEmployeeRepository {
             callableStatement.setString(4, employee.getEducationId() + "");
             callableStatement.setString(5,employee.getDivisionId() + "" );
             callableStatement.setString(6, employee.getDateOfBirth() + "");
-            callableStatement.setString(7, employee.getId_card());
+            callableStatement.setString(7, employee.getIdCard());
             callableStatement.setString(8, employee.getSalary() + "");
             callableStatement.setString(9, employee.getPhone());
             callableStatement.setString(10, employee.getEmail());

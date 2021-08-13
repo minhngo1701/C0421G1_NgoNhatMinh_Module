@@ -1,63 +1,88 @@
 package model.bean.customer;
 
-import java.util.Date;
+import java.util.BitSet;
 
 public class Customer {
-    private int id;
-    private String typeOfCustomerId;
-    private String name;
+    private int customerId;
+    private int typeOfCustomerId;
+    private String customerName;
     private String dateOfBirth;
-    private String gender;
+    private boolean gender;
     private String cardId;
-    private String phone;
-    private String email;
-    private String address;
-
+    private String phoneCus;
+    private String emailCus;
+    private String addressCus;
+    private String customerCode;
     public Customer() {
     }
 
-    public Customer(int id, String typeOfCustomerId, String name, String dateOfBirth, String gender, String cardId, String phone, String email, String address) {
-        this.id = id;
+    public Customer(int id, int typeOfCustomerId, String name, String dateOfBirth, boolean gender, String cardId, String phone, String email, String address, String customerCode) {
+        this.customerId = id;
         this.typeOfCustomerId = typeOfCustomerId;
-        this.name = name;
+        this.customerName = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.cardId = cardId;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.phoneCus = phone;
+        this.emailCus = email;
+        this.addressCus = address;
+        this.customerCode = customerCode;
     }
 
-    public int getId() {
-        return id;
+    public Customer(int typeOfCustomerId, String name, String dateOfBirth, Boolean gender, String cardId, String phone, String email, String address, String customerCode) {
+        this.typeOfCustomerId = typeOfCustomerId;
+        this.customerName = name;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.cardId = cardId;
+        this.phoneCus = phone;
+        this.emailCus = email;
+        this.addressCus = address;
+        this.customerCode = customerCode;
     }
 
-    public String getGender() {
+    public String getCustomerCode() {
+        return customerCode;
+    }
+
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
+    }
+
+    public boolean isGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
         this.gender = gender;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
-    public String getTypeOfCustomerId() {
+    public int getTypeOfCustomerId() {
         return typeOfCustomerId;
     }
 
-    public void setTypeOfCustomerId(String typeOfCustomerId) {
+    public void setTypeOfCustomerId(int typeOfCustomerId) {
         this.typeOfCustomerId = typeOfCustomerId;
     }
 
-    public String getName() {
-        return name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getDateOfBirth() {
@@ -76,27 +101,27 @@ public class Customer {
         this.cardId = cardId;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneCus() {
+        return phoneCus;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneCus(String phoneCus) {
+        this.phoneCus = phoneCus;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailCus() {
+        return emailCus;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailCus(String emailCus) {
+        this.emailCus = emailCus;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddressCus() {
+        return addressCus;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddressCus(String addressCus) {
+        this.addressCus = addressCus;
     }
 }

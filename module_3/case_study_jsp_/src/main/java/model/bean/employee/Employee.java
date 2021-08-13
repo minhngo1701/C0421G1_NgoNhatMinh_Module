@@ -1,12 +1,10 @@
 package model.bean.employee;
 
-import java.util.Date;
-
 public class Employee {
     private int id;
     private String name;
     private String dateOfBirth;
-    private String id_card;
+    private String idCard;
     private double salary;
     private String phone;
     private String email;
@@ -23,7 +21,21 @@ public class Employee {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        this.id_card = id_card;
+        this.idCard = id_card;
+        this.salary = salary;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.positionId = positionId;
+        this.educationId = educationId;
+        this.divisionId = divisionId;
+        this.userName = userName;
+    }
+
+    public Employee(String name, String dateOfBirth, String idCard, Double salary, String phone, String email, String address, int positionId, int educationId, int divisionId, String userName) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.idCard = idCard;
         this.salary = salary;
         this.phone = phone;
         this.email = email;
@@ -58,12 +70,12 @@ public class Employee {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getId_card() {
-        return id_card;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public void setId_card(String id_card) {
-        this.id_card = id_card;
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 
     public double getSalary() {
