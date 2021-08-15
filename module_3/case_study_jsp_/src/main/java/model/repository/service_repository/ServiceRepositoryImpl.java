@@ -3,6 +3,7 @@ package model.repository.service_repository;
 import model.bean.service_model.Service;
 import model.repository.BaseRepository;
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,8 +44,22 @@ public class ServiceRepositoryImpl implements IServiceRepository {
 
     @Override
     public void create(Service service) {
-//        try {
-//
-//        }
+        try {
+            CallableStatement callableStatement =
+                    this.baseRepository.getConnection().prepareCall("CALL create_service_sp(?,?,?,?,?,?,?,?,?,?)");
+            callableStatement.setString(1, service.getServiceName());
+            callableStatement.setString(2, service.getArea() + "");
+            callableStatement.setString(3, service.getFloor() + "");
+            callableStatement.setString(4, service.getAmountPersonMax() + "");
+            callableStatement.setString(5, service.getRentCost() + "");
+            callableStatement.setString(6, service.getStandardRoom());
+            callableStatement.setString(7, service.getDescription());
+            callableStatement.setString(8, service.getTypeOfRentId()+"");
+            callableStatement.setString(9, service.getTypeOfServiceId()+"");
+            callableStatement.setString(10, service.getStatus());
+            callableStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

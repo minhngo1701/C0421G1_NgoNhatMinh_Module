@@ -8,24 +8,25 @@
 </head>
 <body>
 <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <nav class="navbar navbar-expand-lg navbar-primary bg-warning">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 70px">
                     <li class="nav-item ml-lg-2">
-                        <a class="nav-link active" style="padding-left: 40px" aria-current="page" href="/homepage">Home</a>
+                        <a class="nav-link active" style="padding-left: 40px" aria-current="page"
+                           href="/homepage">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/employee" style="padding-left: 150px">Employee</a>
+                        <a class="nav-link" href="/employee" style="padding-left: 70px">Employee</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/customer" style="padding-left: 150px">Customer</a>
+                        <a class="nav-link" href="/customer" style="padding-left: 70px">Customer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/service" style="padding-left: 150px">Service</a>
+                        <a class="nav-link" href="/service" style="padding-left: 70px">Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contract" style="padding-left: 150px">Contract</a>
+                        <a class="nav-link" href="/contract" style="padding-left: 70px">Contract</a>
                     </li>
 
                 </ul>

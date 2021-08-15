@@ -34,9 +34,12 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Position Id</th>
-                        <th>Education Id</th>
-                        <th>Division Id</th>
+<%--                        <th>Position Id</th>--%>
+                        <th>Position</th>
+<%--                        <th>Education Id</th>--%>
+                        <th>Education</th>
+<%--                        <th>Division Id</th>--%>
+                        <th>Division</th>
                         <th>Date Of Birth</th>
                         <th>Id Card</th>
                         <th>Salary</th>
@@ -52,9 +55,35 @@
                         <tr>
                             <td>${employee.id}</td>
                             <td>${employee.name}</td>
-                            <td>${employee.positionId}</td>
-                            <td>${employee.educationId}</td>
-                            <td>${employee.divisionId}</td>
+<%--                            <td>${employee.positionId}</td>--%>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${employee.positionId == 1}">lễ tân</c:when>
+                                    <c:when test="${employee.positionId == 2}">phục vụ</c:when>
+                                    <c:when test="${employee.positionId == 3}">chuyên viên</c:when>
+                                    <c:when test="${employee.positionId == 4}">giám sát</c:when>
+                                    <c:when test="${employee.positionId == 5}">quản lý</c:when>
+                                    <c:otherwise>giám đốc</c:otherwise>
+                                </c:choose>
+                            </td>
+<%--                            <td>${employee.educationId}</td>--%>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${employee.educationId == 1}">Trung cấp</c:when>
+                                    <c:when test="${employee.educationId == 2}">Cao đẳng</c:when>
+                                    <c:when test="${employee.educationId == 3}">Đại học</c:when>
+                                    <c:otherwise>sau đại học</c:otherwise>
+                                </c:choose>
+                            </td>
+<%--                            <td>${employee.divisionId}</td>--%>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${employee.divisionId == 1}">Sale – Marketing</c:when>
+                                    <c:when test="${employee.divisionId == 2}">Hành Chính</c:when>
+                                    <c:when test="${employee.divisionId == 3}">Phục vụ</c:when>
+                                    <c:otherwise>Quản lý</c:otherwise>
+                                </c:choose>
+                            </td>
                             <td>${employee.dateOfBirth}</td>
                             <td>${employee.idCard}</td>
                             <td>${employee.salary}</td>

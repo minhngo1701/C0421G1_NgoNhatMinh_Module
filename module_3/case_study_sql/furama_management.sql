@@ -204,11 +204,11 @@ VALUES (1, 'Ngô Nhật Minh', '2001-08-19', 1, '201792384', '0923764293', 'minh
         (4, 'Nguyễn Tiến Danh', '2003-11-11', 1, '201792384', '0923764293', 'danh@gmail.com', 'Quảng Bình', 'KH-3422'),
         (2, 'Nguyễn Thanh Lâm', '2002-03-12', 1, '201792384', '0923764293', 'lam@gmail.com', 'Quảng Ngãi', 'KH-3425');
         
-INSERT INTO service (service_name,area,floor,amount_person_max,rent_cost,type_of_rent_id,type_of_service_id,`status`)
-VALUES ('villa1', 240, 5, 12, 10000000, 1, 1, 'Khả dụng'),
-		('villa2', 200, 5, 10, 9000000, 1, 1, 'Khả dụng'),
-		('house1', 100, 5, 5, 5000000, 1, 2, 'Khả dụng'),
-		('room1', 40, 5, 3, 3000000, 1, 3, 'không Khả dụng');
+INSERT INTO service (service_name,service_area,number_of_floor,service_max_people,service_cost,rent_type_id,service_type_id,`status`, standard_room, description_other_convenience)
+VALUES ('villa1', 240, 5, 12, 10000000, 1, 1, 'Khả dụng', 'Vip', 'rộng rãi, thoáng mát'),
+		('villa2', 200, 5, 10, 9000000, 1, 1, 'Khả dụng', 'Vip', 'rộng rãi, thoáng mát'),
+		('house1', 100, 5, 5, 5000000, 1, 2, 'Khả dụng', 'Normal', 'nhiều phòng'),
+		('room1', 40, 5, 3, 3000000, 1, 3, 'không Khả dụng', 'Normal', 'sạch sẽ');
 
 INSERT INTO contract (employee_id,customer_id,service_id,date_start_contract,date_end_contract,money_deposit)
 VALUES (2, 4, 2, '2020-03-09', '2020-03-12', 700000),
@@ -306,16 +306,18 @@ delimiter //
 CREATE PROCEDURE create_service_sp(
    
     b VARCHAR(50),
-    c INT,
+    c DOUBLE,
     d INT,
     e INT,
-    f INT,
-    g INT,
-    h INT,
-    j VARCHAR(50)
+    f DOUBLE,
+    g VARCHAR(45),
+    h VARCHAR(45),
+    j INT,
+    k INT,
+    l VARCHAR(50)
 )
 BEGIN
-	INSERT INTO service (service_name,area,floor,amount_person_max,rent_cost,type_of_rent_id,type_of_service_id,`status`)
-    VALUES (b,c,d,e,f,g,h,j);
+	INSERT INTO service (service_name,service_area,number_of_floor,service_max_people,service_cost,standard_room,description_other_convenience,rent_type_id,service_type_id,`status`)
+    VALUES (b,c,d,e,f,g,h,j,k,l);
 END;
 // delimiter ;

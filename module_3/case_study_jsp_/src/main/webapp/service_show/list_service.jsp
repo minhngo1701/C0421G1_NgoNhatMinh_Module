@@ -33,15 +33,15 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Name Service</th>
                         <th>Area</th>
                         <th>Number of Floors</th>
                         <th>Max People</th>
                         <th>Cost</th>
                         <th>Stand Room</th>
                         <th>Description other Convenience</th>
-                        <th>Service Type ID</th>
-                        <th>Rent Type ID</th>
+                        <th>Service Type</th>
+                        <th>Rent Type</th>
                         <th>Status</th>
 
                     </tr>
@@ -57,8 +57,20 @@
                             <td>${service.rentCost}</td>
                             <td>${service.standardRoom}</td>
                             <td>${service.description}</td>
-                            <td>${service.typeOfRentId}</td>
-                            <td>${service.typeOfServiceId}</td>
+                            <td>
+                                <c:choose>
+                                <c:when test="${service.typeOfServiceId == 1}">villa</c:when>
+                                <c:when test="${service.typeOfServiceId == 2}">house</c:when>
+                                <c:otherwise>room</c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${service.typeOfRentId == 1}">ngày</c:when>
+                                    <c:when test="${service.typeOfRentId == 2}">tháng</c:when>
+                                    <c:otherwise>năm</c:otherwise>
+                                </c:choose>
+                            </td>
                             <td>${service.status}</td>
                         </tr>
                     </c:forEach>

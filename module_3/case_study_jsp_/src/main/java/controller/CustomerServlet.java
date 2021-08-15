@@ -133,7 +133,7 @@ public class CustomerServlet extends HttpServlet {
     private void showCustomerList(HttpServletRequest request, HttpServletResponse response) {
         List<Customer> customers = this.iCustomerService.findAll();
         request.setAttribute("customerList",customers);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("customer/list_customer.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("customer/list_contract.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {

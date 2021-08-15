@@ -5,6 +5,13 @@
     <title>Employee Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <style>
+        @media only screen and (max-width: 768px) {
+            [class*="col-lg-"] {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="/header.jsp"></jsp:include>
@@ -49,7 +56,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Name:</label>
-                    <input type="name" class="form-control" name="id" id="name">
+                    <input type="text" class="form-control" name="name" id="name">
                 </div>
                 <div class="mb-3">
                     <label for="dateOfBirth" class="form-label">Date of Birth:</label>
