@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = "/customer")
 public class CustomerServlet extends HttpServlet {
@@ -58,15 +59,21 @@ public class CustomerServlet extends HttpServlet {
         String code = request.getParameter("code");
 
         Customer customer = new Customer(id,typeCustomerId,name,dateOfBirth,gender,cardId,phone,email,address,code);
-        this.iCustomerService.update(customer);
-        request.setAttribute("message", "Customer was updated");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("customer/update.jsp");
-        try {
-            dispatcher.forward(request,response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Map<String, String> stringMap = this.iCustomerService.update(customer);
+        if (!stringMap.isEmpty()) {
+            request.setAttribute("map", stringMap);
+            request.setAttribute("customer", customer);
+            showEditCustomer(request, response);
+        } else {
+            request.setAttribute("message", "Customer was updated");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("customer/update.jsp");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -82,15 +89,21 @@ public class CustomerServlet extends HttpServlet {
         String code = request.getParameter("code");
 
         Customer customer = new Customer(typeCustomerId,name,dateOfBirth,gender,cardId,phone,email,address,code);
-        this.iCustomerService.create(customer);
-        request.setAttribute("message", "Customer was created");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("customer/create.jsp");
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Map<String, String> stringMap = this.iCustomerService.create(customer);
+        if (!stringMap.isEmpty()) {
+            request.setAttribute("map", stringMap);
+            request.setAttribute("customer", customer);
+            showCreateCustomer(request, response);
+        } else {
+            request.setAttribute("message", "Customer was created");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("customer/create.jsp");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -133,7 +146,7 @@ public class CustomerServlet extends HttpServlet {
     private void showCustomerList(HttpServletRequest request, HttpServletResponse response) {
         List<Customer> customers = this.iCustomerService.findAll();
         request.setAttribute("customerList",customers);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("customer/list_contract.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("customer/list_customer.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {

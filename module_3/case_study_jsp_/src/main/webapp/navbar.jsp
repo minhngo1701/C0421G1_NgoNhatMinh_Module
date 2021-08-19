@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-primary bg-warning">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 70px">
@@ -30,9 +30,10 @@
                     </li>
 
                 </ul>
-                <form class="d-flex justify-content-end my-2">
+                <form action="" method="post" class="d-flex justify-content-end my-2">
+                    <input type="hidden" name="action" value="search">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-success" type="submit">Search</button>
                 </form>
             </div>
         </div>

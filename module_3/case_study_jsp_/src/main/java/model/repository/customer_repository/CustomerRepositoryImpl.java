@@ -94,7 +94,7 @@ public class CustomerRepositoryImpl implements ICustomerRepository {
     public void update(Customer customer) {
         try {
             CallableStatement callableStatement =
-                    this.baseRepository.getConnection().prepareCall("Call update_customer_sp(?,?,?,?,?,?,?,?,?)");
+                    this.baseRepository.getConnection().prepareCall("Call update_customer_sp(?,?,?,?,?,?,?,?,?,?)");
             callableStatement.setString(1, customer.getCustomerId() + "");
             callableStatement.setString(2, customer.getTypeOfCustomerId() + "");
             callableStatement.setString(3, customer.getCustomerName());
@@ -104,6 +104,7 @@ public class CustomerRepositoryImpl implements ICustomerRepository {
             callableStatement.setString(7, customer.getPhoneCus());
             callableStatement.setString(8, customer.getEmailCus());
             callableStatement.setString(9, customer.getAddressCus());
+            callableStatement.setString(10, customer.getCustomerCode());
             callableStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

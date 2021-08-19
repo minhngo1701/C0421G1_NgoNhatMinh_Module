@@ -116,7 +116,8 @@ CREATE TABLE contract (
     service_id INT NOT NULL,
     date_start_contract DATE,
     date_end_contract DATE,
-    money_deposit INT,
+    contract_total INT,
+    money_deposit DOUBLE,
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (service_id) REFERENCES service(service_id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -293,7 +294,8 @@ CREATE PROCEDURE update_customer_sp(
 	f VARCHAR(50),
     g VARCHAR(20),
     h VARCHAR(50),
-    j VARCHAR(50)
+    j VARCHAR(50),
+    m VARCHAR(50)
 )
 BEGIN
 	UPDATE customer

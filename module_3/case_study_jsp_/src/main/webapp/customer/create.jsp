@@ -41,7 +41,10 @@
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Name:</label>
-                    <input type="text" class="form-control" name="name" id="name">
+                    <input type="text" class="form-control" name="name" id="name" value="${customer.getCustomerName()}">
+                    <c:if test="${map.get('name') != null}">
+                            <span class="text-danger">${map.get('name')}</span>
+                    </c:if>
                 </div>
                 <div class="mb-3">
                     <label for="dateOfBirth" class="form-label">Date of Birth:</label>
@@ -56,23 +59,35 @@
                 </div>
                 <div class="mb-3">
                     <label for="cardId" class="form-label">Card Id:</label>
-                    <input type="text" class="form-control" name="cardId" id="cardId">
+                    <input type="text" class="form-control" name="cardId" id="cardId" value="${customer.getCardId()}">
+                    <c:if test="${map.get('idCard') != null}">
+                        <span class="text-danger">${map.get('idCard')}</span>
+                    </c:if>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Phone:</label>
-                    <input type="text" class="form-control" name="phone" id="phone">
+                    <input type="text" class="form-control" name="phone" id="phone" value="${customer.getPhoneCus()}">
+                    <c:if test="${map.get('phone') != null}">
+                        <span class="text-danger">${map.get('phone')}</span>
+                    </c:if>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" name="email" id="email">
+                    <input type="email" class="form-control" name="email" id="email" value="${customer.getEmailCus()}">
+                    <c:if test="${map.get('email') != null}">
+                        <span class="text-danger">${map.get('email')}</span>
+                    </c:if>
                 </div>
                 <div class="mb-3">
                     <label for="address" class="form-label">Address:</label>
                     <input type="text" class="form-control" name="address" id="address">
                 </div>
                 <div class="mb-3">
-                    <label for="code" class="form-label">Address:</label>
-                    <input type="text" class="form-control" name="code" id="code">
+                    <label for="code" class="form-label">Customer Code:</label>
+                    <input type="text" class="form-control" name="code" id="code" value="${customer.getCustomerCode()}">
+                    <c:if test="${map.get('customerCode') != null}">
+                        <span class="text-danger">${map.get('customerCode')}</span>
+                    </c:if>
                 </div>
                 <button type="submit" class="btn btn-primary">Create</button>
 

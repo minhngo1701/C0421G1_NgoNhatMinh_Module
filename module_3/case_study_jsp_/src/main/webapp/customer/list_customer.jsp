@@ -3,8 +3,8 @@
 <html>
 <head>
     <title>Customer Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
     <style>
         @media only screen and (max-width: 768px) {
             [class*="col-lg-"] {
@@ -16,12 +16,12 @@
 <body>
 <jsp:include page="/header.jsp"></jsp:include>
 <jsp:include page="/navbar.jsp"></jsp:include>
-<div class="container-fluid">
+<div class="container-fluid" style="min-height: 100vh">
     <div class="row">
         <div class="col-lg-3 mb-2">
             <jsp:include page="/body.jsp"></jsp:include>
         </div>
-        <div class="col-lg-9 border border-1">
+        <div class="col-lg-9 border border-1" >
             <h1>Customer list</h1>
             <a class="btn btn-success mb-2" href="/customer?action=create&id=${customer.getCustomerId()}" role="button">Create</a>
             <c:if test="${empty customerList}">
@@ -29,7 +29,7 @@
             </c:if>
 
             <c:if test="${not empty customerList}">
-                <table class="table">
+                <table class="table table-striped" id="tableStudent" style="overflow-x: scroll; width: 100%; display: inline-block">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -44,6 +44,7 @@
                         <th>Address</th>
                         <th>Customer Code</th>
                         <th>Action</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -78,7 +79,7 @@
                                    href="/customer?action=update&id=${customer.getCustomerId()}" role="button">Edit</a>
                             </td>
                             <td>
-                                <button onclick="onDelete(${customer.getCustomerId()})" type="button"
+                                <button onclick="onDelete('${customer.getCustomerId()}', '${customer.getCustomerName()}')" type="button"
                                         class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delModal">
                                     Delete
                                 </button>
@@ -105,7 +106,7 @@
                 <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="id" value="" id="idCustomer">
                 <div class="modal-body">
-                    Bạn muốn xóa <span id="iCustomerName"></span>
+                    Bạn muốn xóa <input style="border: none; outline: none; color: red"  id="idCustomerName">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -115,21 +116,23 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 
-<script
-        src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-        integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
-        integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
-        crossorigin="anonymous"></script>
 <script>
     function onDelete(id, name) {
         document.getElementById("idCustomer").value = id;
+        document.getElementById("idCustomerName").value = name;
     }
+
+    $(document).ready(function() {
+        $('#tableStudent').dataTable( {
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 1
+        } );
+    } );
 </script>
 </body>
 </html>

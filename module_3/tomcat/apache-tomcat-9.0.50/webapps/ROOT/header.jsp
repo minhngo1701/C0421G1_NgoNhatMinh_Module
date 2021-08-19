@@ -15,7 +15,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">
-            <img src="monkas1.png" alt="hinh vui" width="100" height="100">
+            <img src="monkas1.png" alt="hinh vui" width="150" height="100">
         </div>
         <div class="col-lg-6 m-auto">
             <p class="right">Ngô Nhật Minh</p>
