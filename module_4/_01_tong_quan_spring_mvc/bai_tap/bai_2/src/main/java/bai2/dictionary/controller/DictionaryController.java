@@ -18,7 +18,7 @@ public class DictionaryController {
     @PostMapping(value = "/dictionary")
     public ModelAndView translate(@RequestParam String word) {
         String result = "";
-        String[] vn = {"meo", "cho", "chim", "truong"};
+        String[] vn = {"mèo", "chó", "chim", "trường học"};
         String[] eng = {"cat", "dog", "bird", "school"};
         boolean check = false;
         for (int i = 0; i < vn.length; i++) {
