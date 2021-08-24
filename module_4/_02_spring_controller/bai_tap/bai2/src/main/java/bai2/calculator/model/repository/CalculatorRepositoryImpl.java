@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.sql.CallableStatement;
-
+@Repository
 public class CalculatorRepositoryImpl implements CalculatorRepository {
     @Override
     public Double calculatorSimple(String op, String number1, String number2) {
