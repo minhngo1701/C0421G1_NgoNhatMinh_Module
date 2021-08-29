@@ -1,8 +1,8 @@
 package com.codegym.controller;
 
-import com.codegym.model.Product;
-import com.codegym.service.ProductServiceImpl;
-import com.codegym.service.IProductService;
+import com.codegym.model.bean.Product;
+import com.codegym.model.service.IProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-    private final IProductService iproductService = new ProductServiceImpl();
+    @Autowired
+    private IProductService iproductService;
 
     @GetMapping("")
     public String index(Model model) {
@@ -63,9 +64,10 @@ public class ProductController {
         model.addAttribute("product", iproductService.findById(id));
         return "/view";
     }
-//    @GetMapping("")
-//    public String search(@RequestParam String nameProduct, Model model) {
-//        model.addAttribute("product", iproductService.search(nameProduct));
-//        return "/index";
-//    }
+    @GetMapping("/search")
+    public String search(@RequestParam String nameProduct, Model model) {
+        List<Product> productList = iproductService.search(nameProduct);
+        model.addAttribute("productSearch", productList);
+        return "/search";
+    }
 }
