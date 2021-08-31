@@ -49,5 +49,7 @@ public class ProductRepositoryImpl implements IProductRepository{
         TypedQuery<Product> query = entityManager.createQuery("SELECT p FROM Product as p WHERE p.nameProduct=:p1 ", Product.class)
                 .setParameter("p1", name);
         return query.getResultList();
+
+
     }
 }
