@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Rent Book</h1>
+    <p th:if="${codeRents}" th:text="${codeRents}">
+    </p>
+    <form action="/book/return" method="post">
+        <input type="text" name="code">
+        <input type="submit" value="Give back book">
+    </form>
+    <table border="1">
+        <tr>
+        <th>ID</th>
+        <th>Name Book</th>
+        <th>Amount</th>
+        <th>Action</th>
+        </tr>
+        <tr th:each="items: ${rentBookList}">
+            <td th:text="${items.id}"></td>
+            <td th:text="${items.nameBook}"></td>
+            <td th:text="${items.amountOfRent}"></td>
+            <td><a th:href="@{/book/rent/{id}(id=${items.getId()})}">Rent</a></td>
+        </tr>
+    </table>
+</body>
+</html>
