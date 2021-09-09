@@ -1,6 +1,6 @@
 package com.codegym.rent_book.controller;
 
-import com.codegym.rent_book.exception.Errors;
+import com.codegym.rent_book.exception.MultiException;
 import com.codegym.rent_book.model.bean.CodeRent;
 import com.codegym.rent_book.model.bean.RentBook;
 import com.codegym.rent_book.model.service.ICodeRentService;
@@ -34,11 +34,11 @@ public class RentBookController {
     }
 
     @PostMapping("/rent")
-    public String createRentBook(@ModelAttribute RentBook rentBook, RedirectAttributes redirectAttributes) throws Errors {
+    public String createRentBook(@ModelAttribute RentBook rentBook, RedirectAttributes redirectAttributes) throws MultiException {
         int rentCode = (int) ((Math.random()*89999) + 10000);
         rentBook.setAmountOfRent(rentBook.getAmountOfRent()-1);
         if (rentBook.getAmountOfRent() < 0) {
-            throw new Errors();
+            throw new MultiException();
         }
         iRentBookService.save(rentBook);
         iCodeRentService.save(new CodeRent(rentCode, rentBook));
@@ -47,11 +47,11 @@ public class RentBookController {
     }
 
     @PostMapping("/return")
-    public String giveBackBook(@RequestParam String code) throws Errors {
+    public String giveBackBook(@RequestParam String code) throws MultiException {
 
         CodeRent codeRent = iCodeRentService.findById(Integer.parseInt(code));
         if (codeRent == null) {
-            throw new Errors();
+            throw new MultiException();
         }
         RentBook rentBook = codeRent.getRentBook();
         rentBook.setAmountOfRent(rentBook.getAmountOfRent()+1);
@@ -60,7 +60,7 @@ public class RentBookController {
         return "redirect:/book/list";
     }
 
-    @ExceptionHandler(Errors.class)
+    @ExceptionHandler(MultiException.class)
     public String showError() {
         return "error";
     }

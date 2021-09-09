@@ -1,6 +1,6 @@
 package com.codegym.rent_book.model.service;
 
-import com.codegym.rent_book.exception.Errors;
+import com.codegym.rent_book.exception.MultiException;
 import com.codegym.rent_book.model.bean.RentBook;
 import com.codegym.rent_book.model.repository.IRentBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +23,11 @@ public class RentBookServiceImpl implements IRentBookService {
 
 
     @Override
-    public void save(RentBook rentBook) throws Errors {
+    public void save(RentBook rentBook) throws MultiException {
         try {
             iRentBookRepository.save(rentBook);
         }catch (Exception e) {
-            throw new Errors();
+            throw new MultiException();
         }
     }
 }
