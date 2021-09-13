@@ -9,10 +9,15 @@
         Add new blog
     </a>
 </p>
-<form action="/blog/search">
-    <input type="search" name="nameBlog" placeholder="Search">
-    <input type="submit" value="Search">
-</form>
+<!--<form action="/blog/search">-->
+<!--    <input type="search" name="nameBlog" placeholder="Search">-->
+<!--    <input type="submit" value="Search">-->
+<!--</form>-->
+<div>
+
+    <input type="text" placeholder="Search" id="word">
+    <button type="submit" id="submit">Search</button>
+</div>
 <table class="table" id= "blogs" border="1">
     <thead>
     <tr>
@@ -45,4 +50,37 @@
     <a th:href="@{'/blog'(page=${blogs.number+1})}" th:if="${blogs.hasNext()}">Next</a>
 </div>
 </body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            let word = $("#word").val();
+            $("table").empty();
+
+            $.ajax({
+                type: "GET",
+                url : "http://localhost:8080/blog/api/search?name="+word,
+                dataType:"json",
+                success:function (data) {
+                    console.log(data)
+                    let tr = [];
+                    let str;
+                    for (let i = 0 ; i <data.length;i++){
+                        tr.push('<tr>');
+                        tr.push('<td>'+data[i].id+'</td>');
+                        tr.push('<td>'+data[i].nameBlog+'</td>');
+                        tr.push('<td>'+data[i].content+'</td>');
+                        str = "";
+                        for (let j = 0;  j< data[i].categorySet.length; j++) {
+                            str+= data[i].categorySet[j].nameCategory + " "
+                        }
+                        tr.push('<td>'+ str+ '</td>');
+                        tr.push('<td>'+'</td>');
+                    }
+                    $("table").append($(tr.join('')));
+                }
+            })
+        })
+    })
+</script>
 </html>

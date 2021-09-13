@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer view</title>
+</head>
+<body>
+<h1 th:text="#{cus.view}"></h1>
+Language <a href="?lang=en">Engish</a> | <a href="?lang=vi">Vietnamese</a>
+<table>
+    <tr>
+        <td><label>ID:</label></td>
+        <td th:text="${customer.id}"></td>
+    </tr>
+    <tr>
+        <td th:text="#{cus.firstName}"></td>
+        <td th:text="${customer.firstName}"></td>
+    </tr>
+    <tr>
+        <td th:text="#{cus.lastName}"></td>
+        <td th:text="${customer.lastName}"></td>
+    </tr>
+</table>
+</body>
+</html>
