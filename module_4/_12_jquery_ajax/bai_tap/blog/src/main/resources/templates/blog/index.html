@@ -9,10 +9,14 @@
         Add new blog
     </a>
 </p>
-<form action="/blog/search">
-    <input type="search" name="nameBlog" placeholder="Search">
-    <input type="submit" value="Search">
-</form>
+<!--<form action="/blog/search">-->
+<!--    <input type="search" name="nameBlog" placeholder="Search">-->
+<!--    <input type="submit" value="Search">-->
+<!--</form>-->
+<div>
+    <input type="text" placeholder="Search" id="word">
+    <button type="submit" id="submit">Search</button>
+</div>
 <table class="table" id= "blogs" border="1">
     <thead>
     <tr>
@@ -22,6 +26,7 @@
         <th>Category</th>
         <th>Edit</th>
         <th>Delete</th>
+        <th>Detail</th>
     </tr>
     </thead>
     <tbody>
@@ -36,6 +41,7 @@
         </td>
         <td><a th:href="@{/blog/{id}/edit(id=${row.getId()})}">edit</a></td>
         <td><a th:href="@{/blog/{id}/delete(id=${row.getId()})}">delete</a></td>
+        <td><button class="detail" type="submit" th:href="${row.getId()}" data-bs-toggle="modal" data-bs-target="#exampleModal">detail</button></td>
     </tr>
     </tbody>
 </table>
@@ -44,5 +50,84 @@
     <span th:text="${blogs.number+1}"></span> <span th:text="${blogs.totalPages}"></span>
     <a th:href="@{'/blog'(page=${blogs.number+1})}" th:if="${blogs.hasNext()}">Next</a>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Blog</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="id">
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" class="form-control" name="" id="detailIdBlog">
+                </div>
+                <div class="form-group">
+                    <label>Name blog</label>
+                    <input type="text" class="form-control" name="" id="detailNameBlog">
+                </div>
+                <div class="form-group">
+                    <label>Content</label>
+                    <input type="text" class="form-control" name="" id="detailContentBlog">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" class="form-control" name="" id="detailCategory">
+                </div>
+                <div class="form-group"></div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            let word = $("#word").val();
+            $("table").empty();
+
+            $.ajax({
+                type: "GET",
+                url : "http://localhost:8080/blog/api/search?name="+word,
+                dataType:"json",
+                success:function (data) {
+                    console.log(data)
+                    let tr = [];
+                    let str;
+                    for (let i = 0 ; i <data.length;i++){
+                        tr.push('<tr>');
+                        tr.push('<td>'+data[i].id+'</td>');
+                        tr.push('<td>'+data[i].nameBlog+'</td>');
+                        tr.push('<td>'+data[i].content+'</td>');
+                        str = "";
+                        for (let j = 0;  j< data[i].categorySet.length; j++) {
+                            str+= data[i].categorySet[j].nameCategory + " "
+                        }
+                        tr.push('<td>'+ str+ '</td>');
+                        tr.push('<td>'+'</td>');
+                    }
+                    $("table").append($(tr.join('')));
+                }
+            })
+        })
+
+        $('.detail').click(function () {
+            let id = $(this).attr("href");
+            $.ajax({
+                type: "GET",
+                url: `/blog/api/${id}`,
+                success: function (data) {
+                    document.getElementById("detailIdBlog").value = data.id;
+                    document.getElementById("detailNameBlog").value = data.nameBlog;
+                    document.getElementById("detailContentBlog").value = data.content;
+                    document.getElementById("detailCategory").value = data.categorySet;
+                }
+            })
+            event.preventDefault();
+        })
+    })
+</script>
 </html>

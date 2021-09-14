@@ -53,4 +53,13 @@ public class BlogRestController {
         }
         return new ResponseEntity<>(blogDetail, HttpStatus.OK);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Blog>> searchBlog(@RequestParam String name) {
+        List<Blog> blogList = iBlogService.findAllByNameBlog(name);
+        if (blogList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(blogList, HttpStatus.OK);
+    }
 }
