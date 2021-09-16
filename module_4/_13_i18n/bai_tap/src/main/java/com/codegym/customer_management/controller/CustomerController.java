@@ -21,7 +21,9 @@ public class CustomerController {
     }
     @GetMapping("/view/{id}")
     public String showViewCustomer(@PathVariable Long id, Model model) {
-        model.addAttribute("customer", iCustomerService.findById(id));
+        if (iCustomerService.findById(id) == null) {
+            model.addAttribute("customer", iCustomerService.findById(id));
+        }
         return "view";
     }
 }

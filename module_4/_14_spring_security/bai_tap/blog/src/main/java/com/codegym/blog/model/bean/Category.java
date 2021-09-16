@@ -1,6 +1,5 @@
 package com.codegym.blog.model.bean;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -19,7 +18,6 @@ public class Category {
     private Integer id;
     private String nameCategory;
 
-    @JsonBackReference
     @ManyToMany(mappedBy = "categorySet")
     private Set<Blog> blog;
 
