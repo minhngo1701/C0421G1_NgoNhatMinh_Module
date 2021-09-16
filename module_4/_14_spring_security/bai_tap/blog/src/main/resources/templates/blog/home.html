@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <h1>Home</h1>
+<div sec:authorize="isAuthenticated()">
+    <h1 style="color: blue">Đăng nhập thành công</h1>
+    <h1>Xin chào: <span style="color: greenyellow" sec:authentication="principal.username"></span></h1>
+</div>
 </body>
 </html>
