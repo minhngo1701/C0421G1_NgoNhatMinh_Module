@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="~{/footer_header/header :: header}"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12" >
+            <h3>Employee List</h3>
+            <p>
+                <a class="btn btn-success mb-2" href="/employee/create" role="button">Create</a>
+            </p>
+            <p style="color: green" th:if="${successMsg}" th:text="${successMsg}"></p>
+            <form action="/employee/search" method="post" >
+                <div>
+                    <input type="text" name="search" placeholder="Search">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+            <table class="table table-warning table-striped" border="1">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Date of birth</th>
+                    <th>ID Card</th>
+                    <th>Salary</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Position</th>
+                    <th>Education Degree</th>
+                    <th>Division</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="row : ${employeeList}">
+                    <td th:text="${row.id}"></td>
+                    <td th:text="${row.nameEmployee}"></td>
+                    <td th:text="${row.dateOfBirth}"></td>
+                    <td th:text="${row.idCard}"></td>
+                    <td th:text="${row.salary}"></td>
+                    <td th:text="${row.phone}"></td>
+                    <td th:text="${row.email}"></td>
+                    <td th:text="${row.address}"></td>
+                    <td th:text="${row.position.getNamePosition()}"></td>
+                    <td th:text="${row.educationDegree.getNameEducationDegree()}"></td>
+                    <td th:text="${row.division.getNameDivision()}"></td>
+                    <td>
+                        <a class="btn btn-primary mb-2" role="button" th:href="@{/employee/edit/{id}(id=${row.getId()})}">edit</a>
+
+                        <button onclick="onDelete('${employee.getId()}', '${employee.getNameEmployee()}')" type="button"
+                                class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delModal">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{'/employee/list'(page=0)}"  aria-label="First">
+                                First
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" th:href="@{'/employee/list'(page=${employeeList.number-1})}" th:if="${employeeList.hasPrevious()}">Previous</a>
+                        <li class="page-item"><a class="page-link" th:href="@{'/employee/list'(page=${employeeList.number+1})}" th:if="${employeeList.hasNext()}">Next</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{'/employee/list'(page=${employeeList.totalPages-1})}"  aria-label="Last">
+                               Last
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+    <div class="row">
+        <div th:replace="~{/footer_header/footer::footer}"></div>
+    </div>
+</div>
+<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete employee</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/employee/delete" method="post">
+                <input type="hidden" name="id" value="" id="idEmployee">
+                <div class="modal-body">
+                    Bạn muốn xóa <input style="border: none; outline: none; color: red"  id="idEmployeeName" readonly>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="delete">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+        integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        //sư kiện nào thực hiện Ajax
+        $('.deleteEmployee').click(function (event) {
+            //lay du lieu
+            let a = $(this);
+            let smartphoneId = a.attr("href");
+            // goi ajax
+            $.ajax({
+                type: "post",
+                //tên API
+                url: `/employee/${smartphoneId}`,
+                //xử lý khi thành công
+                success: function (data) {
+                    a.parent().parent().remove();
+                }
+
+            });
+            //chặn sự kiện mặc định của thẻ
+            event.preventDefault();
+        });
+    })
+    </script>
+</body>
+</html>
